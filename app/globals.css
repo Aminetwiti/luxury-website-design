@@ -1,0 +1,501 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Variables CSS personnalisées pour l'accessibilité */
+:root {
+  --lux-bg: #f8f8f5;
+  --lux-text: #1c1c1c;
+  --lux-gold: #b8860b; /* Ajusté pour meilleur contraste */
+  --lux-gold-dark: #996f00; /* Version plus sombre pour les liens */
+  --lux-muted: rgba(28, 28, 28, 0.08);
+  --lux-border: rgba(28, 28, 28, 0.15);
+  --focus-ring: #0066cc; /* Couleur de focus accessible */
+  --focus-ring-offset: 2px;
+  --high-contrast-bg: #000000;
+  --high-contrast-text: #ffffff;
+  --high-contrast-accent: #ffff00;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Mode haute visibilité */
+[data-high-contrast="true"] {
+  --lux-bg: var(--high-contrast-bg);
+  --lux-text: var(--high-contrast-text);
+  --lux-gold: var(--high-contrast-accent);
+  --lux-gold-dark: var(--high-contrast-accent);
+  --lux-muted: rgba(255, 255, 255, 0.1);
+  --lux-border: rgba(255, 255, 255, 0.3);
+  --background: var(--high-contrast-bg);
+  --foreground: var(--high-contrast-text);
+  --card: var(--high-contrast-bg);
+  --card-foreground: var(--high-contrast-text);
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.8);
+  --border: rgba(255, 255, 255, 0.3);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--lux-bg);
+    color: var(--lux-text);
+  }
+}
+
+/* Lien "Aller au contenu" pour l'accessibilité */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--focus-ring);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Focus visible amélioré pour l'accessibilité */
+.focus-visible,
+*:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: var(--focus-ring-offset) !important;
+  border-radius: 4px;
+}
+
+/* Focus pour les éléments interactifs */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2) !important;
+}
+
+/* Focus pour les liens dans le header transparent */
+header a:focus-visible {
+  background-color: rgba(0, 102, 204, 0.1);
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/* Amélioration du contraste pour les textes secondaires */
+.text-muted-foreground {
+  color: rgba(28, 28, 28, 0.75) !important; /* Amélioration du contraste */
+}
+
+[data-high-contrast="true"] .text-muted-foreground {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Amélioration des boutons pour l'accessibilité */
+button,
+.btn {
+  min-height: 44px; /* Taille minimum tactile */
+  min-width: 44px;
+  position: relative;
+}
+
+/* Indicateur de focus pour les éléments custom */
+.custom-focus:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 3px solid var(--focus-ring);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Animations respectueuses des préférences utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Amélioration de la lisibilité */
+@media (prefers-contrast: high) {
+  :root {
+    --lux-text: #000000;
+    --lux-gold: #996f00;
+    --lux-border: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Mode haute visibilité */
+[data-high-contrast="true"] * {
+  border-color: var(--lux-border) !important;
+}
+
+[data-high-contrast="true"] .bg-white {
+  background-color: var(--lux-bg) !important;
+  color: var(--lux-text) !important;
+}
+
+[data-high-contrast="true"] .text-gray-600,
+[data-high-contrast="true"] .text-gray-700,
+[data-high-contrast="true"] .text-gray-800,
+[data-high-contrast="true"] .text-gray-900 {
+  color: var(--lux-text) !important;
+}
+
+/* Amélioration des contrastes pour les états hover */
+a:hover,
+button:hover {
+  text-decoration: underline;
+}
+
+/* Styles pour les lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Amélioration des formulaires */
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+input[required]::after,
+textarea[required]::after {
+  content: " *";
+  color: #dc2626;
+}
+
+/* Indicateur visuel pour les champs requis */
+.required-field::after {
+  content: " *";
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/* Amélioration des messages d'erreur */
+.error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-weight: bold;
+}
+
+/* Amélioration de la navigation */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: rgba(0, 102, 204, 0.1);
+  text-decoration: underline;
+}
+
+/* Amélioration des cartes et conteneurs */
+.card,
+.project-card {
+  border: 2px solid var(--lux-border);
+  border-radius: 8px;
+  padding: 16px;
+  background-color: var(--lux-bg);
+}
+
+.card:focus-within {
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+/* Amélioration des images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Styles pour les tooltips accessibles */
+[role="tooltip"] {
+  background: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  max-width: 200px;
+  z-index: 1000;
+}
+
+/* Amélioration des modales */
+[role="dialog"] {
+  background: white;
+  border: 2px solid var(--lux-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+[role="dialog"]:focus {
+  outline: none;
+}
+
+/* Amélioration des listes */
+ul,
+ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+/* Amélioration des tableaux */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--lux-border);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--lux-muted);
+  font-weight: 600;
+}
+
+/* Amélioration des citations */
+blockquote {
+  border-left: 4px solid var(--lux-gold);
+  padding-left: 16px;
+  margin: 16px 0;
+  font-style: italic;
+}
+
+/* Amélioration des codes */
+code,
+pre {
+  background-color: var(--lux-muted);
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-family: "Courier New", monospace;
+}
+
+pre {
+  padding: 16px;
+  overflow-x: auto;
+}
+
+/* Amélioration des séparateurs */
+hr {
+  border: none;
+  border-top: 2px solid var(--lux-border);
+  margin: 24px 0;
+}
+
+/* Styles pour les alertes */
+.alert {
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 2px solid;
+  margin: 16px 0;
+}
+
+.alert-info {
+  background-color: #e6f3ff;
+  border-color: #0066cc;
+  color: #004499;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+/* Amélioration pour les utilisateurs de lecteurs d'écran */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
