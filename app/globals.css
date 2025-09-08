@@ -1,21 +1,22 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Variables CSS personnalisées pour l'accessibilité */
+/* Variables CSS personnalisées pour l'accessibilité et la responsivité */
 :root {
   --lux-bg: #f8f8f5;
   --lux-text: #1c1c1c;
-  --lux-gold: #b8860b; /* Ajusté pour meilleur contraste */
-  --lux-gold-dark: #996f00; /* Version plus sombre pour les liens */
+  --lux-gold: #c9a568;
+  --lux-gold-light: #e6c866;
+  --lux-gold-dark: #b8941f;
   --lux-muted: rgba(28, 28, 28, 0.08);
-  --lux-border: rgba(28, 28, 28, 0.15);
-  --focus-ring: #0066cc; /* Couleur de focus accessible */
+  --lux-border: #e5e7eb;
+  --focus-ring: #0066cc;
   --focus-ring-offset: 2px;
   --high-contrast-bg: #000000;
   --high-contrast-text: #ffffff;
   --high-contrast-accent: #ffff00;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0 0);
+  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -47,6 +48,26 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --font-playfair: "Playfair Display", serif;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 640px) {
+  :root {
+    --container-padding: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  :root {
+    --container-padding: 2rem;
+  }
 }
 
 /* Mode haute visibilité */
@@ -64,6 +85,47 @@
   --muted: rgba(255, 255, 255, 0.1);
   --muted-foreground: rgba(255, 255, 255, 0.8);
   --border: rgba(255, 255, 255, 0.3);
+}
+
+.high-contrast {
+  --lux-gold: #000000;
+  --lux-text: #000000;
+  --lux-text-light: #000000;
+  --lux-border: #000000;
+}
+
+.high-contrast * {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.high-contrast .bg-white {
+  background-color: #ffffff !important;
+}
+
+.high-contrast .bg-gray-50 {
+  background-color: #f9f9f9 !important;
+}
+
+.high-visibility {
+  --lux-gold: #ffff00;
+  --lux-text: #000000;
+  --lux-text-light: #000000;
+  --lux-border: #000000;
+}
+
+.high-visibility * {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.high-visibility .bg-gray-900 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.high-visibility .bg-gray-900 * {
+  color: #ffffff !important;
 }
 
 .dark {
@@ -148,26 +210,44 @@
     @apply bg-background text-foreground;
     background-color: var(--lux-bg);
     color: var(--lux-text);
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
   }
 }
 
-/* Lien "Aller au contenu" pour l'accessibilité */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--focus-ring);
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  z-index: 1000;
-  transition: top 0.3s;
+/* Responsive Typography */
+.text-responsive-xs {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+.text-responsive-sm {
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+.text-responsive-base {
+  font-size: clamp(1rem, 3vw, 1.125rem);
+}
+.text-responsive-lg {
+  font-size: clamp(1.125rem, 3.5vw, 1.25rem);
+}
+.text-responsive-xl {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+}
+.text-responsive-2xl {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+.text-responsive-3xl {
+  font-size: clamp(2rem, 6vw, 2.5rem);
+}
+.text-responsive-4xl {
+  font-size: clamp(2.5rem, 7vw, 3rem);
 }
 
-.skip-link:focus {
-  top: 6px;
+/* Improved tap targets for mobile */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Focus visible amélioré pour l'accessibilité */
@@ -190,16 +270,9 @@ select:focus-visible,
   box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2) !important;
 }
 
-/* Focus pour les liens dans le header transparent */
-header a:focus-visible {
-  background-color: rgba(0, 102, 204, 0.1);
-  border-radius: 4px;
-  padding: 2px 4px;
-}
-
 /* Amélioration du contraste pour les textes secondaires */
 .text-muted-foreground {
-  color: rgba(28, 28, 28, 0.75) !important; /* Amélioration du contraste */
+  color: rgba(28, 28, 28, 0.75) !important;
 }
 
 [data-high-contrast="true"] .text-muted-foreground {
@@ -209,19 +282,9 @@ header a:focus-visible {
 /* Amélioration des boutons pour l'accessibilité */
 button,
 .btn {
-  min-height: 44px; /* Taille minimum tactile */
+  min-height: 44px;
   min-width: 44px;
   position: relative;
-}
-
-/* Indicateur de focus pour les éléments custom */
-.custom-focus:focus-visible::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 3px solid var(--focus-ring);
-  border-radius: 6px;
-  pointer-events: none;
 }
 
 /* Animations respectueuses des préférences utilisateur */
@@ -245,29 +308,6 @@ button,
   }
 }
 
-/* Mode haute visibilité */
-[data-high-contrast="true"] * {
-  border-color: var(--lux-border) !important;
-}
-
-[data-high-contrast="true"] .bg-white {
-  background-color: var(--lux-bg) !important;
-  color: var(--lux-text) !important;
-}
-
-[data-high-contrast="true"] .text-gray-600,
-[data-high-contrast="true"] .text-gray-700,
-[data-high-contrast="true"] .text-gray-800,
-[data-high-contrast="true"] .text-gray-900 {
-  color: var(--lux-text) !important;
-}
-
-/* Amélioration des contrastes pour les états hover */
-a:hover,
-button:hover {
-  text-decoration: underline;
-}
-
 /* Styles pour les lecteurs d'écran */
 .sr-only {
   position: absolute;
@@ -281,221 +321,136 @@ button:hover {
   border: 0;
 }
 
-/* Amélioration des formulaires */
-label {
-  font-weight: 600;
-  margin-bottom: 4px;
-  display: block;
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-input[required]::after,
-textarea[required]::after {
-  content: " *";
-  color: #dc2626;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Indicateur visuel pour les champs requis */
-.required-field::after {
-  content: " *";
-  color: #dc2626;
-  font-weight: bold;
+/* Container responsive padding */
+.container {
+  padding-left: var(--container-padding, 1rem);
+  padding-right: var(--container-padding, 1rem);
 }
 
-/* Amélioration des messages d'erreur */
-.error-message {
-  color: #dc2626;
-  font-size: 0.875rem;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.error-message::before {
-  content: "⚠";
-  font-weight: bold;
-}
-
-/* Amélioration de la navigation */
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav a {
-  display: block;
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-nav a:hover,
-nav a:focus {
-  background-color: rgba(0, 102, 204, 0.1);
-  text-decoration: underline;
-}
-
-/* Amélioration des cartes et conteneurs */
-.card,
-.project-card {
-  border: 2px solid var(--lux-border);
-  border-radius: 8px;
-  padding: 16px;
-  background-color: var(--lux-bg);
-}
-
-.card:focus-within {
-  border-color: var(--focus-ring);
-  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-}
-
-/* Amélioration des images */
+/* Responsive images */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Styles pour les tooltips accessibles */
-[role="tooltip"] {
-  background: #333;
-  color: white;
-  padding: 8px 12px;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lux-gold);
   border-radius: 4px;
-  font-size: 0.875rem;
-  max-width: 200px;
-  z-index: 1000;
 }
 
-/* Amélioration des modales */
-[role="dialog"] {
-  background: white;
-  border: 2px solid var(--lux-border);
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow: auto;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lux-gold-dark);
 }
 
-[role="dialog"]:focus {
-  outline: none;
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  .mobile-stack > * + * {
+    margin-top: 1rem;
+  }
+
+  .mobile-full-width {
+    width: 100%;
+  }
+
+  .mobile-text-center {
+    text-align: center;
+  }
 }
 
-/* Amélioration des listes */
-ul,
-ol {
-  padding-left: 1.5rem;
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
-li {
-  margin-bottom: 0.25rem;
+/* Desktop optimizations */
+@media (min-width: 1025px) {
+  .desktop-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .desktop-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
 }
 
-/* Amélioration des tableaux */
-table {
-  border-collapse: collapse;
-  width: 100%;
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-th,
-td {
-  border: 1px solid var(--lux-border);
-  padding: 8px 12px;
-  text-align: left;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }
 
-th {
-  background-color: var(--lux-muted);
-  font-weight: 600;
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }
 
-/* Amélioration des citations */
-blockquote {
-  border-left: 4px solid var(--lux-gold);
-  padding-left: 16px;
-  margin: 16px 0;
-  font-style: italic;
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
-/* Amélioration des codes */
-code,
-pre {
-  background-color: var(--lux-muted);
-  border-radius: 4px;
-  padding: 2px 4px;
-  font-family: "Courier New", monospace;
-}
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
 
-pre {
-  padding: 16px;
-  overflow-x: auto;
-}
+  body {
+    background: white !important;
+    color: black !important;
+  }
 
-/* Amélioration des séparateurs */
-hr {
-  border: none;
-  border-top: 2px solid var(--lux-border);
-  margin: 24px 0;
-}
+  a {
+    text-decoration: underline;
+  }
 
-/* Styles pour les alertes */
-.alert {
-  padding: 12px 16px;
-  border-radius: 6px;
-  border: 2px solid;
-  margin: 16px 0;
-}
-
-.alert-info {
-  background-color: #e6f3ff;
-  border-color: #0066cc;
-  color: #004499;
-}
-
-.alert-warning {
-  background-color: #fff3cd;
-  border-color: #ffc107;
-  color: #856404;
-}
-
-.alert-error {
-  background-color: #f8d7da;
-  border-color: #dc3545;
-  color: #721c24;
-}
-
-.alert-success {
-  background-color: #d4edda;
-  border-color: #28a745;
-  color: #155724;
-}
-
-/* Amélioration pour les utilisateurs de lecteurs d'écran */
-.screen-reader-text {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
-
-.screen-reader-text:focus {
-  background-color: #f1f1f1;
-  border-radius: 3px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-  clip: auto !important;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000;
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
 }
