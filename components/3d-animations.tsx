@@ -1,10 +1,7 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
-
-import { useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 // Hook pour détecter si on est sur mobile
@@ -13,11 +10,17 @@ export function useIsMobile() {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window)
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth < 768 || "ontouchstart" in window)
+      }
     }
+
     checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", checkMobile)
+      return () => window.removeEventListener("resize", checkMobile)
+    }
   }, [])
 
   return isMobile
@@ -29,7 +32,7 @@ export function useScrollAnimation() {
 
   useEffect(() => {
     const element = ref.current
-    if (!element) return
+    if (!element || typeof window === "undefined") return
 
     const observer = new IntersectionObserver(
       ([entry]) => {

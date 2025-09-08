@@ -1,39 +1,36 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Playfair_Display } from "next/font/google"
+import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
-import { SiteShell } from "@/components/site-shell"
+import SiteShell from "@/components/site-shell"
 
-// Load Playfair Display font
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-playfair-display",
-})
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 
 export const metadata: Metadata = {
-  title: "Luxe Construction - Excellence architecturale",
+  title: "B.E StructiBA - Bureau d'Études Structurelles",
   description:
-    "Entreprise de construction haut de gamme spécialisée dans la réhabilitation, construction neuve et développement durable",
-  generator: "v0.dev",
+    "Bureau d'études spécialisé en construction neuve, réhabilitation et développement durable. Expertise technique pour vos projets d'exception en PACA, Paris et Antilles.",
+  keywords:
+    "bureau études, structure, béton armé, construction, réhabilitation, développement durable, PACA, Paris, Antilles",
+  authors: [{ name: "B.E StructiBA" }],
+  openGraph: {
+    title: "B.E StructiBA - Bureau d'Études Structurelles",
+    description: "Expertise technique et innovation au service de vos projets architecturaux",
+    type: "website",
+    locale: "fr_FR",
+  },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="fr" className={`${GeistSans.variable} ${GeistMono.variable} ${playfairDisplay.variable}`}>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#f8f8f5" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body>
+    <html lang="fr" className={`${inter.variable} ${playfair.variable}`}>
+      <body className={inter.className}>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

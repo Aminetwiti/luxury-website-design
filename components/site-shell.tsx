@@ -1,34 +1,22 @@
 import type React from "react"
-import { Header } from "@/components/header"
-import { AccessibilityControls } from "@/components/accessibility-controls"
-import { StickyCTA } from "@/components/sticky-cta"
+import Header from "./header"
+import Footer from "./footer"
+import Breadcrumbs from "./breadcrumbs"
 
 interface SiteShellProps {
   children: React.ReactNode
 }
 
-export function SiteShell({ children }: SiteShellProps) {
+export default function SiteShell({ children }: SiteShellProps) {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#F8F8F5" }}>
-      {/* Skip link for accessibility */}
-      <a
-        href="#main-content"
-        className="skip-link sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded"
-      >
-        Aller au contenu principal
-      </a>
-
-      <AccessibilityControls />
+    <div className="min-h-screen flex flex-col bg-[#F8F8F5]">
       <Header />
-
-      <div id="main-content" tabIndex={-1}>
-        {children}
-      </div>
-
-      <StickyCTA />
+      <Breadcrumbs />
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   )
 }
 
-// Add default export
-export default SiteShell
+// Export par défaut ET nommé pour compatibilité
+export { SiteShell }

@@ -1,250 +1,204 @@
-"use client"
-
-import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, MapPin, Calendar, Award } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, MapPin, Award } from "lucide-react"
 
-export function ProjectsGrid() {
-  const [activeFilter, setActiveFilter] = useState("all")
-
+export default function ProjectsGrid() {
   const projects = [
     {
       id: "villa-antibes",
-      title: "Villa Horizon",
+      title: "Villa Contemporaine Antibes",
       location: "Antibes, PACA",
-      year: "2023",
-      category: "construction-neuve",
-      type: "Villa de Prestige",
-      description: "Villa contemporaine avec piscine à débordement et vue mer panoramique",
-      image: "/project-villa-antibes.jpg",
-      imageAlt:
-        "Villa moderne luxueuse à Antibes avec piscine à débordement, vue mer panoramique, architecture contemporaine élégante, coucher de soleil",
-      features: ["Structure béton", "Piscine débordement", "Vue mer 180°"],
-      href: "/realisations/villa-antibes",
+      year: "2024",
+      category: "Construction Neuve",
+      description:
+        "Villa de luxe avec piscine à débordement et vue panoramique sur la Méditerranée. Structure béton précontraint et façade minimaliste.",
+      image: "/images/Villa_Antibes_Facade_Contemporaine.png",
+      tags: ["Luxe", "Vue mer", "Béton précontraint"],
+      surface: "450 m²",
+      budget: "2.5M€",
     },
     {
-      id: "penthouse-paris",
+      id: "penthouse-trocadero",
       title: "Penthouse Trocadéro",
       location: "Paris 16ème",
       year: "2023",
-      category: "rehabilitation",
-      type: "Réhabilitation Luxe",
-      description: "Transformation complète d'un penthouse avec vue sur la Tour Eiffel",
-      image: "/project-penthouse-paris.jpg",
-      imageAlt:
-        "Penthouse parisien luxueux avec vue Tour Eiffel, intérieur design moderne, terrasse panoramique, architecture haut de gamme",
-      features: ["Renforcement structure", "Terrasse 200m²", "Vue Tour Eiffel"],
-      href: "/realisations/penthouse-paris",
+      category: "Réhabilitation",
+      description:
+        "Transformation d'un appartement haussmannien en penthouse moderne avec terrasse face à la Tour Eiffel. Structure carbone et verrière.",
+      image: "/images/Penthouse_Trocadero_Terrasse_TourEiffel.png",
+      tags: ["Haussmannien", "Vue Tour Eiffel", "Terrasse"],
+      surface: "320 m²",
+      budget: "1.8M€",
     },
     {
       id: "eco-resort-martinique",
-      title: "Éco-Resort Tropical",
+      title: "Éco-Resort Martinique",
       location: "Martinique",
-      year: "2022",
-      category: "developpement-durable",
-      type: "Construction Durable",
-      description: "Resort écologique avec bungalows sur pilotis et énergies renouvelables",
-      image: "/project-eco-resort-martinique.jpg",
-      imageAlt:
-        "Resort écologique tropical en Martinique, bungalows sur pilotis, architecture durable, végétation luxuriante, matériaux naturels",
-      features: ["Bois local", "Panneaux solaires", "Ventilation naturelle"],
-      href: "/realisations/eco-resort-martinique",
+      year: "2024",
+      category: "Développement Durable",
+      description:
+        "Resort écologique avec bungalows sur pilotis et matériaux biosourcés. Ventilation naturelle et panneaux solaires intégrés.",
+      image: "/images/EcoResort_Martinique_Vue_Aerienne.png",
+      tags: ["Éco-construction", "Pilotis", "Biosourcé"],
+      surface: "1200 m²",
+      budget: "3.2M€",
     },
     {
       id: "loft-belleville",
-      title: "Loft Industriel",
+      title: "Loft Industriel Belleville",
       location: "Paris 20ème",
       year: "2023",
-      category: "rehabilitation",
-      type: "Transformation",
-      description: "Transformation d'un ancien atelier en loft contemporain avec mezzanine",
-      image: "/project-loft-belleville.jpg",
-      imageAlt:
-        "Loft industriel parisien transformé, mezzanine suspendue, verrière industrielle, architecture contemporaine, espaces ouverts",
-      features: ["Mezzanine acier", "Verrière 6m", "Poutres IPN"],
-      href: "/realisations/loft-belleville",
+      category: "Réhabilitation",
+      description:
+        "Transformation d'un ancien atelier en loft avec mezzanine suspendue. Poutres IPN apparentes et verrière industrielle.",
+      image: "/images/Loft_Belleville_Mezzanine_Suspendue.png",
+      tags: ["Industriel", "Mezzanine", "Verrière"],
+      surface: "180 m²",
+      budget: "650K€",
     },
     {
       id: "villa-cassis",
-      title: "Villa Bioclimatique",
+      title: "Villa Bioclimatique Cassis",
       location: "Cassis, PACA",
-      year: "2022",
-      category: "developpement-durable",
-      type: "Éco-Construction",
-      description: "Villa passive intégrée dans le paysage méditerranéen",
-      image: "/project-villa-cassis.jpg",
-      imageAlt:
-        "Villa bioclimatique à Cassis, architecture passive, intégration paysagère, matériaux écologiques, design méditerranéen moderne",
-      features: ["Béton chanvre", "Géothermie", "Récupération eau"],
-      href: "/realisations/villa-cassis",
+      year: "2024",
+      category: "Développement Durable",
+      description:
+        "Villa passive avec murs capteurs et citerne de récupération d'eau. Intégration paysagère et bilan carbone neutre.",
+      image: "/images/Villa_Cassis_Integration_Paysage.png",
+      tags: ["Passif", "Bioclimatique", "Carbone neutre"],
+      surface: "280 m²",
+      budget: "980K€",
     },
     {
       id: "maison-creole",
-      title: "Maison Créole Moderne",
+      title: "Maison Créole Contemporaine",
       location: "Saint-Barthélemy",
       year: "2023",
-      category: "construction-neuve",
-      type: "Architecture Tropicale",
-      description: "Maison créole contemporaine alliant tradition et modernité",
-      image: "/project-maison-creole.jpg",
-      imageAlt:
-        "Maison créole moderne à Saint-Barthélemy, architecture tropicale contemporaine, vérandas élégantes, matériaux locaux, vue océan",
-      features: ["Charpente gommier", "Vérandas 360°", "Résistance cyclonique"],
-      href: "/realisations/maison-creole",
+      category: "Construction Neuve",
+      description:
+        "Maison créole revisitée avec charpente en gommier et pilotis restaurés. Architecture traditionnelle et confort moderne.",
+      image: "/images/Maison_Creole_Facade_Traditionnelle.png",
+      tags: ["Créole", "Traditionnel", "Gommier"],
+      surface: "220 m²",
+      budget: "1.1M€",
     },
   ]
-
-  const filters = [
-    { id: "all", label: "Tous les Projets", count: projects.length },
-    {
-      id: "construction-neuve",
-      label: "Construction Neuve",
-      count: projects.filter((p) => p.category === "construction-neuve").length,
-    },
-    {
-      id: "rehabilitation",
-      label: "Réhabilitation",
-      count: projects.filter((p) => p.category === "rehabilitation").length,
-    },
-    {
-      id: "developpement-durable",
-      label: "Développement Durable",
-      count: projects.filter((p) => p.category === "developpement-durable").length,
-    },
-  ]
-
-  const filteredProjects =
-    activeFilter === "all" ? projects : projects.filter((project) => project.category === activeFilter)
 
   return (
-    <section className="py-20 bg-[#F8F8F5]">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
+        {/* Header */}
         <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-[#C9A568]/10 rounded-full mb-6">
+            <Award className="w-4 h-4 mr-2 text-[#C9A568]" />
+            <span className="text-sm font-medium text-[#C9A568]">Nos Réalisations</span>
+          </div>
+
           <h2
-            className="text-4xl md:text-5xl font-bold mb-6 text-[#1C1C1C]"
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Nos Réalisations d'Exception
+            Projets d'Exception
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-            Découvrez nos projets les plus prestigieux à travers trois régions d'intervention
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Découvrez nos réalisations les plus emblématiques, témoins de notre expertise en ingénierie structurelle et
+            de notre vision architecturale.
           </p>
-
-          {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-4">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeFilter === filter.id
-                    ? "bg-[#C9A568] text-white shadow-lg"
-                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200"
-                }`}
-              >
-                {filter.label} ({filter.count})
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-16">
+          {projects.map((project, index) => (
             <div
               key={project.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-[#C9A568]/30"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-[#C9A568]/20"
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
                 <Image
                   src={project.image || "/placeholder.svg"}
-                  alt={project.imageAlt}
+                  alt={project.title}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="bg-[#C9A568] text-white px-3 py-1 rounded-full text-xs font-medium">
-                    {project.type}
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-800">
+                    {project.category}
                   </span>
                 </div>
 
-                {/* Award Badge */}
+                {/* Year Badge */}
                 <div className="absolute top-4 right-4">
-                  <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <Award className="w-5 h-5 text-[#C9A568]" />
-                  </div>
+                  <span className="px-3 py-1 bg-[#C9A568]/90 backdrop-blur-sm rounded-full text-xs font-medium text-white">
+                    {project.year}
+                  </span>
                 </div>
 
-                {/* Overlay Content */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3
-                    className="text-white text-xl font-bold mb-2"
-                    style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-                  >
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center gap-4 text-white/80 text-sm">
-                    <div className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      <span>{project.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{project.year}</span>
-                    </div>
-                  </div>
+                {/* Location */}
+                <div className="absolute bottom-4 left-4 flex items-center text-white">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  <span className="text-sm font-medium">{project.location}</span>
                 </div>
               </div>
 
               {/* Content */}
               <div className="p-6">
-                <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#C9A568] transition-colors">
+                  {project.title}
+                </h3>
 
-                {/* Features */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.features.map((feature, featureIndex) => (
-                    <span
-                      key={featureIndex}
-                      className="bg-[#F8F8F5] text-gray-600 px-3 py-1 rounded-full text-xs font-medium"
-                    >
-                      {feature}
+                <p className="text-gray-600 mb-4 text-sm leading-relaxed">{project.description}</p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                      {tag}
                     </span>
                   ))}
                 </div>
 
+                {/* Stats */}
+                <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
+                  <span>{project.surface}</span>
+                  <span className="font-semibold text-[#C9A568]">{project.budget}</span>
+                </div>
+
                 {/* CTA */}
-                <Link
-                  href={project.href}
-                  className="inline-flex items-center gap-2 text-[#C9A568] hover:text-[#B8941F] font-medium transition-colors duration-200 group/link"
+                <Button
+                  asChild
+                  className="w-full bg-gray-900 hover:bg-[#C9A568] text-white border-none font-semibold py-2 transition-all duration-300 group-hover:scale-105"
                 >
-                  <span>Découvrir le projet</span>
-                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
-                </Link>
+                  <Link href={`/realisations/${project.id}`} className="flex items-center justify-center">
+                    Voir le projet
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
               </div>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <Link
-            href="/realisations"
-            className="inline-flex items-center gap-3 bg-[#C9A568] hover:bg-[#B8941F] text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 text-lg"
+        <div className="text-center">
+          <p className="text-gray-600 mb-6">Plus de 150 projets réalisés dans toute la France et les Antilles</p>
+          <Button
+            asChild
+            size="lg"
+            className="bg-[#C9A568] hover:bg-[#B8941F] text-white border-none font-semibold px-8 py-3 transition-all duration-300 hover:scale-105"
           >
-            Voir Toutes Nos Réalisations
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+            <Link href="/realisations" className="flex items-center">
+              Voir Toutes Nos Réalisations
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
   )
 }
-
-export default ProjectsGrid

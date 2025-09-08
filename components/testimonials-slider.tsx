@@ -3,156 +3,141 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-export function TestimonialsSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+export default function TestimonialsSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const testimonials = [
     {
       id: 1,
       name: "Marie Dubois",
-      role: "Propriétaire Villa Antibes",
-      company: "Projet Villa Horizon",
-      image: "/testimonial-marie-dubois.jpg",
-      imageAlt:
-        "Portrait professionnel de Marie Dubois, cliente satisfaite, femme élégante d'affaires, sourire confiant, style contemporain",
+      role: "Architecte",
+      company: "Atelier MD Architecture",
+      image: "/images/Testimonials_Portrait_Client1_BW.png",
       rating: 5,
-      quote:
-        "L'équipe de StructiBA a transformé notre vision en réalité. Leur expertise technique et leur attention aux détails sont remarquables. La villa dépasse toutes nos attentes.",
-      project: "Villa avec piscine à débordement",
-      location: "Antibes, PACA",
-      year: "2023",
+      text: "B.E StructiBA a transformé notre vision architecturale en réalité technique. Leur expertise en béton précontraint nous a permis de créer des espaces exceptionnels sans compromis structurel.",
+      project: "Villa Contemporaine Antibes",
+      location: "PACA",
     },
     {
       id: 2,
       name: "Thomas Bernard",
-      role: "Directeur Immobilier",
-      company: "Luxury Properties Monaco",
-      image: "/testimonial-thomas-bernard.jpg",
-      imageAlt:
-        "Portrait professionnel de Thomas Bernard, directeur immobilier, homme d'affaires distingué, costume élégant, environnement luxueux",
+      role: "Promoteur Immobilier",
+      company: "Bernard Développement",
+      image: "/images/Testimonials_Portrait_Client2_BW.png",
       rating: 5,
-      quote:
-        "Nous collaborons avec StructiBA depuis 5 ans. Leur professionnalisme et leur capacité à livrer des projets complexes dans les délais sont exceptionnels.",
+      text: "Collaboration exemplaire sur notre projet de penthouse parisien. L'équipe a su allier innovation technique et respect du patrimoine haussmannien. Résultat à la hauteur de nos attentes.",
       project: "Penthouse Trocadéro",
-      location: "Paris 16ème",
-      year: "2023",
+      location: "Paris",
     },
     {
       id: 3,
       name: "Sophie Leroy",
-      role: "Architecte DPLG",
-      company: "Atelier Architecture Durable",
-      image: "/testimonial-sophie-leroy.jpg",
-      imageAlt:
-        "Portrait professionnel de Sophie Leroy, architecte créative, femme moderne et dynamique, environnement architectural contemporain",
+      role: "Maître d'Ouvrage",
+      company: "Éco-Resort Caraïbes",
+      image: "/images/Testimonials_Portrait_Client3_BW.png",
       rating: 5,
-      quote:
-        "La collaboration avec StructiBA sur nos projets éco-responsables est fluide et enrichissante. Leur expertise en développement durable est remarquable.",
+      text: "Approche durable remarquable pour notre éco-resort. B.E StructiBA a intégré parfaitement les contraintes environnementales tout en optimisant les performances structurelles.",
       project: "Éco-Resort Martinique",
       location: "Martinique",
-      year: "2022",
     },
   ]
 
-  useEffect(() => {
-    if (!isAutoPlaying) return
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, testimonials.length])
-
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length)
-    setIsAutoPlaying(false)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
   }
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-    setIsAutoPlaying(false)
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
   }
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-    setIsAutoPlaying(false)
-  }
+  // Auto-play
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 6000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width%3D%2260%22 height%3D%2260%22 viewBox%3D%220 0 60 60%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg fill%3D%22none%22 fillRule%3D%22evenodd%22%3E%3Cg fill%3D%22%23C9A568%22 fillOpacity%3D%220.1%22%3E%3Cpath d%3D%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] repeat"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
+        {/* Header */}
         <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-[#C9A568]/10 rounded-full mb-6">
+            <Star className="w-4 h-4 mr-2 text-[#C9A568]" />
+            <span className="text-sm font-medium text-[#C9A568]">Témoignages Clients</span>
+          </div>
+
           <h2
-            className="text-4xl md:text-5xl font-bold mb-6 text-[#1C1C1C]"
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Témoignages Clients
+            Ils Nous Font Confiance
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            La satisfaction de nos clients, notre plus belle récompense
+            Découvrez les retours de nos clients sur nos projets d'exception
           </p>
         </div>
 
-        <div className="relative max-w-6xl mx-auto">
-          {/* Main Slider */}
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F8F8F5] to-white shadow-2xl">
+        {/* Slider */}
+        <div className="relative max-w-4xl mx-auto">
+          <div className="overflow-hidden rounded-2xl">
             <div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 lg:p-12">
-                    {/* Content */}
-                    <div className="flex flex-col justify-center">
-                      <div className="mb-6">
-                        <Quote className="w-12 h-12 text-[#C9A568] mb-4" />
-                        <blockquote
-                          className="text-2xl md:text-3xl font-light text-[#1C1C1C] leading-relaxed mb-6"
-                          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-                        >
-                          "{testimonial.quote}"
+                  <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mx-4 border border-gray-100">
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                      {/* Avatar */}
+                      <div className="flex-shrink-0">
+                        <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-[#C9A568]/20">
+                          <Image
+                            src={testimonial.image || "/placeholder.svg"}
+                            alt={testimonial.name}
+                            fill
+                            className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                            sizes="96px"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1 text-center md:text-left">
+                        {/* Quote Icon */}
+                        <Quote className="w-8 h-8 text-[#C9A568] mb-4 mx-auto md:mx-0" />
+
+                        {/* Rating */}
+                        <div className="flex justify-center md:justify-start mb-4">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+
+                        {/* Testimonial Text */}
+                        <blockquote className="text-lg text-gray-700 mb-6 leading-relaxed italic">
+                          "{testimonial.text}"
                         </blockquote>
-                      </div>
 
-                      {/* Rating */}
-                      <div className="flex items-center gap-1 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 fill-[#C9A568] text-[#C9A568]" />
-                        ))}
-                      </div>
+                        {/* Author Info */}
+                        <div className="border-t border-gray-200 pt-6">
+                          <div className="font-bold text-gray-900 text-lg">{testimonial.name}</div>
+                          <div className="text-[#C9A568] font-medium">{testimonial.role}</div>
+                          <div className="text-gray-600 text-sm">{testimonial.company}</div>
 
-                      {/* Author Info */}
-                      <div className="mb-6">
-                        <h4 className="text-xl font-bold text-[#1C1C1C] mb-1">{testimonial.name}</h4>
-                        <p className="text-[#C9A568] font-medium mb-1">{testimonial.role}</p>
-                        <p className="text-gray-600 text-sm">{testimonial.company}</p>
-                      </div>
-
-                      {/* Project Info */}
-                      <div className="bg-white/80 rounded-lg p-4 border border-gray-100">
-                        <h5 className="font-semibold text-[#1C1C1C] mb-2">Projet réalisé :</h5>
-                        <p className="text-gray-600 text-sm mb-1">{testimonial.project}</p>
-                        <p className="text-gray-500 text-xs">
-                          {testimonial.location} • {testimonial.year}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Image */}
-                    <div className="flex items-center justify-center">
-                      <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-xl">
-                        <Image
-                          src={testimonial.image || "/placeholder.svg"}
-                          alt={testimonial.imageAlt}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                          {/* Project Info */}
+                          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                            <div className="text-sm text-gray-600">Projet réalisé :</div>
+                            <div className="font-medium text-gray-900">{testimonial.project}</div>
+                            <div className="text-sm text-[#C9A568]">{testimonial.location}</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -161,70 +146,58 @@ export function TestimonialsSlider() {
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <button
+          {/* Navigation Buttons */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/90 backdrop-blur-sm border-gray-200 hover:bg-[#C9A568] hover:text-white hover:border-[#C9A568] transition-all duration-300"
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-[#C9A568] hover:bg-white hover:scale-110 transition-all duration-200"
             aria-label="Témoignage précédent"
           >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
+            <ChevronLeft className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/90 backdrop-blur-sm border-gray-200 hover:bg-[#C9A568] hover:text-white hover:border-[#C9A568] transition-all duration-300"
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-[#C9A568] hover:bg-white hover:scale-110 transition-all duration-200"
             aria-label="Témoignage suivant"
           >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+            <ChevronRight className="w-5 h-5" />
+          </Button>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center gap-3 mt-8">
+          <div className="flex justify-center mt-8 space-x-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? "bg-[#C9A568] scale-125" : "bg-gray-300 hover:bg-gray-400"
+                  index === currentIndex ? "bg-[#C9A568] scale-125" : "bg-gray-300 hover:bg-gray-400"
                 }`}
+                onClick={() => setCurrentIndex(index)}
                 aria-label={`Aller au témoignage ${index + 1}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-gray-200">
-          <div className="text-center">
-            <div
-              className="text-4xl font-bold text-[#C9A568] mb-2"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              98%
-            </div>
-            <div className="text-gray-600">Satisfaction Client</div>
+        {/* Bottom Stats */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <div className="text-3xl font-bold text-[#C9A568] mb-2">98%</div>
+            <div className="text-gray-600">Clients Satisfaits</div>
           </div>
-          <div className="text-center">
-            <div
-              className="text-4xl font-bold text-[#C9A568] mb-2"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              150+
-            </div>
-            <div className="text-gray-600">Projets Livrés</div>
+          <div>
+            <div className="text-3xl font-bold text-[#C9A568] mb-2">150+</div>
+            <div className="text-gray-600">Projets Réalisés</div>
           </div>
-          <div className="text-center">
-            <div
-              className="text-4xl font-bold text-[#C9A568] mb-2"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              25
-            </div>
-            <div className="text-gray-600">Années d'Expérience</div>
+          <div>
+            <div className="text-3xl font-bold text-[#C9A568] mb-2">4.9/5</div>
+            <div className="text-gray-600">Note Moyenne</div>
           </div>
         </div>
       </div>
     </section>
   )
 }
-
-export default TestimonialsSlider
