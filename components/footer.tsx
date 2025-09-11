@@ -1,28 +1,28 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react"
 import EnhancedLogo from "./enhanced-logo"
 
 const services = [
   { name: "Construction Neuve", href: "/construction-neuve" },
   { name: "Réhabilitation", href: "/rehabilitation" },
-  { name: "Développement Durable", href: "/developpement-durable" },
-  { name: "Expertise Technique", href: "/expertise" },
+  { name: "Ingénierie Parasismique", href: "/ingenierie-parasismique" },
+  { name: "Ouvrages Extérieurs", href: "/ouvrages-exterieurs" },
 ]
 
 const zones = [
-  { name: "Région PACA", description: "Marseille, Nice, Cannes" },
-  { name: "Saint-Barthélemy", description: "Projets insulaires" },
-  { name: "Saint-Martin", description: "Architecture tropicale" },
-  { name: "Paris", description: "Projets urbains" },
+  { name: "Cannes", description: "Siège social" },
+  { name: "Nice", description: "Côte d'Azur" },
+  { name: "Antibes", description: "Alpes-Maritimes" },
+  { name: "Grasse", description: "Arrière-pays" },
+  { name: "Antilles Françaises", description: "Projets spécialisés" },
 ]
 
 const contacts = [
   { label: "Contact général", email: "contact@structiba.fr", icon: Mail },
-  { label: "Ressources humaines", email: "rh@structiba.fr", icon: Mail },
-  { label: "Comptabilité", email: "compta@structiba.fr", icon: Mail },
+  { label: "Études techniques", email: "etudes@structiba.fr", icon: Mail },
+  { label: "Administration", email: "admin@structiba.fr", icon: Mail },
 ]
 
 export default function Footer() {
@@ -49,9 +49,9 @@ export default function Footer() {
               <div className="mb-6">
                 <EnhancedLogo variant="full" showSubtitle={true} />
               </div>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Bureau d'études structure spécialisé dans la construction neuve, la réhabilitation et le développement
-                durable. Excellence technique et innovation au service de vos projets.
+              <p className="text-gray-300 mb-6 leading-relaxed text-justify">
+                Bureau d'études spécialisé en structure et béton armé. Excellence technique et innovation au service de
+                vos projets de construction neuve et réhabilitation.
               </p>
 
               {/* Horaires */}
@@ -60,14 +60,14 @@ export default function Footer() {
                 <div>
                   <p className="font-medium text-white">Horaires d'ouverture</p>
                   <p className="text-sm">Lun - Ven : 8h00 - 18h00</p>
-                  <p className="text-sm">Sam : 9h00 - 12h00</p>
+                  <p className="text-sm">Sur rendez-vous : Sam matin</p>
                 </div>
               </div>
             </div>
 
             {/* Services */}
             <div>
-              <h3 className="text-xl font-bold mb-6 text-white">Nos Services</h3>
+              <h3 className="text-xl font-bold mb-6 text-white">Nos Domaines d'Expertise</h3>
               <ul className="space-y-3">
                 {services.map((service) => (
                   <li key={service.name}>
@@ -85,7 +85,7 @@ export default function Footer() {
               {/* CTA */}
               <div className="mt-8 p-4 bg-gradient-to-r from-[#C9A568]/20 to-transparent rounded-lg border border-[#C9A568]/30">
                 <h4 className="font-semibold text-white mb-2">Projet en cours ?</h4>
-                <p className="text-sm text-gray-300 mb-3">Obtenez votre devis gratuit sous 48h</p>
+                <p className="text-sm text-gray-300 mb-3">Devis gratuit sous 48h</p>
                 <Link
                   href="/contact"
                   className="inline-flex items-center bg-[#C9A568] text-white px-4 py-2 rounded-full hover:bg-[#B8941F] transition-colors text-sm font-medium"
@@ -110,18 +110,6 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
-
-              {/* Carte interactive */}
-              <div className="mt-6 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
-                <Image
-                  src="/minimal-map-paris-hq.png"
-                  alt="Carte des zones d'intervention"
-                  width={200}
-                  height={120}
-                  className="w-full h-24 object-cover rounded opacity-80"
-                />
-                <p className="text-xs text-gray-400 mt-2">Siège social : Paris • Antennes régionales</p>
-              </div>
             </div>
 
             {/* Contact */}
@@ -134,9 +122,9 @@ export default function Footer() {
                 <div>
                   <p className="font-medium text-white">Siège Social</p>
                   <p className="text-gray-300 text-sm">
-                    123 Avenue des Champs-Élysées
+                    263 Avenue de Grasse
                     <br />
-                    75008 Paris, France
+                    06400 Cannes, France
                   </p>
                 </div>
               </div>
@@ -146,8 +134,8 @@ export default function Footer() {
                 <Phone className="w-5 h-5 text-[#C9A568]" />
                 <div>
                   <p className="font-medium text-white">Téléphone</p>
-                  <a href="tel:+33142123456" className="text-gray-300 hover:text-[#C9A568] transition-colors">
-                    +33 1 42 12 34 56
+                  <a href="tel:+33493123456" className="text-gray-300 hover:text-[#C9A568] transition-colors">
+                    +33 4 93 12 34 56
                   </a>
                 </div>
               </div>
@@ -196,9 +184,9 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center space-x-4">
-                <span className="text-gray-400 text-sm">Conçu avec</span>
+                <span className="text-gray-400 text-sm">Ingénierie d'Excellence</span>
                 <div className="w-2 h-2 bg-[#C9A568] rounded-full animate-pulse"></div>
-                <span className="text-gray-400 text-sm">par StructiBA</span>
+                <span className="text-gray-400 text-sm">PACA</span>
               </div>
             </div>
           </div>

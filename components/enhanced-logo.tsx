@@ -10,25 +10,25 @@ interface LogoProps {
 export default function EnhancedLogo({ variant = "full", className, showSubtitle = true }: LogoProps) {
   const LogoIcon = () => (
     <div className="relative">
-      {/* Hexagone principal */}
+      {/* Icône Structure - Hexagone avec poutres */}
       <svg width="40" height="40" viewBox="0 0 40 40" className="text-[#1C1C1C]" aria-hidden="true">
         {/* Hexagone extérieur */}
         <path d="M20 2 L32 10 L32 30 L20 38 L8 30 L8 10 Z" fill="currentColor" stroke="#C9A568" strokeWidth="2" />
 
         {/* Structure interne - poutres */}
-        <g stroke="#C9A568" strokeWidth="2" fill="none">
-          {/* Poutre horizontale */}
+        <g stroke="#C9A568" strokeWidth="2.5" fill="none">
+          {/* Poutre horizontale principale */}
           <line x1="12" y1="20" x2="28" y2="20" />
-          {/* Poutre verticale */}
+          {/* Poutre verticale principale */}
           <line x1="20" y1="12" x2="20" y2="28" />
-          {/* Poutres diagonales */}
+          {/* Poutres diagonales de renfort */}
           <line x1="15" y1="15" x2="25" y2="25" />
           <line x1="25" y1="15" x2="15" y2="25" />
         </g>
 
-        {/* Points de connexion */}
+        {/* Points de connexion structurelle */}
         <g fill="#C9A568">
-          <circle cx="20" cy="20" r="2" />
+          <circle cx="20" cy="20" r="2.5" />
           <circle cx="15" cy="15" r="1.5" />
           <circle cx="25" cy="15" r="1.5" />
           <circle cx="15" cy="25" r="1.5" />
@@ -54,7 +54,7 @@ export default function EnhancedLogo({ variant = "full", className, showSubtitle
       <LogoIcon />
 
       <div className="flex flex-col">
-        <div className="flex items-baseline space-x-1">
+        <div className="flex items-baseline space-x-0">
           <span
             className="text-xl md:text-2xl font-bold text-[#1C1C1C]"
             style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -70,7 +70,7 @@ export default function EnhancedLogo({ variant = "full", className, showSubtitle
         </div>
 
         {showSubtitle && variant === "full" && (
-          <span className="text-xs text-gray-600 tracking-wide">Bureau d'Études</span>
+          <span className="text-xs text-gray-600 tracking-wide">Bureau d'Études Structure</span>
         )}
       </div>
     </Link>

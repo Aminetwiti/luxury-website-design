@@ -1,157 +1,480 @@
+"use client"
+
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
-import { copy } from "@/lib/copy"
-import { Check, Lightbulb, Users, Handshake } from "lucide-react"
+import Link from "next/link"
+import { Calculator, Hammer, Leaf, Lightbulb, Users, Award, TrendingUp, Calendar, CheckCircle } from "lucide-react"
 
-export const metadata = {
-  title: "À Propos — Notre Histoire et Équipe",
-  description:
-    "Découvrez l'histoire, les valeurs et l'équipe dirigeante d'Atelier Structure. Innovation, engagement et excellence au cœur de nos projets.",
-}
+const poles = [
+  {
+    title: "Pôle Structures & Calculs",
+    icon: Calculator,
+    color: "text-blue-600",
+    bgColor: "bg-blue-50",
+    team: "4 ingénieurs spécialisés",
+    stats: "150+ structures calculées",
+    description: "Dimensionnement et calculs de structures selon Eurocodes avec modélisation 3D avancée",
+    specialites: [
+      "Béton armé et précontraint",
+      "Structures métalliques complexes",
+      "Calculs sismiques et dynamiques",
+      "Modélisation éléments finis",
+      "Optimisation structurelle",
+    ],
+    projets: [
+      "Penthouse Trocadéro - Terrasse suspendue 150m²",
+      "Villa Antibes - Piscine naturelle intégrée",
+      "Immeuble Passif Paris - Structure optimisée",
+    ],
+  },
+  {
+    title: "Pôle Réhabilitation",
+    icon: Hammer,
+    color: "text-orange-600",
+    bgColor: "bg-orange-50",
+    team: "3 experts en renforcement",
+    stats: "80+ réhabilitations réussies",
+    description: "Interventions structurelles complexes sur bâtiments existants avec techniques innovantes",
+    specialites: [
+      "Renforcement fibres carbone",
+      "Tirants précontraints",
+      "Injection résines structurelles",
+      "Ouverture trémies sécurisées",
+      "Reprise en sous-œuvre",
+    ],
+    projets: [
+      "Loft Belleville - Portée libre 12m",
+      "Maison Montmartre - Verrière zénithale",
+      "Hôtel Particulier - Escalier suspendu",
+    ],
+  },
+  {
+    title: "Pôle Développement Durable",
+    icon: Leaf,
+    color: "text-green-600",
+    bgColor: "bg-green-50",
+    team: "3 ingénieurs éco-responsables",
+    stats: "50+ projets durables certifiés",
+    description: "Solutions bas carbone et innovations éco-responsables pour constructions durables",
+    specialites: [
+      "Matériaux biosourcés",
+      "Géothermie et énergies renouvelables",
+      "Certifications HQE/BREEAM/Passivhaus",
+      "Analyse cycle de vie",
+      "Réglementation RE2020",
+    ],
+    projets: [
+      "Éco-Resort Martinique - Bois local certifié",
+      "Villa Cassis - Béton de chanvre",
+      "Résidence Guadeloupe - Bioclimatique",
+    ],
+  },
+  {
+    title: "Pôle Innovation & R&D",
+    icon: Lightbulb,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    team: "2 ingénieurs recherche",
+    stats: "25+ innovations développées",
+    description: "Recherche et développement de solutions techniques innovantes et brevets",
+    specialites: [
+      "Matériaux composites avancés",
+      "Techniques de renforcement",
+      "Modélisation numérique",
+      "Prototypage et essais",
+      "Veille technologique",
+    ],
+    projets: ["Brevet tirants carbone invisibles", "Algorithme optimisation structures", "Composite chanvre-carbone"],
+  },
+]
 
-export default function Page() {
-  const c = copy.about
+const equipe = [
+  {
+    nom: "Thomas Bernard",
+    poste: "Directeur Technique & Fondateur",
+    formation: "INSA Lyon - Génie Civil",
+    experience: "15 ans d'expérience",
+    specialite: "Structures complexes et innovation",
+    image: "/images/APropos_Equipe_ThomasBernard.png",
+    description:
+      "Fondateur de B.E StructiBA en 2009, Thomas Bernard dirige l'équipe technique avec une expertise reconnue en structures complexes. Diplômé INSA Lyon, il a développé plusieurs innovations brevetées et supervise les projets les plus techniques.",
+    realisations: ["200+ projets supervisés", "3 brevets déposés", "Expert agréé tribunaux", "Formateur Eurocodes"],
+  },
+  {
+    nom: "Marie Dupont",
+    poste: "Responsable Développement Durable",
+    formation: "Centrale Paris - Énergétique",
+    experience: "12 ans d'expérience",
+    specialite: "Construction durable et certifications",
+    image: "/images/APropos_Equipe_MarieDupont.png",
+    description:
+      "Marie Dupont pilote le pôle développement durable depuis 2012. Diplômée Centrale Paris, elle maîtrise toutes les certifications environnementales et développe nos solutions bas carbone innovantes.",
+    realisations: ["50+ projets certifiés HQE", "Expert RE2020", "15 formations dispensées", "Membre commission CSTB"],
+  },
+  {
+    nom: "Julien Martin",
+    poste: "Chef de Projet Innovation",
+    formation: "Ponts ParisTech + Doctorat",
+    experience: "10 ans d'expérience",
+    specialite: "R&D et matériaux composites",
+    image: "/images/APropos_Equipe_JulienMartin.png",
+    description:
+      "Docteur en génie civil de Ponts ParisTech, Julien Martin dirige nos projets de recherche et développement. Il développe les matériaux composites de demain et optimise nos méthodes de calcul.",
+    realisations: [
+      "25+ innovations développées",
+      "2 brevets en cours",
+      "10 publications scientifiques",
+      "Partenariats universités",
+    ],
+  },
+  {
+    nom: "Sophie Leroy",
+    poste: "Responsable Qualité & Réglementation",
+    formation: "ESTP + Master Qualité",
+    experience: "8 ans d'expérience",
+    specialite: "Qualité et conformité réglementaire",
+    image: "/images/APropos_Equipe_SophieLeroy.png",
+    description:
+      "Sophie Leroy garantit la qualité de nos prestations et la conformité réglementaire. Diplômée ESTP avec un Master Qualité, elle supervise tous nos processus et certifications.",
+    realisations: [
+      "Certification ISO 9001",
+      "0 non-conformité majeure",
+      "Formation équipes qualité",
+      "Audit 50+ chantiers/an",
+    ],
+  },
+]
+
+const timeline = [
+  {
+    annee: "2009",
+    titre: "Création B.E StructiBA",
+    description: "Thomas Bernard fonde le bureau d'études à Cannes avec 2 collaborateurs",
+  },
+  {
+    annee: "2012",
+    titre: "Pôle Développement Durable",
+    description: "Création du pôle durable avec Marie Dupont, premiers projets HQE",
+  },
+  {
+    annee: "2015",
+    titre: "Expansion Régionale PACA",
+    description: "50+ projets réalisés, reconnaissance expertise structures complexes",
+  },
+  {
+    annee: "2018",
+    titre: "Innovation & Brevets",
+    description: "Création pôle R&D avec Julien Martin, premiers brevets déposés",
+  },
+  {
+    annee: "2020",
+    titre: "Certification ISO 9001",
+    description: "Obtention certification qualité avec Sophie Leroy",
+  },
+  {
+    annee: "2022",
+    titre: "Expansion Antilles",
+    description: "Ouverture activité Antilles, expertise parasismique tropicale",
+  },
+  {
+    annee: "2024",
+    titre: "Référence Régionale",
+    description: "12 collaborateurs, 500+ projets, leader technique reconnu",
+  },
+]
+
+export default function AProposPage() {
   return (
     <>
-      <section className="container mx-auto px-4 py-16">
-        <div className="mb-12">
-          <h1
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            {c.title}
-          </h1>
-          <p className="text-gray-600 text-lg max-w-3xl">{c.subtitle}</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
-            <Image
-              src="/images/APropos_Bureau_ReunionEquipe.png"
-              alt="Réunion d'équipe au bureau"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="space-y-6">
-            <p className="text-gray-600 text-lg leading-relaxed">{c.history}</p>
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-8"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            Jalons clés
-          </h2>
-          <ol className="relative border-l border-gray-200 ml-6 pl-8 space-y-10">
-            {c.timeline.map((item, i) => (
-              <li key={i}>
-                <div className="absolute w-4 h-4 bg-[#C9A568] rounded-full -left-2 border-4 border-white shadow" />
-                <p className="text-lg font-semibold text-[#C9A568] mb-1">{item.year}</p>
-                <p className="text-gray-600 leading-relaxed">{item.event}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="mb-16">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-8"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            {c.team.title}
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {c.team.members.map((member, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-gray-200 p-6 bg-white text-center shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-gray-100 mb-4">
-                  <Image
-                    src={member.avatar || "/placeholder.svg"}
-                    alt={`Portrait de ${member.name}`}
-                    fill
-                    className="object-cover"
-                    sizes="96px"
-                  />
-                </div>
-                <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
-                <p className="text-[#C9A568] font-medium text-sm mb-3">{member.title}</p>
-                <p className="text-gray-600 text-sm italic mb-3">"{member.quote}"</p>
-                <p className="text-gray-600 text-xs leading-relaxed">{member.bio}</p>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              À Propos de B.E StructiBA
+            </h1>
+            <p className="text-xl text-gray-300 mb-8 text-justify">
+              Depuis 15 ans, B.E StructiBA développe une expertise technique reconnue dans l'ingénierie structurelle.
+              Notre équipe de 12 ingénieurs spécialisés, organisée en 4 pôles complémentaires, vous accompagne de la
+              conception à la réalisation de vos projets les plus ambitieux. Découvrez notre histoire, nos valeurs et
+              l'équipe qui fait notre force.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <Users className="size-4" />
+                <span>12 ingénieurs experts</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-8"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            {c.values.title}
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: Check, text: c.values.items[0].text },
-              { icon: Lightbulb, text: c.values.items[1].text },
-              { icon: Users, text: c.values.items[2].text },
-              { icon: Handshake, text: c.values.items[3].text },
-            ].map((value, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-gray-200 p-8 bg-white text-center shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <value.icon className="size-8 text-[#C9A568] mx-auto mb-4" />
-                <p className="text-gray-600 leading-relaxed">{value.text}</p>
+              <div className="flex items-center gap-2">
+                <Calendar className="size-4" />
+                <span>15 ans d'expérience</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-8"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            {c.partners.title}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {c.partners.quotes.map((q, i) => (
-              <figure
-                key={i}
-                className="rounded-2xl border border-gray-200 p-8 bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <blockquote className="text-gray-600 leading-relaxed mb-4 text-lg italic">"{q.quote}"</blockquote>
-                <figcaption className="font-semibold">
-                  {q.name} <span className="text-gray-500 font-normal">— {q.role}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-
-        <section className="py-16">
-          <div className="rounded-2xl border border-gray-200 p-12 bg-white text-center shadow-sm hover:shadow-lg transition-shadow duration-300">
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-8"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              {c.cta}
-            </h2>
-            <div className="flex justify-center">
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-3 rounded-full bg-[#C9A568] text-white px-8 py-4 hover:bg-[#B8941F] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl font-semibold"
-              >
-                Contactez-nous
-              </a>
+              <div className="flex items-center gap-2">
+                <Award className="size-4" />
+                <span>500+ projets réalisés</span>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* Organisation Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              Notre Organisation en 4 Pôles
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              B.E StructiBA s'organise autour de 4 pôles d'expertise complémentaires, chacun dirigé par des ingénieurs
+              spécialisés. Cette organisation garantit une expertise approfondie dans chaque domaine et une coordination
+              optimale de vos projets multidisciplinaires.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {poles.map((pole, index) => {
+              const PoleIcon = pole.icon
+              return (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`${pole.bgColor} p-3 rounded-lg`}>
+                        <PoleIcon className={`size-6 ${pole.color}`} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg">{pole.title}</h3>
+                        <div className="flex gap-2 mt-1">
+                          <Badge variant="outline" className="text-xs">
+                            {pole.team}
+                          </Badge>
+                          <Badge variant="secondary" className="text-xs">
+                            {pole.stats}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 mb-4 text-justify">{pole.description}</p>
+
+                    <div className="mb-4">
+                      <h4 className="font-medium mb-2">Spécialités :</h4>
+                      <div className="space-y-1">
+                        {pole.specialites.map((specialite, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-sm">
+                            <CheckCircle className={`size-3 ${pole.color}`} />
+                            <span className="text-gray-600">{specialite}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium mb-2">Projets de référence :</h4>
+                      <div className="space-y-1">
+                        {pole.projets.map((projet, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-sm">
+                            <div
+                              className={`size-1.5 rounded-full ${pole.color.replace("text-", "bg-")} mt-2 flex-shrink-0`}
+                            />
+                            <span className="text-gray-600">{projet}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Équipe Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              Notre Équipe Dirigeante
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              L'équipe dirigeante de B.E StructiBA réunit des ingénieurs d'exception, diplômés des meilleures écoles.
+              Leur expertise complémentaire et leur vision partagée font la force de notre bureau d'études depuis 15
+              ans.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {equipe.map((membre, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex gap-4 mb-4">
+                    <div className="relative size-20 rounded-lg overflow-hidden flex-shrink-0">
+                      <Image
+                        src={membre.image || "/placeholder.svg"}
+                        alt={membre.nom}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg">{membre.nom}</h3>
+                      <p className="text-[#C9A568] font-medium">{membre.poste}</p>
+                      <p className="text-sm text-gray-600">{membre.formation}</p>
+                      <Badge variant="outline" className="text-xs mt-1">
+                        {membre.experience}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 mb-4 text-justify">{membre.description}</p>
+
+                  <div>
+                    <h4 className="font-medium mb-2">Réalisations clés :</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {membre.realisations.map((realisation, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm">
+                          <TrendingUp className="size-3 text-[#C9A568]" />
+                          <span className="text-gray-600">{realisation}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              15 Années d'Évolution
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              De bureau local à référence régionale, découvrez les étapes clés qui ont façonné B.E StructiBA. Chaque
+              année a apporté son lot d'innovations, de projets marquants et de développements stratégiques.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#C9A568]" />
+
+              <div className="space-y-8">
+                {timeline.map((etape, index) => (
+                  <div key={index} className="relative flex items-start gap-6">
+                    {/* Timeline dot */}
+                    <div className="relative z-10 flex items-center justify-center size-16 bg-[#C9A568] text-white rounded-full font-bold">
+                      {etape.annee}
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 pb-8">
+                      <h3 className="text-xl font-bold mb-2">{etape.titre}</h3>
+                      <p className="text-gray-600 text-justify">{etape.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Valeurs Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              Nos Valeurs Fondamentales
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="relative size-20 mx-auto mb-4">
+                  <Image
+                    src="/images/Valeurs_Qualite_Precision.png"
+                    alt="Excellence technique"
+                    fill
+                    className="object-contain"
+                    sizes="80px"
+                  />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Excellence Technique</h3>
+                <p className="text-gray-600 text-justify">
+                  Recherche permanente de la perfection technique avec les outils les plus avancés et une formation
+                  continue de nos équipes.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="relative size-20 mx-auto mb-4">
+                  <Image
+                    src="/images/Valeurs_Innovation_Ampoule.png"
+                    alt="Innovation"
+                    fill
+                    className="object-contain"
+                    sizes="80px"
+                  />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Innovation</h3>
+                <p className="text-gray-600 text-justify">
+                  Développement constant de nouvelles solutions techniques et matériaux pour répondre aux défis de
+                  demain.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="relative size-20 mx-auto mb-4">
+                  <Image
+                    src="/images/Valeurs_Durable_Feuille.png"
+                    alt="Durabilité"
+                    fill
+                    className="object-contain"
+                    sizes="80px"
+                  />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Durabilité</h3>
+                <p className="text-gray-600 text-justify">
+                  Engagement fort pour la construction durable avec des solutions bas carbone et respectueuses de
+                  l'environnement.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-8">
+              <Image
+                src="/images/APropos_Bureau_ReunionEquipe.png"
+                alt="Équipe B.E StructiBA en réunion"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
+              />
+            </div>
+
+            <p className="text-lg text-gray-600 mb-8 text-justify">
+              Ces valeurs guident chacune de nos décisions et se retrouvent dans chaque projet que nous réalisons. Elles
+              font de B.E StructiBA un partenaire de confiance pour vos projets les plus ambitieux, alliant expertise
+              technique, innovation et respect de l'environnement.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-[#C9A568] hover:bg-[#B8956A] text-white">
+                <Link href="/expertise">Découvrir notre expertise</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/contact">Nous rencontrer</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   )
