@@ -1,215 +1,412 @@
-import ContactForm from "@/components/contact-form"
-import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react"
-import Image from "next/image"
+"use client"
 
-export const metadata = {
-  title: "Contact — Parlons de votre projet",
-  description:
-    "Contactez B.E StructiBA pour votre projet de construction, réhabilitation ou développement durable. Devis gratuit et conseil personnalisé.",
-}
+import type React from "react"
+
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Badge } from "@/components/ui/badge"
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building, User, MessageSquare } from "lucide-react"
+import Image from "next/image"
+import Breadcrumbs from "@/components/breadcrumbs"
+
+const contactInfo = [
+  {
+    icon: MapPin,
+    title: "Adresse",
+    content: "263 Avenue de Grasse\n06400 Cannes, France",
+    color: "text-blue-600",
+  },
+  {
+    icon: Phone,
+    title: "Téléphone",
+    content: "+33 4 93 12 34 56",
+    color: "text-green-600",
+    href: "tel:+33493123456",
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    content: "contact@structiba.fr",
+    color: "text-orange-600",
+    href: "mailto:contact@structiba.fr",
+  },
+  {
+    icon: Clock,
+    title: "Horaires",
+    content: "Lun - Ven : 8h00 - 18h00\nSur RDV : Sam matin",
+    color: "text-purple-600",
+  },
+]
+
+const projectTypes = [
+  "Construction neuve - Villa/Maison individuelle",
+  "Construction neuve - Immeuble/Collectif",
+  "Réhabilitation - Ouverture murs porteurs",
+  "Réhabilitation - Renforcement structure",
+  "Ingénierie parasismique",
+  "Ouvrages extérieurs - Piscine",
+  "Ouvrages extérieurs - Soutènement",
+  "Diagnostic structural",
+  "Autre projet",
+]
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    nom: "",
+    prenom: "",
+    email: "",
+    telephone: "",
+    societe: "",
+    typeProjet: "",
+    localisation: "",
+    budget: "",
+    delais: "",
+    message: "",
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Simulation d'envoi
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    setIsSubmitting(false)
+    setIsSubmitted(true)
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Breadcrumbs />
+        <div className="container mx-auto px-4 py-20">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-10 h-10 text-green-600" />
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Message envoyé avec succès !</h1>
+            <p className="text-lg text-gray-600 mb-8">
+              Merci pour votre demande. Notre équipe vous contactera dans les plus brefs délais pour étudier votre
+              projet.
+            </p>
+            <Button asChild className="bg-[#C9A568] hover:bg-[#B8956A]">
+              <a href="/">Retour à l'accueil</a>
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <>
+    <div className="min-h-screen bg-white">
+      <Breadcrumbs />
+
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/Contact_Fond_TextureBetonLisse.png"
-            alt="Texture béton lissé"
+            src="/images/Contact_Professional_Office.jpg"
+            alt="Bureau professionnel d'ingénierie"
             fill
-            className="object-cover opacity-20"
-            sizes="100vw"
+            className="object-cover"
           />
         </div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1
-              className="text-5xl md:text-6xl font-bold mb-6"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              Parlons de votre projet
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Contactez <span className="text-[#C9A568]">nos Experts</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Que ce soit pour une construction neuve, une réhabilitation ou un projet durable, notre équipe est là pour
-              vous accompagner de A à Z.
+            <p className="text-xl md:text-2xl text-gray-300 text-justify">
+              Partagez-nous votre projet et obtenez une étude personnalisée de nos ingénieurs spécialisés.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <MessageCircle className="size-5" />
-                <span>Réponse sous 24h</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="size-5" />
-                <span>Devis gratuit</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="size-5" />
-                <span>3 régions d'intervention</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-                <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  Décrivez-nous votre projet
-                </h2>
-                <ContactForm />
-              </div>
+              <Card className="shadow-xl border-0">
+                <CardHeader className="bg-gradient-to-r from-[#C9A568] to-[#B8956A] text-white">
+                  <CardTitle className="text-2xl flex items-center gap-3">
+                    <MessageSquare className="w-6 h-6" />
+                    Demande d'étude personnalisée
+                  </CardTitle>
+                  <p className="text-gray-100">
+                    Remplissez ce formulaire pour recevoir une proposition technique adaptée à votre projet.
+                  </p>
+                </CardHeader>
+                <CardContent className="p-8">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Informations personnelles */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <User className="w-5 h-5 text-[#C9A568]" />
+                        Vos informations
+                      </h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="prenom">Prénom *</Label>
+                          <Input
+                            id="prenom"
+                            value={formData.prenom}
+                            onChange={(e) => handleInputChange("prenom", e.target.value)}
+                            required
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="nom">Nom *</Label>
+                          <Input
+                            id="nom"
+                            value={formData.nom}
+                            onChange={(e) => handleInputChange("nom", e.target.value)}
+                            required
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="email">Email *</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange("email", e.target.value)}
+                            required
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="telephone">Téléphone</Label>
+                          <Input
+                            id="telephone"
+                            type="tel"
+                            value={formData.telephone}
+                            onChange={(e) => handleInputChange("telephone", e.target.value)}
+                            className="mt-1"
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <Label htmlFor="societe">Société / Organisation</Label>
+                          <Input
+                            id="societe"
+                            value={formData.societe}
+                            onChange={(e) => handleInputChange("societe", e.target.value)}
+                            className="mt-1"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Informations projet */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <Building className="w-5 h-5 text-[#C9A568]" />
+                        Votre projet
+                      </h3>
+                      <div className="space-y-4">
+                        <div>
+                          <Label htmlFor="typeProjet">Type de projet *</Label>
+                          <Select
+                            value={formData.typeProjet}
+                            onValueChange={(value) => handleInputChange("typeProjet", value)}
+                          >
+                            <SelectTrigger className="mt-1">
+                              <SelectValue placeholder="Sélectionnez le type de projet" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {projectTypes.map((type) => (
+                                <SelectItem key={type} value={type}>
+                                  {type}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="localisation">Localisation</Label>
+                            <Input
+                              id="localisation"
+                              value={formData.localisation}
+                              onChange={(e) => handleInputChange("localisation", e.target.value)}
+                              placeholder="Ville, département"
+                              className="mt-1"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="budget">Budget prévisionnel</Label>
+                            <Select
+                              value={formData.budget}
+                              onValueChange={(value) => handleInputChange("budget", value)}
+                            >
+                              <SelectTrigger className="mt-1">
+                                <SelectValue placeholder="Fourchette budgétaire" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="<5k">Moins de 5 000 €</SelectItem>
+                                <SelectItem value="5k-15k">5 000 € - 15 000 €</SelectItem>
+                                <SelectItem value="15k-30k">15 000 € - 30 000 €</SelectItem>
+                                <SelectItem value="30k-50k">30 000 € - 50 000 €</SelectItem>
+                                <SelectItem value=">50k">Plus de 50 000 €</SelectItem>
+                                <SelectItem value="confidentiel">Confidentiel</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="delais">Délais souhaités</Label>
+                          <Select value={formData.delais} onValueChange={(value) => handleInputChange("delais", value)}>
+                            <SelectTrigger className="mt-1">
+                              <SelectValue placeholder="Échéance du projet" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="urgent">Urgent (&lt; 1 mois)</SelectItem>
+                              <SelectItem value="court">Court terme (1-3 mois)</SelectItem>
+                              <SelectItem value="moyen">Moyen terme (3-6 mois)</SelectItem>
+                              <SelectItem value="long">Long terme (&gt; 6 mois)</SelectItem>
+                              <SelectItem value="flexible">Flexible</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="message">Description du projet *</Label>
+                          <Textarea
+                            id="message"
+                            value={formData.message}
+                            onChange={(e) => handleInputChange("message", e.target.value)}
+                            placeholder="Décrivez votre projet, vos contraintes techniques, vos objectifs..."
+                            rows={6}
+                            required
+                            className="mt-1"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-[#C9A568] hover:bg-[#B8956A] text-white py-3 text-lg"
+                    >
+                      {isSubmitting ? (
+                        "Envoi en cours..."
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Envoyer ma demande
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-8">
-              {/* Coordonnées */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-                <h3 className="text-2xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  Nos coordonnées
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="size-6 text-[#C9A568] mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold mb-1">Siège social</p>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        123 Avenue des Champs-Élysées
-                        <br />
-                        75008 Paris, France
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Phone className="size-6 text-[#C9A568] mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold mb-1">Téléphone</p>
-                      <p className="text-gray-600 text-sm">+33 1 42 86 83 00</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Mail className="size-6 text-[#C9A568] mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold mb-1">Email</p>
-                      <p className="text-gray-600 text-sm">contact@bestructiba.fr</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Clock className="size-6 text-[#C9A568] mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold mb-1">Horaires</p>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Lun - Ven : 8h00 - 18h00
-                        <br />
-                        Sam : 9h00 - 12h00
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="space-y-6">
+              <Card className="shadow-lg border-0">
+                <CardHeader className="bg-gray-50">
+                  <CardTitle className="text-xl">Informations de contact</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="space-y-6">
+                    {contactInfo.map((info, index) => {
+                      const IconComponent = info.icon
+                      const content = info.href ? (
+                        <a href={info.href} className={`${info.color} hover:underline`}>
+                          {info.content}
+                        </a>
+                      ) : (
+                        <span className="text-gray-700">{info.content}</span>
+                      )
 
-              {/* Zones d'intervention */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-                <h3 className="text-2xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  Zones d'intervention
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="size-3 rounded-full bg-[#C9A568]" />
-                    <div>
-                      <p className="font-semibold">Région PACA</p>
-                      <p className="text-gray-600 text-sm">Nice, Cannes, Antibes, Marseille</p>
-                    </div>
+                      return (
+                        <div key={index} className="flex items-start gap-3">
+                          <div className={`p-2 rounded-full bg-gray-100`}>
+                            <IconComponent className={`w-5 h-5 ${info.color}`} />
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">{info.title}</h4>
+                            <div className="whitespace-pre-line">{content}</div>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="size-3 rounded-full bg-[#C9A568]" />
-                    <div>
-                      <p className="font-semibold">Paris & Île-de-France</p>
-                      <p className="text-gray-600 text-sm">Paris, Neuilly, Boulogne, Vincennes</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="size-3 rounded-full bg-[#C9A568]" />
-                    <div>
-                      <p className="font-semibold">Antilles</p>
-                      <p className="text-gray-600 text-sm">Martinique, Guadeloupe, Saint-Martin</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
 
-              {/* Engagement */}
-              <div className="bg-[#C9A568] rounded-2xl shadow-sm p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  Notre engagement
-                </h3>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="size-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
-                    <span>Réponse garantie sous 24h</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="size-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
-                    <span>Devis détaillé et transparent</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="size-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
-                    <span>Accompagnement personnalisé</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="size-1.5 rounded-full bg-white mt-2 flex-shrink-0" />
-                    <span>Suivi de projet en temps réel</span>
-                  </li>
-                </ul>
-              </div>
+              <Card className="shadow-lg border-0">
+                <CardHeader className="bg-[#C9A568] text-white">
+                  <CardTitle className="text-xl">Réponse garantie</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <Badge className="bg-green-100 text-green-800 border-green-200">
+                        <CheckCircle className="w-4 h-4 mr-1" />
+                        48h
+                      </Badge>
+                      <span className="text-sm text-gray-700">Première réponse</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Badge className="bg-blue-100 text-blue-800 border-blue-200">
+                        <CheckCircle className="w-4 h-4 mr-1" />
+                        Gratuit
+                      </Badge>
+                      <span className="text-sm text-gray-700">Devis et conseil initial</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Badge className="bg-purple-100 text-purple-800 border-purple-200">
+                        <CheckCircle className="w-4 h-4 mr-1" />
+                        Sur-mesure
+                      </Badge>
+                      <span className="text-sm text-gray-700">Solution adaptée</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-lg border-0 bg-gradient-to-br from-gray-50 to-gray-100">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold text-gray-900 mb-3">Zones d'intervention</h4>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <div>
+                      • <strong>PACA :</strong> Cannes, Nice, Antibes, Grasse
+                    </div>
+                    <div>
+                      • <strong>Antilles :</strong> Martinique, Guadeloupe
+                    </div>
+                    <div>
+                      • <strong>Projets spéciaux :</strong> France entière
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2
-              className="text-4xl font-bold text-center mb-12"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              Questions fréquentes
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  q: "Quel est le délai pour obtenir un devis ?",
-                  a: "Nous nous engageons à vous fournir un devis détaillé sous 48h après réception de votre demande complète.",
-                },
-                {
-                  q: "Intervenez-vous sur tous types de projets ?",
-                  a: "Nous intervenons sur la construction neuve, la réhabilitation et les projets durables, du résidentiel au tertiaire.",
-                },
-                {
-                  q: "Proposez-vous un suivi de chantier ?",
-                  a: "Oui, nous assurons un suivi complet avec rapports réguliers et plateforme de suivi en ligne.",
-                },
-                {
-                  q: "Quelles sont vos certifications ?",
-                  a: "Nous sommes certifiés ISO 9001, HQE et agréés par le CSTB pour garantir la qualité de nos interventions.",
-                },
-              ].map((faq, i) => (
-                <div key={i} className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
-                  <h3 className="font-semibold mb-3 text-lg">{faq.q}</h3>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   )
 }

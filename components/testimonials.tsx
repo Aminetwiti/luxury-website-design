@@ -5,12 +5,12 @@ const items = [
     name: "S. Delacroix",
     role: "Propriétaire — Paris 7e",
     quote:
-      "Équipe d’une rigueur rare. Ouverture de murs porteurs et finitions impeccables. Un partenariat de confiance.",
+      "Équipe d'une rigueur rare. Ouverture de murs porteurs et finitions impeccables. Un partenariat de confiance.",
     avatarQuery: "portrait%20architectural%20luxury%20style",
   },
   {
     name: "Atelier L.",
-    role: "Agence d’architecture — PACA",
+    role: "Agence d'architecture — PACA",
     quote: "Coordination chantier exemplaire et expertise structurelle pointue. Délais tenus malgré la complexité.",
     avatarQuery: "portrait%20architect%20studio%20minimal",
   },
@@ -30,18 +30,14 @@ export default function Testimonials() {
           <figure key={i} className="rounded-2xl border border-[var(--lux-border)] bg-white p-6">
             <div className="flex items-center gap-4">
               <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                <Image
-                  src={`/abstract-geometric-shapes.png?height=96&width=96&query=${t.avatarQuery}`}
-                  alt={`Portrait de ${t.name}`}
-                  fill
-                />
+                <Image src="/placeholder-user.jpg" alt={`Portrait de ${t.name}`} fill className="object-cover" />
               </div>
               <div>
                 <figcaption className="font-medium">{t.name}</figcaption>
                 <p className="text-xs text-muted-foreground">{t.role}</p>
               </div>
             </div>
-            <blockquote className="mt-4 text-sm text-muted-foreground leading-relaxed">“{t.quote}”</blockquote>
+            <blockquote className="mt-4 text-sm text-muted-foreground leading-relaxed">"{t.quote}"</blockquote>
           </figure>
         ))}
       </div>

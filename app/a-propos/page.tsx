@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Users, Calculator, PenTool, Settings, Lightbulb, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import Breadcrumbs from "@/components/breadcrumbs"
 
 const poles = [
   {
@@ -41,13 +40,11 @@ const poles = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Breadcrumbs />
-
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/APropos_Bureau_ReunionEquipe.png"
+            src="/images/APropos_Bureau_ReunionEquipe.jpg"
             alt="Bureau d'études StructiBA"
             fill
             className="object-cover"
@@ -94,7 +91,7 @@ export default function AboutPage() {
               </div>
               <div className="relative h-96 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/APropos_Equipe_StudioArchitectural.png"
+                  src="/images/APropos_Equipe_StudioArchitectural.jpg"
                   alt="Équipe B.E StructiBA"
                   fill
                   className="object-cover"
@@ -205,7 +202,7 @@ export default function AboutPage() {
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
-                  src="/images/APropos_Equipe_JulienMartin.png"
+                  src="/images/APropos_Equipe_JulienMartin.jpg"
                   alt="Julien Martin"
                   fill
                   className="object-cover"
@@ -220,7 +217,7 @@ export default function AboutPage() {
 
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image src="/images/APropos_Equipe_MarieDupont.png" alt="Marie Dupont" fill className="object-cover" />
+                <Image src="/images/APropos_Equipe_MarieDupont.jpg" alt="Marie Dupont" fill className="object-cover" />
               </div>
               <h3 className="font-bold text-xl mb-2">Marie Dupont</h3>
               <p className="text-[#C9A568] font-medium mb-2">Responsable Projets</p>
@@ -230,7 +227,7 @@ export default function AboutPage() {
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
-                  src="/images/APropos_Equipe_ThomasBernard.png"
+                  src="/images/APropos_Equipe_ThomasBernard.jpg"
                   alt="Thomas Bernard"
                   fill
                   className="object-cover"

@@ -1,38 +1,31 @@
-"use client"
-
-import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
+import type { Metadata } from "next"
+import ProjectsGrid from "@/components/projects-grid"
 import { projects } from "@/lib/projects"
-import Breadcrumbs from "@/components/breadcrumbs"
+
+export const metadata: Metadata = {
+  title: "Nos Réalisations | B.E StructiBA - Projets Structure & Béton Armé",
+  description:
+    "Découvrez nos réalisations en ingénierie structure : villas, réhabilitations, constructions neuves. Projets de référence en PACA et Antilles.",
+  keywords: "réalisations structure, projets béton armé, villas PACA, réhabilitation, construction neuve, ingénierie",
+}
 
 export default function RealisationsPage() {
-  // Afficher uniquement les 2 projets réels
-  const displayedProjects = projects.filter(
-    (project) => project.id === "villa-provencale-mandelieu" || project.id === "villa-contemporaine-construction",
-  )
-
   return (
-    <div className="min-h-screen bg-white">
-      <Breadcrumbs />
-
+    <div className="min-h-screen bg-[#F8F8F5]">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/Realisations_VillaHorizon_ExtDrone.png"
-            alt="Nos réalisations"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="relative container mx-auto px-4">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Nos <span className="text-[#C9A568]">Réalisations</span>
+            <h1
+              className="text-4xl md:text-5xl font-bold mb-6"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            >
+              Nos Réalisations
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 text-justify">
-              Découvrez nos projets d'ingénierie structurelle qui illustrent notre expertise technique et notre capacité
-              à transformer les défis architecturaux en réussites concrètes.
+            <p className="text-xl text-gray-200 leading-relaxed text-justify">
+              Découvrez une sélection de nos projets les plus représentatifs, témoignant de notre expertise en
+              ingénierie structure et de notre capacité à relever les défis techniques les plus complexes.
             </p>
           </div>
         </div>
@@ -42,124 +35,46 @@ export default function RealisationsPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Projets <span className="text-[#C9A568]">Remarquables</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Chaque projet est unique et nécessite une approche sur-mesure. Découvrez comment nous avons relevé les
-              défis techniques de nos clients avec innovation et expertise.
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Projets de Référence</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              Chaque projet est unique et nécessite une approche sur mesure. Nos réalisations illustrent notre capacité
+              d'adaptation et notre recherche constante de l'excellence technique.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {displayedProjects.map((project) => (
-              <Card
-                key={project.id}
-                className="group hover:shadow-2xl transition-all duration-500 border-0 overflow-hidden bg-white"
-              >
-                <div className="relative h-80 overflow-hidden">
-                  <Image
-                    src={project.images.main || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <ProjectsGrid showAll={true} />
 
-                  {/* Overlay content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-bold mb-2 group-hover:text-[#C9A568] transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                </div>
-
-                <CardContent className="p-8">
-                  <p className="text-gray-600 text-lg leading-relaxed text-justify">{project.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {projects.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">Nos projets de référence seront bientôt disponibles.</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Statistiques */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Nos <span className="text-[#C9A568]">Chiffres</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Plus de 15 ans d'expérience au service de l'excellence technique et de la satisfaction client.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#C9A568] mb-2">500+</div>
-              <div className="text-gray-600 font-medium">Projets réalisés</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#C9A568] mb-2">15</div>
-              <div className="text-gray-600 font-medium">Années d'expérience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#C9A568] mb-2">12</div>
-              <div className="text-gray-600 font-medium">Ingénieurs experts</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#C9A568] mb-2">100%</div>
-              <div className="text-gray-600 font-medium">Satisfaction client</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Domaines d'intervention */}
+      {/* CTA Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Domaines <span className="text-[#C9A568]">d'Intervention</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Notre expertise s'étend sur de nombreux types de projets et secteurs d'activité.
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Votre Projet Mérite Notre Expertise</h2>
+            <p className="text-lg text-gray-600 mb-8 text-justify">
+              Chaque réalisation commence par une écoute attentive de vos besoins et une analyse approfondie des
+              contraintes techniques. Confiez-nous votre projet pour bénéficier de notre savoir-faire reconnu.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center p-6 border-0 bg-gray-50 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-[#C9A568] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">R</span>
-              </div>
-              <h3 className="font-bold text-lg mb-2">Résidentiel</h3>
-              <p className="text-gray-600 text-justify">Villas, maisons individuelles, résidences de prestige</p>
-            </Card>
-
-            <Card className="text-center p-6 border-0 bg-gray-50 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-[#C9A568] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">C</span>
-              </div>
-              <h3 className="font-bold text-lg mb-2">Commercial</h3>
-              <p className="text-gray-600 text-justify">Bureaux, commerces, bâtiments d'activité</p>
-            </Card>
-
-            <Card className="text-center p-6 border-0 bg-gray-50 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-[#C9A568] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">H</span>
-              </div>
-              <h3 className="font-bold text-lg mb-2">Hôtellerie</h3>
-              <p className="text-gray-600 text-justify">Hôtels, resorts, établissements de luxe</p>
-            </Card>
-
-            <Card className="text-center p-6 border-0 bg-gray-50 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-[#C9A568] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">P</span>
-              </div>
-              <h3 className="font-bold text-lg mb-2">Patrimoine</h3>
-              <p className="text-gray-600 text-justify">Monuments historiques, bâtiments classés</p>
-            </Card>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center bg-[#C9A568] text-white px-8 py-3 rounded-full hover:bg-[#B8941F] transition-colors font-medium"
+              >
+                Discuter de votre projet
+              </a>
+              <a
+                href="/expertise"
+                className="inline-flex items-center justify-center border border-[#C9A568] text-[#C9A568] px-8 py-3 rounded-full hover:bg-[#C9A568] hover:text-white transition-colors font-medium"
+              >
+                Découvrir notre expertise
+              </a>
+            </div>
           </div>
         </div>
       </section>

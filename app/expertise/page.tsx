@@ -1,257 +1,282 @@
+import type { Metadata } from "next"
+import { CheckCircle, Users, Award, Target, Lightbulb, Shield } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle, Target, Lightbulb, Calculator, Cog, Leaf, Shield, TrendingUp } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
-import Breadcrumbs from "@/components/breadcrumbs"
+
+export const metadata: Metadata = {
+  title: "Notre Expertise | B.E StructiBA - Bureau d'Études Structure",
+  description:
+    "Découvrez l'expertise technique de B.E StructiBA : processus d'études, certifications, compétences clés et organisation. Excellence en ingénierie structure et béton armé.",
+  keywords:
+    "expertise structure, bureau études, ingénierie béton armé, certifications, processus études, compétences techniques",
+}
 
 const processSteps = [
   {
     id: 1,
     title: "Analyse des besoins et faisabilité",
-    description: "Étude approfondie de votre projet et évaluation de sa faisabilité technique et réglementaire.",
+    description:
+      "Étude préliminaire du projet, analyse des contraintes techniques et réglementaires, évaluation de la faisabilité structurelle.",
     icon: Target,
-    image: "/images/Expertise_Processus_Diagnostic.png",
+    image: "/images/Process_Analysis_Feasibility.jpg",
+    duration: "1-2 semaines",
+    deliverables: ["Note de faisabilité", "Pré-dimensionnement", "Estimation budgétaire"],
   },
   {
     id: 2,
-    title: "Conception & Dimensionnement",
-    description: "Élaboration des solutions techniques optimales et dimensionnement précis des structures.",
+    title: "Conception et dimensionnement",
+    description:
+      "Calculs structurels détaillés, modélisation 3D, dimensionnement selon les Eurocodes, optimisation des solutions techniques.",
     icon: Lightbulb,
-    image: "/images/Expertise_Processus_Conception.png",
+    image: "/images/Process_Structural_Design.jpg",
+    duration: "3-6 semaines",
+    deliverables: ["Plans de structure", "Notes de calculs", "Modèle 3D"],
   },
   {
     id: 3,
-    title: "Réalisation & Suivi",
-    description: "Accompagnement durant la phase de réalisation avec suivi technique rigoureux.",
-    icon: Cog,
-    image: "/images/Expertise_Processus_Realisation.png",
+    title: "Suivi et coordination",
+    description:
+      "Accompagnement en phase chantier, coordination avec les entreprises, validation des solutions techniques, adaptations si nécessaire.",
+    icon: Users,
+    image: "/images/Process_Project_Management.jpg",
+    duration: "Durée du chantier",
+    deliverables: ["Visites de chantier", "Comptes-rendus", "Adaptations techniques"],
   },
   {
     id: 4,
-    title: "Contrôle & Validation",
-    description: "Vérification de la conformité et validation finale des ouvrages réalisés.",
-    icon: CheckCircle,
-    image: "/images/Expertise_Processus_Suivi.png",
+    title: "Contrôle et réception",
+    description:
+      "Vérification de la conformité des ouvrages, contrôles qualité, assistance à la réception des travaux, garanties.",
+    icon: Shield,
+    image: "/images/Process_Quality_Control.jpg",
+    duration: "1-2 semaines",
+    deliverables: ["Rapport de conformité", "PV de réception", "Dossier d'ouvrage exécuté"],
   },
 ]
 
 const keySkills = [
+  "Calculs de structure béton armé et précontraint",
+  "Modélisation et analyse par éléments finis",
+  "Études sismiques et parasismiques (Eurocode 8)",
+  "Réhabilitation et renforcement d'ouvrages existants",
+  "Coordination BIM et maquette numérique",
+  "Expertise pathologies et diagnostics structurels",
+]
+
+const certifications = [
   {
-    title: "Ingénierie structurelle avancée",
-    description: "Maîtrise des techniques de calcul et de conception les plus pointues",
-    icon: Calculator,
+    title: "Ingénieurs certifiés issus des plus grandes écoles françaises",
+    description: "Formation d'excellence en génie civil et structures",
+    icon: "/images/logo-cstb.jpg",
   },
   {
-    title: "Calculs techniques précis",
-    description: "Précision et rigueur dans tous nos dimensionnements et vérifications",
+    title: "Qualification OPQIBI",
+    description: "Organisme de qualification des ingénieurs-conseils",
+    icon: "/images/logo-hqe.jpg",
+  },
+  {
+    title: "Certification ISO 9001",
+    description: "Management de la qualité certifié",
+    icon: "/images/logo-iso9001.jpg",
+  },
+]
+
+const organization = [
+  {
+    title: "Pôle Calcul",
+    description: "Ingénieurs structures spécialisés en calculs complexes et modélisation avancée",
+    members: 3,
     icon: Target,
   },
   {
-    title: "Maîtrise des matériaux innovants et durables",
-    description: "Expertise des matériaux modernes et éco-responsables",
-    icon: Leaf,
+    title: "Pôle Dessin/Plans",
+    description: "Dessinateurs techniques experts en DAO/CAO et plans d'exécution",
+    members: 2,
+    icon: Lightbulb,
   },
   {
-    title: "Respect rigoureux des normes (Eurocodes, DTU, règles de l'art)",
-    description: "Application stricte de toutes les réglementations en vigueur",
-    icon: Shield,
+    title: "Pôle Administratif",
+    description: "Gestion de projets, suivi clientèle et coordination administrative",
+    members: 1,
+    icon: Users,
   },
   {
-    title: "Ingénierie parasismique avancée",
-    description: "Spécialisation dans la protection sismique et les zones à risque",
-    icon: Shield,
+    title: "Pôle Développement/Innovation",
+    description: "Recherche et développement, nouvelles technologies, innovation structurelle",
+    members: 1,
+    icon: Award,
   },
-  {
-    title: "Optimisation Structurelle et économique",
-    description: "Recherche constante de solutions performantes et économiques",
-    icon: TrendingUp,
-  },
+]
+
+const clientTypes = [
+  "Particuliers (maisons individuelles, extensions, piscines)",
+  "Professionnels (bureaux, commerces, entrepôts)",
+  "Architectes (collaboration sur projets complexes)",
+  "Promoteurs (opérations immobilières, logements collectifs)",
 ]
 
 export default function ExpertisePage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Breadcrumbs />
-
+    <div className="min-h-screen bg-[#F8F8F5]">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/Expertise_Schema_TechniqueMinimal.png"
-            alt="Schéma technique"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="relative container mx-auto px-4">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Notre <span className="text-[#C9A568]">Expertise</span>
+            <h1
+              className="text-4xl md:text-5xl font-bold mb-6"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            >
+              Notre Expertise
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 text-justify">
-              Une approche méthodique et rigoureuse, fruit de nombreuses années d'expérience dans l'ingénierie
-              structurelle et la conception d'ouvrages complexes.
+            <p className="text-xl text-gray-200 leading-relaxed text-justify">
+              Fort d'une expertise technique reconnue et d'une approche méthodologique rigoureuse, B.E StructiBA
+              accompagne ses clients dans la réalisation de projets structurels d'exception. Notre équipe
+              pluridisciplinaire maîtrise l'ensemble des enjeux techniques, réglementaires et économiques de
+              l'ingénierie structure moderne.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Processus */}
-      <section className="py-20 bg-gray-50">
+      {/* Processus d'études */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Notre <span className="text-[#C9A568]">Processus</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Une méthodologie éprouvée en quatre étapes clés pour garantir la réussite de vos projets d'ingénierie
-              structurelle.
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre Processus d'Études</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              Une méthodologie éprouvée en 4 étapes pour garantir la réussite de vos projets structurels, de l'analyse
+              préliminaire à la réception des ouvrages.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => {
-              const IconComponent = step.icon
-              return (
-                <Card key={step.id} className="group hover:shadow-xl transition-all duration-300 border-0 bg-white">
-                  <div className="relative h-48 overflow-hidden rounded-t-lg">
-                    <Image
-                      src={step.image || "/placeholder.svg"}
-                      alt={step.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                    <div className="absolute top-4 left-4 bg-[#C9A568] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {processSteps.map((step, index) => (
+              <Card key={step.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="relative h-48">
+                  <Image src={step.image || "/placeholder.svg"} alt={step.title} fill className="object-cover" />
+                  <div className="absolute top-4 left-4">
+                    <div className="w-12 h-12 bg-[#C9A568] rounded-full flex items-center justify-center text-white font-bold text-lg">
                       {step.id}
                     </div>
                   </div>
-
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <IconComponent className="w-6 h-6 text-[#C9A568]" />
-                      <h3 className="text-lg font-bold group-hover:text-[#C9A568] transition-colors">{step.title}</h3>
-                    </div>
-                    <p className="text-gray-600 text-justify">{step.description}</p>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Compétences clés */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Compétences <span className="text-[#C9A568]">Clés</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Six domaines d'excellence qui fondent notre expertise et garantissent la qualité de nos prestations
-              d'ingénierie.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {keySkills.map((skill, index) => {
-              const IconComponent = skill.icon
-              return (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 bg-gray-50">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-[#C9A568] p-3 rounded-lg flex-shrink-0">
-                        <IconComponent className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold mb-2 group-hover:text-[#C9A568] transition-colors">
-                          {skill.title}
-                        </h3>
-                        <p className="text-gray-600 text-justify">{skill.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
+                </div>
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-3">
+                    <step.icon className="w-6 h-6 text-[#C9A568] mr-3" />
+                    <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-600 mb-4 text-justify">{step.description}</p>
+                  <div className="flex items-center justify-between text-sm">
+                    <Badge variant="outline" className="text-[#C9A568] border-[#C9A568]">
+                      {step.duration}
+                    </Badge>
+                    <span className="text-gray-500">{step.deliverables.length} livrables</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Certifications */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Certifications & <span className="text-[#C9A568]">Qualifications</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Ingénieurs certifiés issus des plus grandes écoles françaises
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Certifications & Qualifications</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              Ingénieurs certifiés issus des plus grandes écoles françaises, nous garantissons un niveau d'expertise
+              technique et une déontologie professionnelle exemplaires.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card className="text-center p-8 border-0 bg-white">
-              <div className="relative h-16 mb-4 mx-auto w-24">
-                <Image src="/images/logo-iso9001.png" alt="ISO 9001" fill className="object-contain" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Qualité ISO 9001</h3>
-              <p className="text-gray-600 text-justify">Management de la qualité certifié</p>
-            </Card>
-
-            <Card className="text-center p-8 border-0 bg-white">
-              <div className="relative h-16 mb-4 mx-auto w-24">
-                <Image src="/images/logo-cstb.png" alt="CSTB" fill className="object-contain" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Agréé CSTB</h3>
-              <p className="text-gray-600 text-justify">Centre Scientifique et Technique du Bâtiment</p>
-            </Card>
-
-            <Card className="text-center p-8 border-0 bg-white">
-              <div className="relative h-16 mb-4 mx-auto w-24">
-                <Image src="/images/logo-hqe.png" alt="HQE" fill className="object-contain" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Démarche HQE</h3>
-              <p className="text-gray-600 text-justify">Haute Qualité Environnementale</p>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {certifications.map((cert, index) => (
+              <Card key={index} className="text-center p-8 hover:shadow-lg transition-shadow">
+                <div className="w-20 h-20 mx-auto mb-6 relative">
+                  <Image src={cert.icon || "/placeholder.svg"} alt={cert.title} fill className="object-contain" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{cert.title}</h3>
+                <p className="text-gray-600 text-justify">{cert.description}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Équipe terrain */}
+      {/* Compétences clés */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Compétences Clés</h2>
+              <p className="text-lg text-gray-600 text-justify">
+                Notre expertise technique couvre l'ensemble des domaines de l'ingénierie structure, des calculs les plus
+                complexes aux solutions innovantes.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {keySkills.map((skill, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <CheckCircle className="w-6 h-6 text-[#C9A568] mt-1 flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">{skill}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Organisation */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">
-                Équipe <span className="text-[#C9A568]">Terrain</span>
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 text-justify">
-                Notre équipe d'ingénieurs expérimentés intervient directement sur vos chantiers pour garantir la
-                parfaite exécution des études et le respect des prescriptions techniques.
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Organisation & Ressources</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
+              Une équipe structurée en pôles d'expertise complémentaires pour une prise en charge optimale de vos
+              projets, de la conception à la réalisation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {organization.map((pole, index) => (
+              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-[#C9A568]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <pole.icon className="w-8 h-8 text-[#C9A568]" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{pole.title}</h3>
+                <p className="text-gray-600 text-sm mb-3 text-justify">{pole.description}</p>
+                <Badge variant="outline" className="text-[#C9A568] border-[#C9A568]">
+                  {pole.members} {pole.members > 1 ? "membres" : "membre"}
+                </Badge>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Types de clients */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nos Clients</h2>
+              <p className="text-lg text-gray-600 text-justify">
+                Nous accompagnons une clientèle diversifiée dans la réalisation de leurs projets structurels, en
+                adaptant notre expertise à leurs besoins spécifiques.
               </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-[#C9A568]" />
-                  <span>Suivi technique personnalisé</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-[#C9A568]" />
-                  <span>Réactivité et disponibilité</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-[#C9A568]" />
-                  <span>Expertise technique reconnue</span>
-                </div>
-              </div>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden">
-              <Image
-                src="/images/Expertise_EquipeTerrain_ChantierAction.png"
-                alt="Équipe terrain en action"
-                fill
-                className="object-cover"
-              />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {clientTypes.map((clientType, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <CheckCircle className="w-6 h-6 text-[#C9A568] mt-1 flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">{clientType}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

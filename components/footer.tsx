@@ -7,8 +7,8 @@ import EnhancedLogo from "./enhanced-logo"
 const services = [
   { name: "Construction Neuve", href: "/construction-neuve" },
   { name: "Réhabilitation", href: "/rehabilitation" },
-  { name: "Ingénierie Parasismique", href: "/ingenierie-parasismique" },
-  { name: "Ouvrages Extérieurs", href: "/ouvrages-exterieurs" },
+  { name: "Développement Durable", href: "/developpement-durable" },
+  { name: "Ingénierie Parasismique", href: "/services" },
 ]
 
 const zones = [

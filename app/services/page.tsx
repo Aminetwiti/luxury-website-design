@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { Building, Wrench, Shield, Waves, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import Breadcrumbs from "@/components/breadcrumbs"
 
 const services = [
   {
@@ -16,7 +15,7 @@ const services = [
     icon: Building,
     color: "text-blue-600",
     bgColor: "bg-blue-50",
-    image: "/images/Services_ConstructionNeuve_VillaConcept.png",
+    image: "/images/Services_ConstructionNeuve_VillaConcept.jpg",
     description:
       "Conception et dimensionnement de structures neuves avec expertise technique avancée pour tous types de projets de construction.",
     prestations: [
@@ -46,7 +45,7 @@ const services = [
     icon: Wrench,
     color: "text-orange-600",
     bgColor: "bg-orange-50",
-    image: "/images/Services_Rehabilitation_ChantierTechnique.png",
+    image: "/images/Services_Rehabilitation_ChantierTechnique.jpg",
     description:
       "Expertise en renforcement et transformation de structures existantes avec diagnostic approfondi et solutions innovantes.",
     prestations: [
@@ -71,7 +70,7 @@ const services = [
     icon: Shield,
     color: "text-green-600",
     bgColor: "bg-green-50",
-    image: "/images/Services_Durable_TextureChanvreBois.png",
+    image: "/images/Services_Durable_TextureChanvreBois.jpg",
     description:
       "Conception parasismique avancée selon les normes Eurocode 8 pour la protection optimale des structures en zones sismiques.",
     prestations: [
@@ -96,7 +95,7 @@ const services = [
     icon: Waves,
     color: "text-teal-600",
     bgColor: "bg-teal-50",
-    image: "/images/Services_MurPorteur_Coupe.png",
+    image: "/images/Services_MurPorteur_Coupe.jpg",
     description:
       "Conception d'ouvrages extérieurs et aménagements techniques avec expertise en géotechnique et hydraulique.",
     prestations: [
@@ -124,13 +123,11 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Breadcrumbs />
-
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/Services_Icon_ConstructionNeuve.png"
+            src="/images/Services_Icon_ConstructionNeuve.jpg"
             alt="Services d'ingénierie"
             fill
             className="object-cover"

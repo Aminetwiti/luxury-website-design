@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Clock, Users, Award, TrendingUp } from "lucide-react"
+import { ArrowRight, Clock, Users, Award, TrendingUp, Shield, Wrench, Building } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ const rehabilitationTypes = [
   {
     title: "Renforcement Structurel",
     description: "Consolidation des structures existantes avec des techniques modernes",
-    image: "/images/Services_Renforcement_Poutre.png",
+    image: "/images/Rehabilitation_Structural_Reinforcement.jpg",
     techniques: ["Fibres de carbone", "Résine époxy", "Profilés métalliques"],
     duration: "2-4 semaines",
     complexity: "Élevée",
@@ -18,7 +18,7 @@ const rehabilitationTypes = [
   {
     title: "Ouverture de Murs Porteurs",
     description: "Création d'espaces ouverts tout en préservant la stabilité",
-    image: "/images/Services_MurPorteur_Coupe.png",
+    image: "/images/Rehabilitation_Wall_Opening.jpg",
     techniques: ["Poutres IPN", "Linteaux béton", "Étaiement temporaire"],
     duration: "1-2 semaines",
     complexity: "Moyenne",
@@ -26,33 +26,10 @@ const rehabilitationTypes = [
   {
     title: "Création de Trémies",
     description: "Percements techniques pour escaliers et gaines",
-    image: "/images/Services_Tremie_Schema3D.png",
+    image: "/images/Rehabilitation_Opening_Creation.jpg",
     techniques: ["Découpe contrôlée", "Renforcement périphérique", "Étude vibratoire"],
     duration: "3-5 jours",
     complexity: "Moyenne",
-  },
-]
-
-const beforeAfterProjects = [
-  {
-    title: "Loft Industriel - Belleville",
-    location: "Paris 20ème",
-    before: "/images/Loft_Belleville_Avant_Travaux.png",
-    after: "/images/Loft_Belleville_Mezzanine_Suspendue.png",
-    description: "Transformation d'un ancien atelier en loft moderne avec mezzanine suspendue",
-    surface: "180 m²",
-    duration: "6 mois",
-    year: "2023",
-  },
-  {
-    title: "Maison Créole - Guadeloupe",
-    location: "Pointe-à-Pitre",
-    before: "/images/Maison_Creole_Facade_Traditionnelle.png",
-    after: "/images/Maison_Creole_Interieur_Moderne.png",
-    description: "Réhabilitation respectueuse du patrimoine avec confort moderne",
-    surface: "220 m²",
-    duration: "8 mois",
-    year: "2023",
   },
 ]
 
@@ -61,29 +38,33 @@ const processSteps = [
     step: 1,
     title: "Diagnostic Structurel",
     description: "Analyse complète de l'existant et identification des pathologies",
-    icon: "🔍",
+    icon: Shield,
     duration: "1-2 semaines",
+    image: "/images/Rehabilitation_Structural_Diagnosis.jpg",
   },
   {
     step: 2,
     title: "Étude de Faisabilité",
     description: "Conception des solutions techniques et validation réglementaire",
-    icon: "📐",
+    icon: Wrench,
     duration: "2-3 semaines",
+    image: "/images/Rehabilitation_Technical_Study.jpg",
   },
   {
     step: 3,
     title: "Plans d'Exécution",
     description: "Dessins techniques détaillés et notes de calcul",
-    icon: "📋",
+    icon: Building,
     duration: "1-2 semaines",
+    image: "/images/Rehabilitation_Execution_Plans.jpg",
   },
   {
     step: 4,
     title: "Suivi de Chantier",
     description: "Accompagnement technique et contrôle qualité",
-    icon: "🏗️",
+    icon: Users,
     duration: "Variable",
+    image: "/images/Rehabilitation_Site_Monitoring.jpg",
   },
 ]
 
@@ -94,6 +75,30 @@ const stats = [
   { label: "Équipe d'experts", value: "12", icon: Users },
 ]
 
+const advancedTechniques = [
+  {
+    title: "Diagnostic Non-Destructif",
+    description:
+      "Utilisation de technologies avancées : radar de structure, ultrasons, thermographie infrarouge pour analyser l'état des matériaux sans altération.",
+    image: "/images/Rehabilitation_Non_Destructive_Testing.jpg",
+    techniques: ["Radar GPR", "Ultrasons", "Thermographie"],
+  },
+  {
+    title: "Renforcement Composite",
+    description:
+      "Application de fibres de carbone, aramide ou verre pour renforcer les structures existantes avec un impact minimal sur l'architecture.",
+    image: "/images/Rehabilitation_Composite_Reinforcement.jpg",
+    techniques: ["Fibres Carbone", "Résines Époxy", "Précontrainte"],
+  },
+  {
+    title: "Suivi Numérique",
+    description:
+      "Monitoring en temps réel des déformations, contraintes et performances structurelles grâce à des capteurs IoT intégrés.",
+    image: "/images/Rehabilitation_Digital_Monitoring.jpg",
+    techniques: ["Capteurs IoT", "BIM 4D", "Monitoring"],
+  },
+]
+
 export default function RehabilitationPage() {
   return (
     <SiteShell>
@@ -101,8 +106,8 @@ export default function RehabilitationPage() {
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/Rehabilitation_Hero_StructureElegante.png"
-            alt="Réhabilitation structure élégante"
+            src="/images/Rehabilitation_Hero_Modern_Structure.jpg"
+            alt="Réhabilitation structure moderne"
             fill
             className="object-cover"
             priority
@@ -213,81 +218,8 @@ export default function RehabilitationPage() {
         </div>
       </section>
 
-      {/* Avant/Après */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Transformations Remarquables</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez comment nous révélons le potentiel caché de chaque structure.
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {beforeAfterProjects.map((project, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg">
-                <div className="grid grid-cols-1 lg:grid-cols-2">
-                  {/* Avant */}
-                  <div className="relative">
-                    <div className="absolute top-4 left-4 z-10">
-                      <Badge className="bg-red-500 text-white">Avant</Badge>
-                    </div>
-                    <Image
-                      src={project.before || "/placeholder.svg"}
-                      alt={`${project.title} - Avant`}
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover"
-                    />
-                  </div>
-
-                  {/* Après */}
-                  <div className="relative">
-                    <div className="absolute top-4 left-4 z-10">
-                      <Badge className="bg-green-500 text-white">Après</Badge>
-                    </div>
-                    <Image
-                      src={project.after || "/placeholder.svg"}
-                      alt={`${project.title} - Après`}
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover"
-                    />
-                  </div>
-                </div>
-
-                <div className="p-8">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
-                      <p className="text-gray-600">{project.location}</p>
-                    </div>
-                    <Badge variant="outline" className="mt-2 md:mt-0">
-                      {project.year}
-                    </Badge>
-                  </div>
-
-                  <p className="text-gray-700 mb-6">{project.description}</p>
-
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-gray-500">Surface :</span>
-                      <span className="ml-2 font-medium">{project.surface}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Durée :</span>
-                      <span className="ml-2 font-medium">{project.duration}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Processus */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Notre Processus de Réhabilitation</h2>
@@ -304,12 +236,21 @@ export default function RehabilitationPage() {
                   <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-[#C9A568] to-gray-300 z-0" />
                 )}
 
-                <Card className="relative z-10 text-center hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-4xl mb-4">{step.icon}</div>
-                    <div className="w-8 h-8 bg-[#C9A568] text-white rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-4">
-                      {step.step}
+                <Card className="relative z-10 text-center hover:shadow-lg transition-shadow overflow-hidden">
+                  <div className="relative h-48">
+                    <Image src={step.image || "/placeholder.svg"} alt={step.title} fill className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-[#C9A568] rounded-full mb-2">
+                        <step.icon className="w-6 h-6" />
+                      </div>
+                      <div className="w-8 h-8 bg-white text-[#C9A568] rounded-full flex items-center justify-center text-sm font-bold mx-auto">
+                        {step.step}
+                      </div>
                     </div>
+                  </div>
+
+                  <CardContent className="p-6">
                     <h3 className="text-lg font-bold text-gray-900 mb-3">{step.title}</h3>
                     <p className="text-gray-600 mb-4">{step.description}</p>
                     <Badge variant="outline" className="text-xs">
@@ -318,6 +259,45 @@ export default function RehabilitationPage() {
                   </CardContent>
                 </Card>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Techniques Avancées */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Techniques Avancées de Réhabilitation</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Nous utilisons les technologies les plus modernes pour garantir la durabilité et la performance de vos
+              structures.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {advancedTechniques.map((technique, index) => (
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative h-48">
+                  <Image
+                    src={technique.image || "/placeholder.svg"}
+                    alt={technique.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{technique.title}</h3>
+                  <p className="text-gray-600 mb-4">{technique.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {technique.techniques.map((tech, idx) => (
+                      <Badge key={idx} variant="secondary" className="text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -344,7 +324,7 @@ export default function RehabilitationPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:+33142123456">Appeler Maintenant</Link>
+              <Link href="tel:+33493123456">Appeler Maintenant</Link>
             </Button>
           </div>
         </div>
