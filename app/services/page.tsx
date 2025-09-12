@@ -1,272 +1,192 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Building, Wrench, Shield, Waves, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { Building2, Hammer, Leaf, Search, ArrowRight, CheckCircle, Zap, Shield, Target } from "lucide-react"
+import Breadcrumbs from "@/components/breadcrumbs"
 
-type ServiceTab = "rehabilitation" | "construction" | "durable" | "expertise"
-
-const services = {
-  rehabilitation: {
-    title: "Réhabilitation & Renforcement",
-    icon: Hammer,
-    color: "text-amber-600",
-    bgColor: "bg-amber-50",
-    description: "Interventions structurelles complexes sur bâtiments existants avec techniques de pointe",
-    image: "/images/Services_Rehabilitation_ChantierTechnique.png",
-    prestations: [
-      "Renforcement par fibres carbone et aramide",
-      "Tirants précontraints et post-contrainte",
-      "Injection de résines structurelles",
-      "Ouverture de trémies et modification porteurs",
-      "Reprise en sous-œuvre et micropieux",
-      "Diagnostic pathologies et solutions curatives",
-    ],
-    techniques: [
-      {
-        name: "Fibres Carbone",
-        description: "Renforcement ultra-performant pour poutres et dalles",
-        specs: "Résistance 3400 MPa, épaisseur 1,2mm",
-      },
-      {
-        name: "Tirants Précontraints",
-        description: "Stabilisation de structures par mise en tension",
-        specs: "Charges jusqu'à 500 kN, longueurs 30m",
-      },
-      {
-        name: "Injection Résine",
-        description: "Réparation fissures et consolidation maçonnerie",
-        specs: "Résistance 80 MPa, pénétration 0,1mm",
-      },
-    ],
-    projets: [
-      {
-        nom: "Penthouse Trocadéro",
-        defi: "Terrasse suspendue 150m² sans appui",
-        solution: "Structure carbone + tirants précontraints",
-      },
-      {
-        nom: "Loft Belleville",
-        defi: "Portée libre 12m en réhabilitation",
-        solution: "Mezzanine suspendue par tirants",
-      },
-    ],
-  },
-  construction: {
+const services = [
+  {
+    id: "construction-neuve",
     title: "Construction Neuve",
-    icon: Building2,
+    icon: Building,
     color: "text-blue-600",
     bgColor: "bg-blue-50",
-    description: "Projets haut de gamme sur mesure avec innovations structurelles et architecturales",
     image: "/images/Services_ConstructionNeuve_VillaConcept.png",
+    description:
+      "Conception et dimensionnement de structures neuves avec expertise technique avancée pour tous types de projets de construction.",
     prestations: [
-      "Béton précontraint et post-contraint",
-      "Structures mixtes acier-béton-bois",
+      "Phase Avant-Projet",
+      "Phase Exécution",
+      "Optimisation Structurelle et économique",
+      "Assistance technique et conseil",
+    ],
+    details: [
+      "Études de faisabilité et conception préliminaire",
+      "Dimensionnement selon les Eurocodes en vigueur",
       "Modélisation 3D et calculs aux éléments finis",
-      "Grandes portées et porte-à-faux",
-      "Fondations spéciales et géotechnique",
-      "Coordination BIM et maquette numérique",
+      "Plans d'exécution détaillés et métrés",
+      "Suivi technique durant la réalisation",
+      "Optimisation des coûts et des matériaux",
     ],
-    techniques: [
-      {
-        name: "Béton Précontraint",
-        description: "Grandes portées sans appuis intermédiaires",
-        specs: "Portées 20m, charges 15 kN/m²",
-      },
-      {
-        name: "Modélisation 3D",
-        description: "Calculs dynamiques et sismiques avancés",
-        specs: "Robot Structural, Tekla, Revit",
-      },
-      {
-        name: "Structures Mixtes",
-        description: "Optimisation acier-béton-bois",
-        specs: "Réduction 30% matière, gain 25% temps",
-      },
-    ],
-    projets: [
-      {
-        nom: "Villa Horizon Antibes",
-        defi: "Piscine naturelle intégrée structure",
-        solution: "Béton précontraint + géothermie",
-      },
-      {
-        nom: "Villa Nice Collines",
-        defi: "Baies vitrées 6m coulissantes",
-        solution: "Portiques béton + domotique KNX",
-      },
+    advantages: [
+      "Respect rigoureux des normes",
+      "Optimisation économique",
+      "Accompagnement personnalisé",
+      "Expertise reconnue",
     ],
   },
-  durable: {
-    title: "Développement Durable",
-    icon: Leaf,
+  {
+    id: "rehabilitation",
+    title: "Réhabilitation",
+    icon: Wrench,
+    color: "text-orange-600",
+    bgColor: "bg-orange-50",
+    image: "/images/Services_Rehabilitation_ChantierTechnique.png",
+    description:
+      "Expertise en renforcement et transformation de structures existantes avec diagnostic approfondi et solutions innovantes.",
+    prestations: [
+      "Ouvertures de murs porteurs",
+      "Diagnostic de l'existant",
+      "Renforcement structurel",
+      "Ouvertures et fermetures de trémies",
+    ],
+    details: [
+      "Diagnostic structural complet de l'existant",
+      "Études de faisabilité pour modifications",
+      "Calculs de renforcement et reprises en sous-œuvre",
+      "Techniques innovantes (fibres carbone, résines)",
+      "Coordination avec les corps d'état",
+      "Suivi des travaux de renforcement",
+    ],
+    advantages: ["Diagnostic précis", "Solutions innovantes", "Respect du patrimoine", "Sécurité maximale"],
+  },
+  {
+    id: "parasismique",
+    title: "Ingénierie Parasismique",
+    icon: Shield,
     color: "text-green-600",
     bgColor: "bg-green-50",
-    description: "Solutions bas carbone et innovations éco-responsables pour constructions durables",
     image: "/images/Services_Durable_TextureChanvreBois.png",
+    description:
+      "Conception parasismique avancée selon les normes Eurocode 8 pour la protection optimale des structures en zones sismiques.",
     prestations: [
-      "Béton de chanvre et matériaux biosourcés",
-      "Bois lamellé-collé et CLT",
-      "Géothermie et énergies renouvelables",
-      "Récupération eaux pluviales intégrée",
-      "Ventilation naturelle et bioclimatisme",
-      "Certifications HQE, BREEAM, Passivhaus",
+      "Études sismiques Eurocode 8",
+      "Conception/Analyse 3D avancée",
+      "Optimisations",
+      "Sécurité et conformité",
     ],
-    techniques: [
-      {
-        name: "Béton de Chanvre",
-        description: "Isolation thermique et régulation hygrométrique",
-        specs: "λ=0,07 W/m.K, densité 300 kg/m³",
-      },
-      {
-        name: "Bois Lamellé CLT",
-        description: "Structure porteuse biosourcée",
-        specs: "Portées 12m, résistance feu R60",
-      },
-      {
-        name: "Géothermie",
-        description: "Chauffage/rafraîchissement naturel",
-        specs: "COP 4,5, sondes 100m, 15 kW",
-      },
+    details: [
+      "Analyse sismique selon Eurocode 8",
+      "Modélisation dynamique des structures",
+      "Calculs de spectre de réponse",
+      "Dimensionnement des contreventements",
+      "Solutions d'isolation parasismique",
+      "Vérification de la conformité réglementaire",
     ],
-    projets: [
-      {
-        nom: "Éco-Resort Martinique",
-        defi: "12 bungalows parasismiques durables",
-        solution: "Bois local + ventilation naturelle",
-      },
-      {
-        nom: "Immeuble Passif Paris",
-        defi: "15 kWh/m²/an seulement",
-        solution: "Façade végétale + géothermie égouts",
-      },
-    ],
+    advantages: ["Conformité Eurocode 8", "Sécurité optimale", "Analyse dynamique", "Solutions sur-mesure"],
   },
-  expertise: {
-    title: "Expertise & Conseil",
-    icon: Search,
-    color: "text-purple-600",
-    bgColor: "bg-purple-50",
-    description: "Accompagnement technique spécialisé et expertise judiciaire de haut niveau",
-    image: "/images/Expertise_Schema_TechniqueMinimal.png",
+  {
+    id: "ouvrages-exterieurs",
+    title: "Ouvrages Extérieurs",
+    icon: Waves,
+    color: "text-teal-600",
+    bgColor: "bg-teal-50",
+    image: "/images/Services_MurPorteur_Coupe.png",
+    description:
+      "Conception d'ouvrages extérieurs et aménagements techniques avec expertise en géotechnique et hydraulique.",
     prestations: [
-      "Diagnostic avancé et pathologies",
-      "Expertise judiciaire et assurance",
-      "Audit technique et due diligence",
-      "Formation équipes et assistance MOE",
-      "Contrôle qualité et réception travaux",
-      "Conseil stratégique et innovation",
+      "Piscines et bassins",
+      "Murs de soutènement",
+      "Terrasses et extensions",
+      "Aménagements techniques extérieurs",
     ],
-    techniques: [
-      {
-        name: "Diagnostic Avancé",
-        description: "Investigation non-destructive complète",
-        specs: "Radar, ultrasons, thermographie IR",
-      },
-      {
-        name: "Expertise Judiciaire",
-        description: "Missions d'expertise agréées tribunaux",
-        specs: "Cour d'Appel, TGI, assurances",
-      },
-      {
-        name: "Audit Technique",
-        description: "Due diligence immobilière approfondie",
-        specs: "Rapport 48h, conformité réglementaire",
-      },
+    details: [
+      "Études géotechniques et de sol",
+      "Dimensionnement des piscines et bassins",
+      "Calculs de poussée des terres",
+      "Étanchéité et drainage",
+      "Structures de terrasses et pergolas",
+      "Réseaux techniques extérieurs",
     ],
-    projets: [
-      {
-        nom: "Expertise Sinistre Cannes",
-        defi: "Effondrement partiel immeuble 1960",
-        solution: "Investigation + solution réparation",
-      },
-      {
-        nom: "Audit Hôtel Particulier",
-        defi: "Due diligence acquisition 15M€",
-        solution: "Diagnostic complet + chiffrage travaux",
-      },
-    ],
+    advantages: ["Expertise géotechnique", "Solutions durables", "Intégration paysagère", "Techniques innovantes"],
   },
-}
+]
 
 export default function ServicesPage() {
-  const [activeTab, setActiveTab] = useState<ServiceTab>("rehabilitation")
-  const currentService = services[activeTab]
+  const [activeService, setActiveService] = useState("construction-neuve")
+  const currentService = services.find((service) => service.id === activeService)!
   const IconComponent = currentService.icon
 
   return (
-    <>
+    <div className="min-h-screen bg-white">
+      <Breadcrumbs />
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/images/Services_Icon_ConstructionNeuve.png"
+            alt="Services d'ingénierie"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-              Nos Services d'Ingénierie
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Nos <span className="text-[#C9A568]">Services</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 text-justify">
-              B.E StructiBA propose 4 domaines d'expertise complémentaires pour répondre à tous vos défis structurels.
-              De la réhabilitation complexe aux constructions durables innovantes, notre équipe d'ingénieurs spécialisés
-              vous accompagne avec des solutions techniques de pointe et un savoir-faire reconnu depuis 15 ans.
+            <p className="text-xl md:text-2xl text-gray-300 text-justify">
+              Quatre domaines d'expertise complémentaires pour répondre à tous vos besoins en ingénierie structurelle,
+              de la conception à la réalisation de vos projets les plus ambitieux.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <Target className="size-4" />
-                <span>4 domaines d'expertise</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="size-4" />
-                <span>15 ans d'expérience</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Zap className="size-4" />
-                <span>Solutions innovantes</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Services Navigation */}
-      <section className="py-12 bg-white">
+      <section className="py-8 bg-gray-50 border-b">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {Object.entries(services).map(([key, service]) => {
-              const IconComp = service.icon
+          <div className="flex flex-wrap justify-center gap-4">
+            {services.map((service) => {
+              const ServiceIcon = service.icon
               return (
                 <Button
-                  key={key}
-                  variant={activeTab === key ? "default" : "outline"}
+                  key={service.id}
+                  variant={activeService === service.id ? "default" : "outline"}
                   size="lg"
-                  onClick={() => setActiveTab(key as ServiceTab)}
+                  onClick={() => setActiveService(service.id)}
                   className={`flex items-center gap-2 px-6 py-3 ${
-                    activeTab === key
+                    activeService === service.id
                       ? `bg-[#C9A568] hover:bg-[#B8956A] text-white`
                       : `hover:bg-gray-50 ${service.color}`
                   }`}
                 >
-                  <IconComp className="size-5" />
+                  <ServiceIcon className="size-5" />
                   <span className="hidden sm:inline">{service.title}</span>
-                  <span className="sm:hidden">{service.title.split(" ")[0]}</span>
                 </Button>
               )
             })}
           </div>
+        </div>
+      </section>
 
-          {/* Service Content */}
+      {/* Service Content */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            {/* Header */}
+            {/* Service Header */}
             <div className="text-center mb-12">
-              <div className={`inline-flex items-center gap-3 ${currentService.bgColor} px-6 py-3 rounded-full mb-4`}>
-                <IconComponent className={`size-6 ${currentService.color}`} />
-                <h2 className="text-2xl font-bold" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  {currentService.title}
-                </h2>
+              <div className={`inline-flex items-center gap-3 ${currentService.bgColor} px-6 py-3 rounded-full mb-6`}>
+                <IconComponent className={`size-8 ${currentService.color}`} />
+                <h2 className="text-3xl font-bold">{currentService.title}</h2>
               </div>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">{currentService.description}</p>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto text-justify">{currentService.description}</p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -281,117 +201,84 @@ export default function ServicesPage() {
                 />
               </div>
 
-              {/* Prestations */}
+              {/* Content */}
               <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <CheckCircle className={`size-5 ${currentService.color}`} />
-                  Prestations Principales
-                </h3>
-                <div className="grid gap-3 mb-8">
-                  {currentService.prestations.map((prestation, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                      <div
-                        className={`size-2 rounded-full ${currentService.color.replace("text-", "bg-")} mt-2 flex-shrink-0`}
-                      />
-                      <span className="text-gray-700 text-justify">{prestation}</span>
-                    </div>
-                  ))}
+                {/* Prestations */}
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <CheckCircle className={`size-6 ${currentService.color}`} />
+                    Nos Prestations
+                  </h3>
+                  <div className="grid gap-3">
+                    {currentService.prestations.map((prestation, index) => (
+                      <div key={index} className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+                        <div
+                          className={`size-2 rounded-full ${currentService.color.replace("text-", "bg-")} flex-shrink-0`}
+                        />
+                        <span className="font-medium text-gray-800">{prestation}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <Button asChild className="bg-[#C9A568] hover:bg-[#B8956A] text-white">
-                  <Link href="/contact">
-                    Demander un devis
-                    <ArrowRight className="size-4 ml-2" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Techniques Spécialisées */}
-            <div className="mt-16">
-              <h3
-                className="text-2xl font-bold text-center mb-8"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-              >
-                Techniques Spécialisées
-              </h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {currentService.techniques.map((technique, index) => (
-                  <Card
-                    key={index}
-                    className="border-l-4"
-                    style={{
-                      borderLeftColor: currentService.color.includes("amber")
-                        ? "#D97706"
-                        : currentService.color.includes("blue")
-                          ? "#2563EB"
-                          : currentService.color.includes("green")
-                            ? "#16A34A"
-                            : "#9333EA",
-                    }}
-                  >
-                    <CardContent className="p-6">
-                      <h4 className="font-bold mb-2">{technique.name}</h4>
-                      <p className="text-gray-600 mb-3 text-justify">{technique.description}</p>
-                      <Badge variant="outline" className="text-xs">
-                        {technique.specs}
+                {/* Avantages */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold mb-4">Nos Avantages</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {currentService.advantages.map((advantage, index) => (
+                      <Badge key={index} variant="outline" className="px-3 py-1">
+                        {advantage}
                       </Badge>
-                    </CardContent>
-                  </Card>
-                ))}
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Projets de Référence */}
+            {/* Détails techniques */}
             <div className="mt-16">
-              <h3
-                className="text-2xl font-bold text-center mb-8"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-              >
-                Projets de Référence
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {currentService.projets.map((projet, index) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow">
+              <h3 className="text-2xl font-bold mb-8 text-center">Détails Techniques</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {currentService.details.map((detail, index) => (
+                  <Card key={index} className="border-0 bg-gray-50">
                     <CardContent className="p-6">
-                      <h4 className="font-bold mb-2 text-lg">{projet.nom}</h4>
-                      <div className="space-y-2">
-                        <div>
-                          <span className="font-medium text-red-600">Défi : </span>
-                          <span className="text-gray-700">{projet.defi}</span>
-                        </div>
-                        <div>
-                          <span className="font-medium text-green-600">Solution : </span>
-                          <span className="text-gray-700">{projet.solution}</span>
-                        </div>
+                      <div className="flex items-start gap-3">
+                        <div
+                          className={`size-2 rounded-full ${currentService.color.replace("text-", "bg-")} mt-2 flex-shrink-0`}
+                        />
+                        <p className="text-gray-700 text-justify">{detail}</p>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             </div>
-
-            {/* CTA Section */}
-            <div className="mt-16 text-center bg-gray-50 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                Besoin d'une expertise en {currentService.title.toLowerCase()} ?
-              </h3>
-              <p className="text-gray-600 mb-6 max-w-2xl mx-auto text-justify">
-                Nos ingénieurs spécialisés analysent votre projet et vous proposent les solutions techniques les plus
-                adaptées. Devis gratuit et conseil personnalisé sous 48h.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild size="lg" className="bg-[#C9A568] hover:bg-[#B8956A] text-white">
-                  <Link href="/contact">Demander un devis gratuit</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/realisations">Voir nos réalisations</Link>
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
-    </>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">
+            Prêt à démarrer votre <span className="text-[#C9A568]">projet</span> ?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto text-justify">
+            Contactez nos experts pour discuter de vos besoins et obtenir une étude personnalisée de votre projet.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild size="lg" className="bg-[#C9A568] hover:bg-[#B8956A] text-white">
+              <Link href="/contact" className="flex items-center gap-2">
+                Demander un devis
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/expertise">Découvrir notre expertise</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

@@ -76,3 +76,6 @@ export default function Breadcrumbs() {
     </nav>
   )
 }
+
+// Export nommé pour la compatibilité
+export { Breadcrumbs }

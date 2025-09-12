@@ -1,9 +1,9 @@
 export interface Project {
   id: string
   title: string
-  location: string
   type: string
   region: string
+  location: string
   year: string
   duration: string
   surface: string
@@ -14,18 +14,15 @@ export interface Project {
     main: string
     gallery: string[]
   }
-  slug: string
-  featured?: boolean
 }
 
 export const projects: Project[] = [
-  
   {
-    id: "villa-mandelieu",
+    id: "villa-provencale-mandelieu",
     title: "Villa Provençale à Mandelieu",
-    location: "Mandelieu-la-Napoule, Alpes-Maritimes",
     type: "Réhabilitation",
     region: "PACA",
+    location: "Mandelieu-la-Napoule, Alpes-Maritimes",
     year: "2024",
     duration: "18 mois",
     surface: "280m² + 120m² extension",
@@ -33,31 +30,29 @@ export const projects: Project[] = [
     description:
       "Projet de réhabilitation d'une villa provençale avec création d'ouvertures dans des murs porteurs nécessitant des reprises structurelles adaptées. Étude et dimensionnement de l'extension du bâtiment ainsi que de la piscine à débordement, en tenant compte des contraintes techniques, architecturales et esthétiques propres au projet.",
     challenges: [
-      "Reprise en sous-œuvre des murs porteurs",
-      "Création d'ouvertures structurelles",
-      "Extension architecturale intégrée",
-      "Piscine à débordement dimensionnée",
-      "Respect du style provençal authentique",
-      "Coordination avec les contraintes ABF",
+      "Reprise en sous-œuvre des fondations existantes",
+      "Création d'ouvertures dans les murs porteurs en maçonnerie",
+      "Dimensionnement de l'extension avec liaison à l'existant",
+      "Calculs de la piscine à débordement sur terrain en pente",
+      "Respect des contraintes architecturales provençales",
+      "Gestion des pathologies structurelles de l'existant",
     ],
     images: {
-      main: "/images/Villa_Mandelieu_Facade_Provencale.jpg",
+      main: "/images/Villa_Mandelieu_Facade_Provencale_Rendu.jpg",
       gallery: [
+        "/images/Villa_Mandelieu_Facade_Principale.jpg",
         "/images/Villa_Mandelieu_Extension_Moderne.jpg",
         "/images/Villa_Mandelieu_Piscine_Debordement.jpg",
-        "/images/Villa_Mandelieu_Reprise_SousOeuvre.jpg",
         "/images/Villa_Mandelieu_Plans_Structure.jpg",
       ],
     },
-    slug: "villa-mandelieu",
-    featured: true,
   },
   {
-    id: "villa-contemporaine",
-    title: "Villa Contemporaine – Construction Neuve",
-    location: "Côte d'Azur, Alpes-Maritimes",
-    type: "Construction Neuve",
+    id: "villa-contemporaine-construction",
+    title: "Villa Contemporaine – Construction Neuve, AVP & EXE",
+    type: "Construction neuve",
     region: "PACA",
+    location: "Côte d'Azur, Alpes-Maritimes",
     year: "2024",
     duration: "24 mois",
     surface: "450m²",
@@ -65,15 +60,15 @@ export const projects: Project[] = [
     description:
       "Études complètes de construction neuve comprenant l'ensemble des calculs structurels en phase AVP (Avant-Projet) et EXE (Exécution). Le projet inclut le dimensionnement de la villa, ainsi que des piscines intérieures et extérieures, en intégrant les contraintes techniques et réglementaires pour assurer la stabilité, la sécurité et la durabilité de l'ouvrage.",
     challenges: [
-      "Études AVP et EXE complètes",
-      "Calculs structurels avancés",
-      "Double piscine (intérieure/extérieure)",
-      "Conformité réglementaire totale",
-      "Architecture contemporaine optimisée",
-      "Coordination BIM avec équipes",
+      "Études structurelles complètes AVP et EXE",
+      "Dimensionnement de la structure béton armé",
+      "Calculs des piscines intérieure et extérieure",
+      "Respect des Eurocodes et normes sismiques",
+      "Optimisation des portées et sections",
+      "Coordination avec les corps d'état techniques",
     ],
     images: {
-      main: "/images/Villa_Contemporaine_Facade_Moderne.jpg",
+      main: "/images/Villa_Mandelieu_Facade_Principale.jpg",
       gallery: [
         "/images/Villa_Contemporaine_Piscine_Interieure.jpg",
         "/images/Villa_Contemporaine_Piscine_Exterieure.jpg",
@@ -81,27 +76,13 @@ export const projects: Project[] = [
         "/images/Villa_Contemporaine_Plans_EXE.jpg",
       ],
     },
-    slug: "villa-contemporaine",
-    featured: true,
   },
 ]
-
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((project) => project.slug === slug)
-}
 
 export function getAllProjects(): Project[] {
   return projects
 }
 
-export function getProjectsByType(type: string): Project[] {
-  return projects.filter((project) => project.type === type)
-}
-
-export function getProjectsByRegion(region: string): Project[] {
-  return projects.filter((project) => project.region === region)
-}
-
-export function getFeaturedProjects(): Project[] {
-  return projects.filter((project) => project.featured)
+export function getProjectById(id: string): Project | undefined {
+  return projects.find((project) => project.id === id)
 }

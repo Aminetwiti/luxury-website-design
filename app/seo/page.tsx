@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "SEO Technique - B.E StructiBA",
-  description: "Page SEO technique pour le référencement des mots-clés spécialisés en ingénierie structure",
+  description: "Page SEO technique pour le référencement des mots-clés spécialisés en ingénierie structurelle",
   robots: {
     index: false,
     follow: false,
@@ -12,353 +12,190 @@ export const metadata: Metadata = {
 export default function SEOPage() {
   return (
     <div className="min-h-screen bg-white py-16">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <header className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-            Expertise Technique en Ingénierie Structure
-          </h1>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto" style={{ textAlign: "justify" }}>
-            B.E StructiBA, bureau d'études structure spécialisé dans les calculs de résistance des matériaux, la
-            pathologie du bâtiment et le renforcement structurel. Notre expertise couvre l'ensemble des projets de
-            construction neuve, réhabilitation et diagnostic technique dans la région PACA.
-          </p>
-        </header>
+      <div className="container mx-auto px-4 max-w-4xl">
+        <h1 className="text-4xl font-bold mb-8 text-center">
+          Expertise Technique en Ingénierie Structurelle - B.E StructiBA
+        </h1>
 
-        {/* Mots-clés Techniques Généraux */}
+        {/* Calculs Structurels */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Expertise Technique en Calculs Structurels</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Calculs et Dimensionnement</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Nos ingénieurs structure maîtrisent les calculs de résistance des matériaux selon les Eurocodes. Nous
-                réalisons le dimensionnement des éléments porteurs, l'analyse des contraintes et déformations, ainsi que
-                la vérification de la stabilité globale des ouvrages. Notre expertise inclut les calculs aux états
-                limites ultimes et de service, l'analyse dynamique et sismique, ainsi que les études de flambement et
-                déversement.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  calculs structure béton armé
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  dimensionnement charpente métallique
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  résistance des matériaux
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Eurocodes</span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  analyse contraintes déformations
-                </span>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Pathologie et Diagnostic</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Spécialistes en pathologie du bâtiment, nous réalisons des diagnostics structure approfondis pour
-                identifier les désordres structurels, fissures, tassements différentiels et problèmes de fondations. Nos
-                expertises techniques incluent l'auscultation des ouvrages, les essais non destructifs, et l'évaluation
-                de la capacité portante résiduelle des structures dégradées.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">pathologie bâtiment</span>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">diagnostic structure</span>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">expertise fissures</span>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                  tassements différentiels
-                </span>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                  auscultation ouvrages
-                </span>
-              </div>
-            </div>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Calculs Structurels et Dimensionnement</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              Notre bureau d'études structurelles B.E StructiBA maîtrise l'ensemble des{" "}
+              <strong>calculs de résistance des matériaux</strong> selon les{" "}
+              <strong>Eurocodes EN 1990 à EN 1999</strong>. Nous réalisons le{" "}
+              <strong>dimensionnement béton armé</strong>, les <strong>calculs de descente de charges</strong>, et l'
+              <strong>analyse sismique</strong> conformément aux normes PS92 et Eurocode 8.
+            </p>
+            <p className="mb-4">
+              Nos ingénieurs experts utilisent les logiciels de calcul de structure les plus performants :{" "}
+              <strong>Robot Structural Analysis</strong>, <strong>RFEM Dlubal</strong>, <strong>SCIA Engineer</strong>,
+              et <strong>CBS Pro</strong> pour garantir la précision de nos études structurelles.
+            </p>
           </div>
         </section>
 
-        {/* Techniques de Renforcement */}
+        {/* Pathologie et Renforcement */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Techniques de Renforcement Structurel</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-3 text-gray-800">Renforcement par Matériaux Composites</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Mise en œuvre de renforts par fibres de carbone, tissus de carbone collés, lamelles carbone et fibres de
-                verre pour l'augmentation de la capacité portante des éléments béton armé et maçonnerie.
-              </p>
-              <div className="space-y-1 text-sm">
-                <div className="text-gray-700">• Renforcement fibres carbone</div>
-                <div className="text-gray-700">• Tissus carbone collés</div>
-                <div className="text-gray-700">• Lamelles carbone précontraintes</div>
-                <div className="text-gray-700">• Fibres de verre structurelles</div>
-              </div>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-3 text-gray-800">Reprise en Sous-Œuvre</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Techniques de reprise en sous-œuvre par micropieux, longrines de répartition, plots béton et
-                renforcement de fondations existantes pour la création d'ouvertures et extensions.
-              </p>
-              <div className="space-y-1 text-sm">
-                <div className="text-gray-700">• Reprise sous-œuvre micropieux</div>
-                <div className="text-gray-700">• Longrines de répartition</div>
-                <div className="text-gray-700">• Plots béton armé</div>
-                <div className="text-gray-700">• Renforcement fondations</div>
-              </div>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-3 text-gray-800">Précontrainte et Tirants</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Mise en tension de tirants précontraints, barres de précontrainte extérieure, câbles de précontrainte et
-                systèmes de post-tension pour le renforcement et la réparation des structures.
-              </p>
-              <div className="space-y-1 text-sm">
-                <div className="text-gray-700">• Tirants précontraints</div>
-                <div className="text-gray-700">• Précontrainte extérieure</div>
-                <div className="text-gray-700">• Câbles post-tension</div>
-                <div className="text-gray-700">• Barres précontraintes</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Types de Projets */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Types de Projets et Ouvrages</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Construction Neuve</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Études structure complètes pour villas contemporaines, maisons individuelles, immeubles collectifs,
-                bâtiments industriels et ouvrages d'art. Nos prestations couvrent les phases AVP, PRO et EXE avec
-                coordination BIM et respect des normes RE2020.
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="text-gray-700">• Villas contemporaines</div>
-                <div className="text-gray-700">• Maisons individuelles</div>
-                <div className="text-gray-700">• Immeubles collectifs</div>
-                <div className="text-gray-700">• Bâtiments industriels</div>
-                <div className="text-gray-700">• Ouvrages d'art</div>
-                <div className="text-gray-700">• Études AVP PRO EXE</div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Réhabilitation et Extension</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Projets de réhabilitation lourde, extensions de bâtiments existants, surélévations, création
-                d'ouvertures dans murs porteurs, modification de structures porteuses et mise aux normes sismiques.
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="text-gray-700">• Réhabilitation lourde</div>
-                <div className="text-gray-700">• Extensions bâtiments</div>
-                <div className="text-gray-700">• Surélévations</div>
-                <div className="text-gray-700">• Ouvertures murs porteurs</div>
-                <div className="text-gray-700">• Modification structures</div>
-                <div className="text-gray-700">• Mise aux normes sismiques</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Ouvrages Spéciaux */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Ouvrages Spéciaux et Équipements</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-gray-800">Piscines et Bassins</h3>
-              <p className="text-gray-600 mb-3" style={{ textAlign: "justify" }}>
-                Dimensionnement de piscines béton armé, piscines à débordement, bassins enterrés, locaux techniques et
-                équipements de filtration.
-              </p>
-              <div className="space-y-1 text-sm text-gray-700">
-                <div>• Piscines béton armé</div>
-                <div>• Piscines débordement</div>
-                <div>• Bassins enterrés</div>
-                <div>• Locaux techniques</div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-gray-800">Escaliers et Mezzanines</h3>
-              <p className="text-gray-600 mb-3" style={{ textAlign: "justify" }}>
-                Conception d'escaliers suspendus, escaliers hélicoïdaux, mezzanines métalliques, passerelles et
-                structures légères.
-              </p>
-              <div className="space-y-1 text-sm text-gray-700">
-                <div>• Escaliers suspendus</div>
-                <div>• Escaliers hélicoïdaux</div>
-                <div>• Mezzanines métalliques</div>
-                <div>• Passerelles</div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-gray-800">Terrasses et Balcons</h3>
-              <p className="text-gray-600 mb-3" style={{ textAlign: "justify" }}>
-                Études de terrasses suspendues, balcons en porte-à-faux, terrasses accessibles, étanchéité et isolation.
-              </p>
-              <div className="space-y-1 text-sm text-gray-700">
-                <div>• Terrasses suspendues</div>
-                <div>• Balcons porte-à-faux</div>
-                <div>• Terrasses accessibles</div>
-                <div>• Étanchéité isolation</div>
-              </div>
-            </div>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Pathologie du Bâtiment et Renforcement Structurel</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              B.E StructiBA excelle dans le <strong>diagnostic pathologique</strong> et les{" "}
+              <strong>techniques de renforcement</strong>. Nous maîtrisons la <strong>reprise en sous-œuvre</strong>, le{" "}
+              <strong>renforcement par tirants précontraints</strong>, les <strong>poutres de renforcement</strong>, et
+              les <strong>reprises de maçonnerie</strong>.
+            </p>
+            <p className="mb-4">
+              Nos interventions incluent le <strong>traitement des fissures structurelles</strong>, la{" "}
+              <strong>consolidation de fondations</strong>, le <strong>renforcement de planchers</strong>, et la{" "}
+              <strong>réparation d'ouvrages en béton armé</strong> selon les DTU 23.1 et 21.
+            </p>
           </div>
         </section>
 
         {/* Zones Géographiques */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Zones d'Intervention PACA</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-3 text-blue-900">Alpes-Maritimes (06)</h3>
-              <p className="text-blue-800 mb-3" style={{ textAlign: "justify" }}>
-                Bureau d'études structure Alpes-Maritimes : Nice, Cannes, Antibes, Grasse, Mandelieu-la-Napoule,
-                Cagnes-sur-Mer, Saint-Laurent-du-Var, Menton, Monaco.
-              </p>
-              <div className="grid grid-cols-2 gap-1 text-sm text-blue-700">
-                <div>• Nice</div>
-                <div>• Cannes</div>
-                <div>• Antibes</div>
-                <div>• Grasse</div>
-                <div>• Mandelieu</div>
-                <div>• Cagnes-sur-Mer</div>
-                <div>• Saint-Laurent</div>
-                <div>• Menton</div>
-              </div>
-            </div>
-            <div className="bg-green-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-3 text-green-900">Var (83)</h3>
-              <p className="text-green-800 mb-3" style={{ textAlign: "justify" }}>
-                Ingénieur structure Var : Toulon, Hyères, Fréjus, Saint-Raphaël, Draguignan, Brignoles, La
-                Seyne-sur-Mer, Six-Fours-les-Plages.
-              </p>
-              <div className="grid grid-cols-2 gap-1 text-sm text-green-700">
-                <div>• Toulon</div>
-                <div>• Hyères</div>
-                <div>• Fréjus</div>
-                <div>• Saint-Raphaël</div>
-                <div>• Draguignan</div>
-                <div>• Brignoles</div>
-                <div>• La Seyne</div>
-                <div>• Six-Fours</div>
-              </div>
-            </div>
-            <div className="bg-orange-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-3 text-orange-900">Bouches-du-Rhône (13)</h3>
-              <p className="text-orange-800 mb-3" style={{ textAlign: "justify" }}>
-                Calculs structure Bouches-du-Rhône : Marseille, Aix-en-Provence, Arles, Salon-de-Provence, Martigues,
-                Aubagne, Istres, Marignane.
-              </p>
-              <div className="grid grid-cols-2 gap-1 text-sm text-orange-700">
-                <div>• Marseille</div>
-                <div>• Aix-en-Provence</div>
-                <div>• Arles</div>
-                <div>• Salon-de-Provence</div>
-                <div>• Martigues</div>
-                <div>• Aubagne</div>
-                <div>• Istres</div>
-                <div>• Marignane</div>
-              </div>
-            </div>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Zone d'Intervention PACA</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              Notre bureau d'études intervient sur l'ensemble de la région <strong>Provence-Alpes-Côte d'Azur</strong> :{" "}
+              <strong>Alpes-Maritimes (06)</strong>, <strong>Var (83)</strong>, et{" "}
+              <strong>Bouches-du-Rhône (13)</strong>.
+            </p>
+            <p className="mb-4">
+              Villes d'intervention : <strong>Nice</strong>, <strong>Cannes</strong>, <strong>Antibes</strong>,{" "}
+              <strong>Grasse</strong>, <strong>Mandelieu-la-Napoule</strong>, <strong>Mougins</strong>,{" "}
+              <strong>Valbonne</strong>, <strong>Toulon</strong>, <strong>Hyères</strong>, <strong>Saint-Tropez</strong>
+              , <strong>Fréjus</strong>, <strong>Saint-Raphaël</strong>, <strong>Marseille</strong>,{" "}
+              <strong>Aix-en-Provence</strong>, <strong>Cassis</strong>, <strong>La Ciotat</strong>.
+            </p>
+          </div>
+        </section>
+
+        {/* Types de Projets */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Types de Projets et Ouvrages</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              B.E StructiBA réalise les <strong>études de structure</strong> pour tous types d'ouvrages :{" "}
+              <strong>villas contemporaines</strong>, <strong>maisons individuelles</strong>,{" "}
+              <strong>immeubles collectifs</strong>, <strong>bâtiments industriels</strong>,{" "}
+              <strong>ouvrages d'art</strong>, et <strong>constructions parasismiques</strong>.
+            </p>
+            <p className="mb-4">
+              Nos spécialités incluent les <strong>piscines à débordement</strong>, les{" "}
+              <strong>murs de soutènement</strong>, les <strong>escaliers suspendus</strong>, les{" "}
+              <strong>trémies d'escalier</strong>, les <strong>planchers collaborants</strong>, et les{" "}
+              <strong>charpentes métalliques</strong>.
+            </p>
           </div>
         </section>
 
         {/* Normes et Réglementations */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Normes et Réglementations Techniques</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Eurocodes et DTU</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Application rigoureuse des Eurocodes structuraux (EC0 à EC9), DTU (Documents Techniques Unifiés), NF
-                DTU, règles BAEL, BPEL, CM66, et normes parasismiques PS92/EC8 pour la conception et le calcul des
-                structures.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Eurocode 0</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Eurocode 1</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Eurocode 2</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Eurocode 3</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">DTU 13.12</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">BAEL 91</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">PS92 EC8</span>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Certifications et Labels</h3>
-              <p className="text-gray-600 mb-4" style={{ textAlign: "justify" }}>
-                Respect des exigences RE2020, RT2012, labels BBC, HQE, BREEAM, certifications Qualibat, qualification
-                OPQIBI, et conformité aux règles de l'art du bâtiment pour tous nos projets.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">RE2020</span>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">RT2012</span>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">BBC</span>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">HQE</span>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">BREEAM</span>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">Qualibat</span>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">OPQIBI</span>
-              </div>
-            </div>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Normes et Réglementations Techniques</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              Nos études respectent scrupuleusement les <strong>DTU (Documents Techniques Unifiés)</strong>, les{" "}
+              <strong>règles BAEL 91</strong>, les <strong>règles CM66</strong> pour les constructions métalliques, et
+              les <strong>règles neige et vent NV65</strong>.
+            </p>
+            <p className="mb-4">
+              Nous appliquons les <strong>règles parasismiques PS92</strong>, l'<strong>Eurocode 8</strong> pour les
+              zones sismiques, et respectons les <strong>règlements PLU</strong> et{" "}
+              <strong>contraintes ABF (Architectes des Bâtiments de France)</strong>.
+            </p>
+          </div>
+        </section>
+
+        {/* Phases d'Études */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Phases d'Études Structurelles</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              B.E StructiBA accompagne vos projets de l'<strong>esquisse structurelle</strong> jusqu'aux{" "}
+              <strong>plans d'exécution EXE</strong>. Nous réalisons les <strong>études AVP (Avant-Projet)</strong>, les{" "}
+              <strong>études PRO (Projet)</strong>, et les <strong>études d'exécution</strong> avec{" "}
+              <strong>notes de calculs détaillées</strong>.
+            </p>
+            <p className="mb-4">
+              Nos livrables incluent les <strong>plans de coffrage</strong>, les <strong>plans de ferraillage</strong>,
+              les <strong>métrés quantitatifs</strong>, et les <strong>cahiers des charges techniques</strong> conformes
+              aux <strong>CCTP</strong>.
+            </p>
+          </div>
+        </section>
+
+        {/* Matériaux et Techniques */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Matériaux et Techniques Constructives</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              Notre expertise couvre tous les matériaux : <strong>béton armé traditionnel</strong>,{" "}
+              <strong>béton précontraint</strong>, <strong>béton haute performance</strong>,{" "}
+              <strong>acier de construction</strong>, <strong>bois lamellé-collé</strong>, et{" "}
+              <strong>maçonnerie chaînée</strong>.
+            </p>
+            <p className="mb-4">
+              Nous maîtrisons les <strong>techniques mixtes acier-béton</strong>, les{" "}
+              <strong>planchers prédalles</strong>, les <strong>voiles en béton banché</strong>, et les{" "}
+              <strong>fondations spéciales</strong> (pieux, micropieux, longrines).
+            </p>
           </div>
         </section>
 
         {/* Logiciels et Outils */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Logiciels de Calcul et Modélisation</h2>
-          <div className="bg-gray-50 p-8 rounded-lg">
-            <p className="text-gray-600 mb-6" style={{ textAlign: "justify" }}>
-              Notre bureau d'études utilise les logiciels de calcul structure les plus performants pour la modélisation
-              3D, l'analyse par éléments finis, les calculs dynamiques et la vérification réglementaire des structures
-              béton armé, charpente métallique et bois.
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Logiciels de Calcul et Outils BIM</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              B.E StructiBA utilise les logiciels de référence : <strong>Autodesk Robot Structural Analysis</strong>,{" "}
+              <strong>RFEM 6 Dlubal</strong>, <strong>SCIA Engineer</strong>, <strong>Graitec Advance Design</strong>,
+              et <strong>CBS Pro</strong> pour les calculs béton armé.
             </p>
-            <div className="grid md:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="bg-white p-4 rounded-lg shadow-sm mb-2">
-                  <div className="font-semibold text-gray-800">Robot Structural</div>
-                  <div className="text-sm text-gray-600">Autodesk</div>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="bg-white p-4 rounded-lg shadow-sm mb-2">
-                  <div className="font-semibold text-gray-800">RFEM</div>
-                  <div className="text-sm text-gray-600">Dlubal Software</div>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="bg-white p-4 rounded-lg shadow-sm mb-2">
-                  <div className="font-semibold text-gray-800">SCIA Engineer</div>
-                  <div className="text-sm text-gray-600">Nemetschek</div>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="bg-white p-4 rounded-lg shadow-sm mb-2">
-                  <div className="font-semibold text-gray-800">Advance Design</div>
-                  <div className="text-sm text-gray-600">GRAITEC</div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2 justify-center">
-              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
-                modélisation 3D structure
-              </span>
-              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">éléments finis FEM</span>
-              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">calculs dynamiques</span>
-              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
-                vérification Eurocodes
-              </span>
-              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">BIM coordination</span>
-            </div>
+            <p className="mb-4">
+              Notre workflow BIM intègre <strong>Autodesk Revit Structure</strong>, <strong>Tekla Structures</strong>,
+              et <strong>ArchiCAD</strong> pour une <strong>modélisation 3D paramétrique</strong> et une{" "}
+              <strong>coordination multidisciplinaire</strong> optimale.
+            </p>
           </div>
         </section>
 
-        {/* Footer SEO */}
-        <footer className="text-center pt-12 border-t">
-          <p className="text-gray-500 text-sm">
-            B.E StructiBA - Bureau d'Études Structure PACA - Ingénierie et Calculs Structurels - Région
-            Provence-Alpes-Côte d'Azur
-          </p>
-        </footer>
+        {/* Certifications et Qualifications */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Certifications et Qualifications</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              B.E StructiBA dispose des <strong>qualifications OPQIBI</strong> et respecte les{" "}
+              <strong>normes ISO 9001</strong>. Nos ingénieurs sont <strong>certifiés Eurocode</strong> et formés aux{" "}
+              <strong>dernières évolutions réglementaires</strong>.
+            </p>
+            <p className="mb-4">
+              Nous sommes <strong>assurés en responsabilité civile professionnelle</strong> et respectons les{" "}
+              <strong>obligations décennales</strong> pour tous nos projets d'ingénierie structurelle.
+            </p>
+          </div>
+        </section>
+
+        {/* Mots-clés longue traîne */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Expertise Technique Spécialisée</h2>
+          <div className="prose max-w-none text-justify">
+            <p className="mb-4">
+              <strong>Bureau d'études structure Alpes-Maritimes</strong>, <strong>calculs béton armé Nice</strong>,{" "}
+              <strong>ingénieur structure Cannes</strong>, <strong>dimensionnement piscine débordement</strong>,{" "}
+              <strong>reprise sous-œuvre Antibes</strong>, <strong>renforcement structure Grasse</strong>,{" "}
+              <strong>pathologie bâtiment PACA</strong>, <strong>études sismiques Côte d'Azur</strong>.
+            </p>
+            <p className="mb-4">
+              <strong>Calculs Eurocode 2 béton</strong>, <strong>dimensionnement fondations</strong>,{" "}
+              <strong>études de sol géotechnique</strong>, <strong>planchers précontraints</strong>,{" "}
+              <strong>charpente métallique</strong>, <strong>murs de soutènement</strong>,{" "}
+              <strong>escaliers béton armé</strong>, <strong>trémies structurelles</strong>.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   )
