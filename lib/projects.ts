@@ -38,7 +38,7 @@ export const projects: Project[] = [
       "Gestion des pathologies structurelles de l'existant",
     ],
     images: {
-      main: "/images/Villa_Mandelieu_Facade_Provencale_Rendu.jpg",
+      main: "/images/Villa_Mandelieu_Facade_Realisee.jpg",
       gallery: [
         "/images/Villa_Mandelieu_Facade_Principale.jpg",
         "/images/Villa_Mandelieu_Extension_Moderne.jpg",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
       "Coordination avec les corps d'état techniques",
     ],
     images: {
-      main: "/images/Villa_Mandelieu_Facade_Principale.jpg",
+      main: "/images/Villa_Contemporaine_Rendu_3D.jpg",
       gallery: [
         "/images/Villa_Contemporaine_Piscine_Interieure.jpg",
         "/images/Villa_Contemporaine_Piscine_Exterieure.jpg",

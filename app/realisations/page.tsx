@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/breadcrumbs"
 export default function RealisationsPage() {
   // Afficher uniquement les 2 projets réels
   const displayedProjects = projects.filter(
-    (project) => project.id === "villa-provencale-mandelieu" || project.id === "villa-contemporaine",
+    (project) => project.id === "villa-provencale-mandelieu" || project.id === "villa-contemporaine-construction",
   )
 
   return (
@@ -59,7 +59,7 @@ export default function RealisationsPage() {
               >
                 <div className="relative h-80 overflow-hidden">
                   <Image
-                    src={project.image || "/placeholder.svg"}
+                    src={project.images.main || "/placeholder.svg"}
                     alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
