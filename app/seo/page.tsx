@@ -1,297 +1,239 @@
 import type { Metadata } from "next"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Calculator, Hammer, Leaf, Search, MapPin } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Bureau d'Études Structure - Ingénierie Bâtiment - B.E StructiBA",
-  description:
-    "Bureau d'études structure expert en calculs béton armé, réhabilitation, construction durable. Ingénieurs spécialisés Paris, PACA, Antilles. Devis gratuit 48h.",
-  keywords: [
-    "bureau études structure",
-    "ingénierie bâtiment",
-    "calculs béton armé",
-    "réhabilitation structure",
-    "construction durable",
-    "renforcement carbone",
-    "expertise structure",
-    "BET structure",
-    "ingénieur structure",
-    "dimensionnement béton",
-    "eurocodes",
-    "modélisation 3D",
-    "pathologies bâtiment",
-    "diagnostic structure",
-    "tirants précontraints",
-    "fibres carbone",
-    "génie civil",
-    "maîtrise d'œuvre",
-    "coordination BIM",
-    "HQE BREEAM",
-    "RE2020",
-    "parasismique",
-    "fondations spéciales",
-    "charpente métallique",
-    "béton précontraint",
-    "structures mixtes",
-    "bois lamellé",
-    "géothermie",
-    "matériaux biosourcés",
-    "expertise judiciaire",
-    "sinistre bâtiment",
-    "contre expertise",
-    "audit technique",
-    "due diligence",
-    "réception travaux",
-    "contrôle qualité",
-    "assistance MOE",
-    "formation technique",
-  ].join(", "),
-  robots: "noindex, nofollow",
-}
-
-const motsCles = {
-  techniques: [
-    "Bureau d'études structure",
-    "Ingénierie bâtiment",
-    "Calculs béton armé",
-    "Dimensionnement Eurocodes",
-    "Modélisation 3D Robot Structural",
-    "Éléments finis dynamiques",
-    "Calculs sismiques",
-    "Structures précontraintes",
-    "Béton post-contraint",
-    "Charpente métallique",
-    "Structures mixtes acier-béton",
-    "Bois lamellé-collé CLT",
-    "Fondations spéciales",
-    "Micropieux",
-    "Géotechnique",
-    "Pathologies structure",
-  ],
-  rehabilitation: [
-    "Réhabilitation structure",
-    "Renforcement fibres carbone",
-    "Tirants précontraints",
-    "Injection résines structurelles",
-    "Ouverture trémies",
-    "Reprise en sous-œuvre",
-    "Diagnostic pathologies",
-    "Expertise désordres",
-    "Consolidation maçonnerie",
-    "Renforcement poutres",
-    "Murs porteurs",
-    "Planchers collaborants",
-    "Escaliers suspendus",
-    "Terrasses accessibles",
-    "Verrières structurelles",
-    "Mezzanines",
-  ],
-  durable: [
-    "Construction durable",
-    "Développement durable",
-    "Matériaux biosourcés",
-    "Béton de chanvre",
-    "Bois local certifié",
-    "Géothermie",
-    "Énergies renouvelables",
-    "Panneaux solaires intégrés",
-    "Récupération eaux pluviales",
-    "Ventilation naturelle",
-    "Architecture bioclimatique",
-    "Certification HQE",
-    "BREEAM",
-    "Passivhaus",
-    "RE2020",
-    "Analyse cycle de vie",
-  ],
-  expertise: [
-    "Expertise structure",
-    "Expertise judiciaire",
-    "Contre-expertise",
-    "Diagnostic technique",
-    "Audit bâtiment",
-    "Due diligence immobilière",
-    "Pathologies bâtiment",
-    "Sinistre structure",
-    "Évaluation dommages",
-    "Médiation technique",
-    "Assistance assurance",
-    "Réception travaux",
-    "Contrôle qualité",
-    "Assistance MOE",
-    "Formation équipes",
-    "Veille réglementaire",
-  ],
-  geographique: [
-    "Paris ingénierie",
-    "PACA structure",
-    "Antilles parasismique",
-    "Cannes bureau études",
-    "Nice calculs structure",
-    "Antibes ingénieur",
-    "Monaco BET",
-    "Marseille structure",
-    "Toulon génie civil",
-    "Martinique construction",
-    "Guadeloupe bâtiment",
-    "Saint-Martin expertise",
-    "Guyane structure",
-    "Réunion ingénierie",
-    "Mayotte construction",
-    "DOM-TOM structure",
-  ],
+  title: "SEO Technique - B.E StructiBA",
+  description: "Page technique SEO pour l'optimisation du référencement",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function SEOPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-              Référencement SEO - B.E StructiBA
-            </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Page technique dédiée au référencement naturel avec l'ensemble des mots-clés stratégiques de l'ingénierie
-              structure et du bâtiment.
-            </p>
-            <Badge variant="secondary" className="mt-4">
-              Page non indexée - Usage interne SEO
-            </Badge>
-          </div>
-
-          {/* Mots-clés par catégorie */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Techniques */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Calculator className="size-6 text-blue-600" />
-                  <h2 className="text-xl font-bold">Mots-clés Techniques</h2>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {motsCles.techniques.map((mot, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {mot}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Réhabilitation */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Hammer className="size-6 text-orange-600" />
-                  <h2 className="text-xl font-bold">Réhabilitation</h2>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {motsCles.rehabilitation.map((mot, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {mot}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Durable */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Leaf className="size-6 text-green-600" />
-                  <h2 className="text-xl font-bold">Développement Durable</h2>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {motsCles.durable.map((mot, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {mot}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Expertise */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Search className="size-6 text-purple-600" />
-                  <h2 className="text-xl font-bold">Expertise & Conseil</h2>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {motsCles.expertise.map((mot, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {mot}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Géographique */}
-          <Card className="mt-8">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <MapPin className="size-6 text-red-600" />
-                <h2 className="text-xl font-bold">Mots-clés Géographiques</h2>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {motsCles.geographique.map((mot, index) => (
-                  <Badge key={index} variant="outline" className="text-xs">
-                    {mot}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Contenu SEO structuré */}
-          <div className="mt-12 prose max-w-none">
-            <h2>Bureau d'Études Structure B.E StructiBA - Expertise Technique Reconnue</h2>
-
-            <p>
-              <strong>B.E StructiBA</strong> est un bureau d'études structure spécialisé en ingénierie bâtiment, reconnu
-              pour son expertise en calculs béton armé et dimensionnement selon Eurocodes. Nos ingénieurs maîtrisent la
-              modélisation 3D Robot Structural et les calculs aux éléments finis pour tous vos projets de construction
-              neuve et réhabilitation structure.
-            </p>
-
-            <h3>Réhabilitation Structure et Renforcement</h3>
-            <p>
-              Spécialistes du renforcement par fibres carbone et tirants précontraints, nous intervenons sur tous types
-              de pathologies structure. Nos techniques d'injection résines structurelles et d'ouverture de trémies
-              sécurisées permettent la transformation de vos espaces existants avec les plus hautes exigences
-              techniques.
-            </p>
-
-            <h3>Construction Durable et Matériaux Biosourcés</h3>
-            <p>
-              Pionniers de la construction durable, nous développons des solutions innovantes avec matériaux biosourcés
-              : béton de chanvre, bois lamellé-collé CLT, géothermie intégrée. Nos projets bénéficient des
-              certifications HQE, BREEAM et Passivhaus pour une performance énergétique optimale conforme RE2020.
-            </p>
-
-            <h3>Expertise Judiciaire et Diagnostic Technique</h3>
-            <p>
-              Agréés pour l'expertise judiciaire, nos ingénieurs interviennent en diagnostic pathologies,
-              contre-expertise et évaluation dommages. Notre service d'audit technique et due diligence immobilière
-              accompagne vos projets d'acquisition avec des rapports détaillés sous 48h.
-            </p>
-
-            <h3>Zones d'Intervention : Paris, PACA, Antilles</h3>
-            <p>
-              Basés à Cannes, nous intervenons sur Paris et toute la région PACA (Nice, Antibes, Monaco, Marseille,
-              Toulon) ainsi que dans les Antilles françaises avec une expertise parasismique reconnue (Martinique,
-              Guadeloupe, Saint-Martin). Notre connaissance des spécificités climatiques tropicales garantit des
-              solutions adaptées.
-            </p>
-          </div>
+    <div className="min-h-screen bg-white py-16">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            Optimisation SEO Technique
+          </h1>
+          <p className="text-gray-600">
+            Page dédiée à l'optimisation du référencement naturel - Non indexée par les moteurs de recherche
+          </p>
         </div>
+
+        {/* Mots-clés principaux */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Mots-clés Principaux - Ingénierie Structure</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Services Techniques</h3>
+              <div className="space-y-2 text-sm">
+                <p>• Bureau d'études structure béton armé PACA</p>
+                <p>• Calculs de structure construction neuve Alpes-Maritimes</p>
+                <p>• Réhabilitation structurelle villa provençale</p>
+                <p>• Reprise en sous-œuvre murs porteurs</p>
+                <p>• Dimensionnement piscine débordement</p>
+                <p>• Études AVP EXE structure béton</p>
+                <p>• Renforcement structure existante</p>
+                <p>• Ouverture trémie mur porteur</p>
+                <p>• Extension villa calculs structure</p>
+                <p>• Expertise technique bâtiment</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Spécialités Techniques</h3>
+              <div className="space-y-2 text-sm">
+                <p>• Ingénieur structure béton précontraint</p>
+                <p>• Calculs parasismiques zone sismique</p>
+                <p>• Dimensionnement fondations spéciales</p>
+                <p>• Études géotechniques structure</p>
+                <p>• Modélisation 3D structure complexe</p>
+                <p>• Coordination BIM ingénierie</p>
+                <p>• Conformité Eurocodes structure</p>
+                <p>• Pathologie structure diagnostic</p>
+                <p>• Renforcement carbone structure</p>
+                <p>• Expertise sinistre structure</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mots-clés géographiques */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Zones d'Intervention Géographiques</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Alpes-Maritimes (06)</h3>
+              <div className="space-y-1 text-sm">
+                <p>• Bureau d'études structure Nice</p>
+                <p>• Ingénieur béton armé Cannes</p>
+                <p>• Calculs structure Antibes</p>
+                <p>• Réhabilitation villa Mandelieu</p>
+                <p>• Extension maison Grasse</p>
+                <p>• Piscine débordement Monaco</p>
+                <p>• Structure béton Menton</p>
+                <p>• Renforcement villa Cagnes-sur-Mer</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Var (83)</h3>
+              <div className="space-y-1 text-sm">
+                <p>• Ingénieur structure Toulon</p>
+                <p>• Bureau d'études Hyères</p>
+                <p>• Calculs béton Saint-Tropez</p>
+                <p>• Villa contemporaine Fréjus</p>
+                <p>• Extension structure Draguignan</p>
+                <p>• Piscine villa Sainte-Maxime</p>
+                <p>• Réhabilitation Brignoles</p>
+                <p>• Structure parasismique Var</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Bouches-du-Rhône (13)</h3>
+              <div className="space-y-1 text-sm">
+                <p>• Bureau d'études Marseille</p>
+                <p>• Ingénieur structure Aix-en-Provence</p>
+                <p>• Calculs béton Cassis</p>
+                <p>• Villa bioclimatique La Ciotat</p>
+                <p>• Extension maison Aubagne</p>
+                <p>• Structure contemporaine Salon</p>
+                <p>• Réhabilitation Arles</p>
+                <p>• Renforcement Istres</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mots-clés techniques spécialisés */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Expertise Technique Approfondie</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Calculs Structurels</h3>
+              <div className="space-y-2 text-sm">
+                <p>• Descente de charges structure béton</p>
+                <p>• Dimensionnement poutre IPN HEB</p>
+                <p>• Calculs flambement poteau béton</p>
+                <p>• Vérification contrainte admissible</p>
+                <p>• Modélisation Robot Structural Analysis</p>
+                <p>• Calculs dynamiques structure</p>
+                <p>• Analyse modale bâtiment</p>
+                <p>• Vérification ELS ELU Eurocodes</p>
+                <p>• Dimensionnement armatures béton</p>
+                <p>• Calculs de déformation structure</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Pathologies & Renforcement</h3>
+              <div className="space-y-2 text-sm">
+                <p>• Diagnostic fissures structure béton</p>
+                <p>• Renforcement fibres carbone CFRP</p>
+                <p>• Injection résine époxy fissures</p>
+                <p>• Chemisage poteau béton armé</p>
+                <p>• Précontrainte additionnelle structure</p>
+                <p>• Tirants précontraints renforcement</p>
+                <p>• Micropieux reprise charge</p>
+                <p>• Consolidation fondations existantes</p>
+                <p>• Traitement corrosion armatures</p>
+                <p>• Réparation béton dégradé</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Normes et réglementations */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Conformité Réglementaire</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Normes Techniques</h3>
+              <div className="space-y-2 text-sm">
+                <p>• Eurocode 2 béton armé précontraint</p>
+                <p>• Eurocode 8 calculs parasismiques</p>
+                <p>• DTU 13.12 fondations superficielles</p>
+                <p>• DTU 23.1 murs béton banché</p>
+                <p>• NF EN 1992 dimensionnement béton</p>
+                <p>• Règles BAEL 91 modifiées 99</p>
+                <p>• PS92 règles parasismiques</p>
+                <p>• Fascicule 62 titre V fondations</p>
+                <p>• CCTP lot gros œuvre structure</p>
+                <p>• Cahier des charges technique</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Certifications Qualité</h3>
+              <div className="space-y-2 text-sm">
+                <p>• Certification OPQIBI ingénierie</p>
+                <p>• Assurance responsabilité civile professionnelle</p>
+                <p>• Garantie décennale bureau d'études</p>
+                <p>• Qualification RGE études techniques</p>
+                <p>• Agrément contrôle technique construction</p>
+                <p>• Habilitation diagnostic structure</p>
+                <p>• Certification ISO 9001 qualité</p>
+                <p>• Membre ordre ingénieurs structure</p>
+                <p>• Formation continue Eurocodes</p>
+                <p>• Veille réglementaire technique</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Types de projets */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Typologie de Projets</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Construction Neuve</h3>
+              <div className="space-y-1 text-sm">
+                <p>• Villa contemporaine structure béton</p>
+                <p>• Maison individuelle calculs</p>
+                <p>• Immeuble collectif structure</p>
+                <p>• Bâtiment tertiaire béton armé</p>
+                <p>• Construction bioclimatique</p>
+                <p>• Maison passive structure</p>
+                <p>• Villa avec piscine intégrée</p>
+                <p>• Architecture contemporaine</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Réhabilitation</h3>
+              <div className="space-y-1 text-sm">
+                <p>• Rénovation villa provençale</p>
+                <p>• Extension maison existante</p>
+                <p>• Surélévation structure bois</p>
+                <p>• Transformation loft industriel</p>
+                <p>• Réhabilitation patrimoine</p>
+                <p>• Mise aux normes structure</p>
+                <p>• Changement destination bâtiment</p>
+                <p>• Rénovation énergétique structure</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-[#C9A568]">Ouvrages Spéciaux</h3>
+              <div className="space-y-1 text-sm">
+                <p>• Piscine débordement calculs</p>
+                <p>• Piscine naturelle structure</p>
+                <p>• Terrasse suspendue béton</p>
+                <p>• Escalier béton design</p>
+                <p>• Mur soutènement paysager</p>
+                <p>• Pergola structure métallique</p>
+                <p>• Aménagement extérieur</p>
+                <p>• Ouvrage d'art privé</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer SEO */}
+        <section className="text-center py-8 border-t">
+          <p className="text-sm text-gray-500 mb-4">
+            Cette page technique est dédiée à l'optimisation SEO et n'est pas indexée par les moteurs de recherche.
+          </p>
+          <p className="text-xs text-gray-400">
+            B.E StructiBA - Bureau d'Études Structure - Région PACA - Expertise Technique Béton Armé
+          </p>
+        </section>
       </div>
     </div>
   )
