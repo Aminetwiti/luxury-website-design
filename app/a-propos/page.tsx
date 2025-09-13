@@ -198,44 +198,67 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
-                  src="/images/APropos_Equipe_JulienMartin.jpg"
-                  alt="Julien Martin"
+                  src="/images/APropos_Equipe_PierreMartin.jpg"
+                  alt="Pierre Martin"
                   fill
                   className="object-cover"
                 />
               </div>
-              <h3 className="font-bold text-xl mb-2">Julien Martin</h3>
+              <h3 className="font-bold text-xl mb-2">Pierre Martin</h3>
               <p className="text-[#C9A568] font-medium mb-2">Directeur Technique</p>
               <p className="text-gray-600 text-justify">
-                Ingénieur INSA, 15 ans d'expérience en calculs de structures complexes
+                Ingénieur INSA Lyon, 20 ans d'expérience en calculs de structures complexes
               </p>
             </div>
 
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image src="/images/APropos_Equipe_MarieDupont.jpg" alt="Marie Dupont" fill className="object-cover" />
+                <Image
+                  src="/images/APropos_Equipe_ClaireLefevre.jpg"
+                  alt="Claire Lefèvre"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <h3 className="font-bold text-xl mb-2">Marie Dupont</h3>
+              <h3 className="font-bold text-xl mb-2">Claire Lefèvre</h3>
               <p className="text-[#C9A568] font-medium mb-2">Responsable Projets</p>
-              <p className="text-gray-600 text-justify">Ingénieur Centrale, spécialisée en ingénierie parasismique</p>
+              <p className="text-gray-600 text-justify">
+                Ingénieur Centrale Paris, spécialisée en ingénierie parasismique
+              </p>
             </div>
 
             <div className="text-center">
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
-                  src="/images/APropos_Equipe_ThomasBernard.jpg"
-                  alt="Thomas Bernard"
+                  src="/images/APropos_Equipe_AntoineRobert.jpg"
+                  alt="Antoine Robert"
                   fill
                   className="object-cover"
                 />
               </div>
-              <h3 className="font-bold text-xl mb-2">Thomas Bernard</h3>
+              <h3 className="font-bold text-xl mb-2">Antoine Robert</h3>
               <p className="text-[#C9A568] font-medium mb-2">Ingénieur Senior</p>
               <p className="text-gray-600 text-justify">Ingénieur Ponts ParisTech, expert en réhabilitation</p>
+            </div>
+
+            <div className="text-center">
+              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
+                <Image
+                  src="/images/APropos_Equipe_RayanBenAoun.jpg"
+                  alt="Rayan Ben Aoun"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Rayan Ben Aoun</h3>
+              <p className="text-[#C9A568] font-medium mb-2">Alternant Ingénieur Structure</p>
+              <p className="text-gray-600 text-justify">
+                Étudiant ingénieur, spécialisé en calculs de structures et modélisation
+              </p>
             </div>
           </div>
         </div>
