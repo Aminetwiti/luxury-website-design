@@ -98,13 +98,7 @@ export default function ProjectsGrid({ showAll = false, limit = 2, className = "
                   <span>•</span>
                   <span>{project.budget}</span>
                 </div>
-                <Link
-                  href={`/realisations/${project.id}`}
-                  className="inline-flex items-center text-[#C9A568] hover:text-[#B8941F] transition-colors text-sm font-medium"
-                >
-                  Voir le projet
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                
               </div>
             )}
           </CardContent>
