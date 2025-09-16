@@ -52,8 +52,8 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Transformez vos projets architecturaux en réalités structurelles avec notre expertise technique reconnue
-            depuis plus de 15 ans.
+            Bureau d'études spécialisés en structure et béton armé, intervenant en construction neuve et réhabilitation,
+            de la conception à l'exécution. Nous transformons vos ambitions architecturales en réalités structurelles.
           </p>
 
           {/* Key Points */}

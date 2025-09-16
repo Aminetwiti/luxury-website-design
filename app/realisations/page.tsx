@@ -1,13 +1,41 @@
 import type { Metadata } from "next"
-import ProjectsGrid from "@/components/projects-grid"
-import { projects } from "@/lib/projects"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "Nos Réalisations | B.E StructiBA - Projets Structure & Béton Armé",
+  title: "Nos Réalisations | B.E Structiba - Projets Structure & Béton Armé",
   description:
     "Découvrez nos réalisations en ingénierie structure : villas, réhabilitations, constructions neuves. Projets de référence en PACA et Antilles.",
   keywords: "réalisations structure, projets béton armé, villas PACA, réhabilitation, construction neuve, ingénierie",
 }
+
+const projects = [
+  {
+    id: 1,
+    title: "Villa Provençale - Mandelieu",
+    description:
+      "Réhabilitation complète d'une villa provençale avec extension moderne. Reprise en sous-œuvre, création d'ouvertures et renforcement de la structure existante pour intégrer une piscine à débordement et des espaces de vie contemporains.",
+    image: "/images/Villa_Mandelieu_Facade_Principale.jpg",
+    category: "Réhabilitation",
+  },
+  {
+    id: 2,
+    title: "Villa Contemporaine - Côte d'Azur",
+    description:
+      "Construction d'une villa contemporaine avec piscine intérieure et extérieure. Structure en béton armé avec grandes portées et porte-à-faux spectaculaires, alliant performance structurelle et esthétique architecturale.",
+    image: "/images/Villa_Contemporaine_Rendu_3D.jpg",
+    category: "Construction Neuve",
+  },
+  {
+    id: 3,
+    title: "Réhabilitation Villa Cannet",
+    description:
+      "Études complètes de réhabilitation structurelle comprenant l'ensemble des calculs en phase EXE. Création de nouvelles ouvertures dans les murs porteurs, reprises en sous-œuvre et renforcement des éléments structurels existants.",
+    image: "/images/Villa_Cannet_Facade_Jour.jpg",
+    category: "Réhabilitation",
+  },
+]
 
 export default function RealisationsPage() {
   return (
@@ -42,13 +70,22 @@ export default function RealisationsPage() {
             </p>
           </div>
 
-          <ProjectsGrid showAll={true} />
-
-          {projects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">Nos projets de référence seront bientôt disponibles.</p>
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <Card key={project.id} className="overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative h-64">
+                  <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-[#C9A568] text-white border-none">{project.category}</Badge>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                  <p className="text-gray-600 text-justify">{project.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -61,20 +98,6 @@ export default function RealisationsPage() {
               Chaque réalisation commence par une écoute attentive de vos besoins et une analyse approfondie des
               contraintes techniques. Confiez-nous votre projet pour bénéficier de notre savoir-faire reconnu.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center bg-[#C9A568] text-white px-8 py-3 rounded-full hover:bg-[#B8941F] transition-colors font-medium"
-              >
-                Discuter de votre projet
-              </a>
-              <a
-                href="/expertise"
-                className="inline-flex items-center justify-center border border-[#C9A568] text-[#C9A568] px-8 py-3 rounded-full hover:bg-[#C9A568] hover:text-white transition-colors font-medium"
-              >
-                Découvrir notre expertise
-              </a>
-            </div>
           </div>
         </div>
       </section>

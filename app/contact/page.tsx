@@ -12,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building, User, MessageSquare } from "lucide-react"
 import Image from "next/image"
-import Breadcrumbs from "@/components/breadcrumbs"
 
 const contactInfo = [
   {
@@ -90,7 +89,6 @@ export default function ContactPage() {
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-white">
-        <Breadcrumbs />
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-2xl mx-auto text-center">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -112,8 +110,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Breadcrumbs />
-
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 opacity-20">

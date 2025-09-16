@@ -3,91 +3,157 @@ export interface Project {
   title: string
   category: string
   location: string
-  surface: string
-  duration: string
+  year: number
   description: string
+  shortDescription: string
   image: string
   gallery: string[]
-  challenges: string[]
-  solutions: string[]
+  features: string[]
+  surface?: string
+  budget?: string
+  duration?: string
+  client?: string
+  architect?: string
+  challenges?: string[]
+  solutions?: string[]
+  results?: string[]
   tags: string[]
 }
 
 export const projects: Project[] = [
   {
+    id: "villa-antibes",
+    title: "Villa Contemporaine - Antibes",
+    category: "Construction Neuve",
+    location: "Antibes, Alpes-Maritimes",
+    year: 2023,
+    description:
+      "Conception et réalisation d'une villa contemporaine de 350m² avec piscine à débordement et système géothermique. Structure béton armé avec porte-à-faux de 8 mètres et baies vitrées panoramiques.",
+    shortDescription: "Villa contemporaine 350m² avec innovations structurelles et énergétiques",
+    image: "/images/Villa_Antibes_Facade_Contemporaine.png",
+    gallery: [
+      "/images/Villa_Antibes_Facade_Contemporaine.png",
+      "/images/Villa_Antibes_Interieur_Baies.png",
+      "/images/Villa_Antibes_Piscine_Naturelle.png",
+      "/images/Villa_Antibes_Geothermie_Schema.png",
+      "/images/Villa_Antibes_Render_Coucher.png",
+    ],
+    features: [
+      "Structure béton armé haute performance",
+      "Porte-à-faux de 8 mètres",
+      "Système géothermique intégré",
+      "Piscine à débordement structurelle",
+      "Baies vitrées panoramiques",
+    ],
+    surface: "350 m²",
+    budget: "850 000 €",
+    duration: "18 mois",
+    client: "Particulier",
+    architect: "Atelier Méditerranée",
+    challenges: [
+      "Porte-à-faux important sans appui intermédiaire",
+      "Intégration du système géothermique",
+      "Contraintes sismiques zone 2",
+    ],
+    solutions: [
+      "Poutre précontrainte en béton haute performance",
+      "Fondations spéciales pour géothermie",
+      "Contreventement parasismique optimisé",
+    ],
+    results: ["Structure validée pour 100 ans", "Performance énergétique A+", "Délais respectés malgré la complexité"],
+    tags: ["Béton armé", "Géothermie", "Parasismique", "Contemporain"],
+  },
+  {
+    id: "penthouse-trocadero",
+    title: "Penthouse Trocadéro - Paris",
+    category: "Réhabilitation",
+    location: "Paris 16ème, Trocadéro",
+    year: 2023,
+    description:
+      "Réhabilitation structurelle complète d'un penthouse de 280m² avec création d'une terrasse suspendue de 150m² face à la Tour Eiffel. Renforcement par fibres de carbone et création d'ouvertures structurelles.",
+    shortDescription: "Penthouse 280m² avec terrasse suspendue et vue Tour Eiffel",
+    image: "/images/Penthouse_Trocadero_Terrasse_TourEiffel.png",
+    gallery: [
+      "/images/Penthouse_Trocadero_Terrasse_TourEiffel.png",
+      "/images/Penthouse_Trocadero_Salon_Design.png",
+      "/images/Penthouse_Trocadero_Structure_Carbone.png",
+      "/images/Penthouse_Trocadero_Plans_Structure.png",
+      "/images/Penthouse_Trocadero_Render_Nuit.png",
+    ],
+    features: [
+      "Terrasse suspendue 150m²",
+      "Renforcement fibres de carbone",
+      "Ouvertures structurelles sur mesure",
+      "Vue panoramique Tour Eiffel",
+      "Structure métallique apparente",
+    ],
+    surface: "280 m² + 150 m² terrasse",
+    budget: "1 200 000 €",
+    duration: "24 mois",
+    client: "Particulier",
+    architect: "Studio Parisien",
+    challenges: [
+      "Bâtiment haussmannien classé",
+      "Création terrasse sans appui",
+      "Contraintes architecturales strictes",
+    ],
+    solutions: [
+      "Renforcement invisible par fibres carbone",
+      "Console métallique haute résistance",
+      "Études patrimoniales approfondies",
+    ],
+    results: [
+      "Validation Architecte des Bâtiments de France",
+      "Terrasse certifiée 300kg/m²",
+      "Projet primé architecture 2023",
+    ],
+    tags: ["Réhabilitation", "Fibres carbone", "Patrimoine", "Terrasse"],
+  },
+  {
     id: "villa-mandelieu",
     title: "Villa Provençale - Mandelieu",
     category: "Réhabilitation",
     location: "Mandelieu-la-Napoule, Alpes-Maritimes",
-    surface: "280 m²",
-    duration: "8 mois",
+    year: 2024,
     description:
-      "Réhabilitation complète d'une villa provençale avec extension moderne. Reprise en sous-œuvre, création d'ouvertures et renforcement de la structure existante.",
+      "Réhabilitation structurelle d'une villa provençale des années 1960 avec extension contemporaine. Reprise en sous-œuvre, création d'une piscine intérieure et renforcement parasismique.",
+    shortDescription: "Réhabilitation villa provençale avec extension moderne et piscine",
     image: "/images/Villa_Mandelieu_Facade_Principale.jpg",
     gallery: [
-      "/images/Villa_Mandelieu_Facade_Provencale.jpg",
+      "/images/Villa_Mandelieu_Facade_Principale.jpg",
+      "/images/Villa_Mandelieu_Facade_Provencale_Rendu.jpg",
       "/images/Villa_Mandelieu_Extension_Moderne.jpg",
       "/images/Villa_Mandelieu_Piscine_Debordement.jpg",
-      "/images/Villa_Mandelieu_Reprise_SousOeuvre.jpg",
       "/images/Villa_Mandelieu_Plans_Structure.jpg",
     ],
+    features: [
+      "Reprise en sous-œuvre complète",
+      "Extension contemporaine 120m²",
+      "Piscine intérieure structurelle",
+      "Renforcement parasismique",
+      "Conservation éléments patrimoniaux",
+    ],
+    surface: "240 m² + 120 m² extension",
+    budget: "680 000 €",
+    duration: "20 mois",
+    client: "Particulier",
+    architect: "Atelier Provence",
     challenges: [
-      "Conservation du caractère provençal",
-      "Reprise en sous-œuvre délicate",
-      "Intégration extension moderne",
+      "Structure existante dégradée",
+      "Contraintes patrimoniales locales",
+      "Intégration piscine en sous-sol",
     ],
     solutions: [
-      "Renforcement par micropieux",
-      "Matériaux traditionnels nobles",
-      "Transition architecturale harmonieuse",
+      "Micropieux et longrines béton armé",
+      "Extension en structure mixte bois-béton",
+      "Étanchéité structurelle piscine",
     ],
-    tags: ["Réhabilitation", "Extension", "Patrimoine", "Sous-œuvre"],
-  },
-  {
-    id: "villa-contemporaine",
-    title: "Villa Contemporaine - Côte d'Azur",
-    category: "Construction Neuve",
-    location: "Antibes, Alpes-Maritimes",
-    surface: "450 m²",
-    duration: "12 mois",
-    description:
-      "Construction d'une villa contemporaine avec piscine à débordement. Structure béton armé optimisée et intégration paysagère soignée.",
-    image: "/images/Villa_Contemporaine_Rendu_3D.jpg",
-    gallery: [
-      "/images/Villa_Contemporaine_Facade_Moderne.jpg",
-      "/images/Villa_Contemporaine_Piscine_Interieure.jpg",
-      "/images/Villa_Contemporaine_Piscine_Exterieure.jpg",
-      "/images/Villa_Contemporaine_Structure_AVP.jpg",
-      "/images/Villa_Contemporaine_Plans_EXE.jpg",
+    results: [
+      "Structure renforcée pour 50 ans",
+      "Intégration architecturale réussie",
+      "Performance énergétique améliorée",
     ],
-    challenges: ["Terrain en pente forte", "Grandes portées structurelles", "Contraintes sismiques"],
-    solutions: ["Fondations adaptées au relief", "Poutres précontraintes", "Calculs parasismiques avancés"],
-    tags: ["Construction Neuve", "Contemporain", "Piscine", "Parasismique"],
-  },
-  {
-    id: "villa-cannet",
-    title: "Réhabilitation structurelle d'une villa contemporaine au Cannet",
-    category: "Réhabilitation",
-    location: "Le Cannet, Alpes-Maritimes",
-    surface: "320 m²",
-    duration: "10 mois",
-    description:
-      "Études complètes de réhabilitation structurelle comprenant l'ensemble des calculs en phase EXE (Exécution). Le projet inclut la création de nouvelles ouvertures dans les murs porteurs, la mise en place de reprises en sous-œuvre et le renforcement des éléments structurels existants, en intégrant les contraintes techniques et réglementaires pour assurer la stabilité, la sécurité et la pérennité de l'ouvrage.",
-    image: "/images/Villa_Cannet_Facade_Jour.jpg",
-    gallery: ["/images/Villa_Cannet_Facade_Jour.jpg", "/images/Villa_Cannet_Facade_Nuit.jpg"],
-    challenges: [
-      "Création de nouvelles ouvertures dans murs porteurs",
-      "Reprises en sous-œuvre complexes",
-      "Renforcement sans altérer l'esthétique",
-      "Respect contraintes réglementaires EXE",
-    ],
-    solutions: [
-      "Calculs de structure détaillés en phase EXE",
-      "Modélisation 3D optimisée",
-      "Renforcement par matériaux composites",
-      "Phasage des travaux sécurisé",
-    ],
-    tags: ["Réhabilitation", "EXE", "Ouvertures", "Renforcement", "Sous-œuvre"],
+    tags: ["Réhabilitation", "Extension", "Piscine", "Patrimoine"],
   },
 ]
 
@@ -97,4 +163,8 @@ export function getProjectById(id: string): Project | undefined {
 
 export function getProjectsByCategory(category: string): Project[] {
   return projects.filter((project) => project.category === category)
+}
+
+export function getFeaturedProjects(limit = 3): Project[] {
+  return projects.slice(0, limit)
 }

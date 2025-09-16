@@ -1,43 +1,62 @@
-import Hero from "@/components/hero"
-import ServiceTrio from "@/components/service-trio"
-import ProjectsGrid from "@/components/projects-grid"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Quote, Star, MapPin } from "lucide-react"
+import { ArrowRight, Building, Wrench, Shield, Waves } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
-const testimonials = [
+const services = [
+  {
+    title: "Construction Neuve",
+    description:
+      "Conception et dimensionnement de structures neuves avec expertise technique avancée pour tous types de projets de construction.",
+    icon: Building,
+    href: "/construction-neuve",
+  },
+  {
+    title: "Réhabilitation",
+    description:
+      "Expertise en renforcement et transformation de structures existantes avec diagnostic approfondi et solutions innovantes.",
+    icon: Wrench,
+    href: "/rehabilitation",
+  },
+  {
+    title: "Ingénierie Parasismique",
+    description:
+      "Conception parasismique avancée selon les normes Eurocode 8 pour la protection optimale des structures en zones sismiques.",
+    icon: Shield,
+    href: "/services",
+  },
+  {
+    title: "Ouvrages Extérieurs",
+    description:
+      "Piscines et bassins, Murs de soutènements, Terrasses et extensions, Aménagements techniques extérieurs",
+    icon: Waves,
+    href: "/services",
+  },
+]
+
+const projects = [
   {
     id: 1,
-    name: "Marie Dubois",
-    role: "Propriétaire",
-    location: "Villa Cannes",
-    content:
-      "L'équipe de B.E StructiBA a su transformer notre projet de rénovation en véritable réussite. Leur expertise technique et leur accompagnement personnalisé ont été déterminants.",
-    rating: 5,
-    image: "/placeholder-user.jpg",
+    title: "Villa Provençale - Mandelieu",
+    description:
+      "Réhabilitation complète d'une villa provençale avec extension moderne. Reprise en sous-œuvre, création d'ouvertures et renforcement de la structure existante.",
+    image: "/images/Villa_Mandelieu_Facade_Principale.jpg",
   },
   {
     id: 2,
-    name: "Thomas Bernard",
-    role: "Architecte",
-    location: "Antilles Françaises",
-    content:
-      "Une collaboration exemplaire sur plusieurs projets complexes. Leur maîtrise des contraintes sismiques et leur réactivité font la différence.",
-    rating: 5,
-    image: "/placeholder-user.jpg",
+    title: "Villa Contemporaine - Côte d'Azur",
+    description:
+      "Construction d'une villa contemporaine avec piscine à débordement. Structure béton armé optimisée et intégration paysagère soignée.",
+    image: "/images/Villa_Contemporaine_Rendu_3D.jpg",
   },
   {
     id: 3,
-    name: "Sophie Leroy",
-    role: "Promoteur",
-    location: "Côte d'Azur",
-    content:
-      "Des études précises, des délais respectés et une qualité irréprochable. B.E StructiBA est notre partenaire de confiance pour tous nos projets structurels.",
-    rating: 5,
-    image: "/placeholder-user.jpg",
+    title: "Réhabilitation Villa Cannet",
+    description:
+      "Études complètes de réhabilitation structurelle comprenant l'ensemble des calculs en phase EXE. Création de nouvelles ouvertures et renforcement structurel.",
+    image: "/images/Villa_Cannet_Facade_Jour.jpg",
   },
 ]
 
@@ -45,86 +64,66 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <Hero />
-
-      {/* Services Section */}
-      <ServiceTrio />
-
-      {/* Projects Section */}
-      <section className="py-20 bg-white">
+      <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-[#C9A568] text-white border-none">Nos Réalisations</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              Projets <span className="text-[#C9A568]">de Référence</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Découvrez quelques-unes de nos réalisations qui illustrent notre expertise en ingénierie structurelle et
-              notre capacité à transformer les défis techniques en succès.
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Bureau d'études spécialisé en <span className="text-[#C9A568]">structure et béton armé</span>
+            </h1>
+            <p className="text-xl text-gray-200 leading-relaxed text-justify max-w-3xl mx-auto">
+              Bureau d'études spécialisés en structure et béton armé, intervenant en construction neuve et
+              réhabilitation, de la conception à l'exécution. Nous transformons vos ambitions architecturales en
+              réalités structurelles.
             </p>
-          </div>
-
-          <ProjectsGrid limit={2} />
-
-          <div className="text-center mt-12">
-            <Button asChild size="lg" className="bg-[#C9A568] hover:bg-[#B8956A] text-white shadow-lg">
-              <Link href="/realisations" className="flex items-center gap-2">
-                Voir toutes nos réalisations
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-[#F8F8F5]">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-[#C9A568] text-white border-none">Témoignages</Badge>
+            <Badge className="mb-4 bg-[#C9A568] text-white border-none">Domaines d'expertise</Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              Ce que disent <span className="text-[#C9A568]">nos clients</span>
+              Nos <span className="text-[#C9A568]">Services</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              La satisfaction de nos clients est notre priorité. Découvrez leurs témoignages sur notre expertise et
-              notre accompagnement.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-[#C9A568]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <service.icon className="w-8 h-8 text-[#C9A568]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                  <p className="text-gray-600 text-justify leading-relaxed">{service.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-[#C9A568] text-white border-none">Références</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+              Nos <span className="text-[#C9A568]">Réalisations</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <Card key={project.id} className="overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative h-64">
+                  <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+                </div>
                 <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <Quote className="w-8 h-8 text-[#C9A568] mr-3" />
-                    <div className="flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="text-gray-600 mb-6 text-justify italic leading-relaxed">"{testimonial.content}"</p>
-
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4 overflow-hidden">
-                      <Image
-                        src={testimonial.image || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-600">{testimonial.role}</p>
-                      <div className="flex items-center text-xs text-gray-500 mt-1">
-                        <MapPin className="w-3 h-3 mr-1" />
-                        {testimonial.location}
-                      </div>
-                    </div>
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                  <p className="text-gray-600 text-justify">{project.description}</p>
                 </CardContent>
               </Card>
             ))}

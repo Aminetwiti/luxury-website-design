@@ -5,9 +5,9 @@ import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "Notre Expertise | B.E StructiBA - Bureau d'Études Structure",
+  title: "Notre Expertise | B.E Structiba - Bureau d'Études Structure",
   description:
-    "Découvrez l'expertise technique de B.E StructiBA : processus d'études, certifications, compétences clés et organisation. Excellence en ingénierie structure et béton armé.",
+    "Découvrez l'expertise technique de B.E Structiba : processus d'études, certifications, compétences clés et organisation. Excellence en ingénierie structure et béton armé.",
   keywords:
     "expertise structure, bureau études, ingénierie béton armé, certifications, processus études, compétences techniques",
 }
@@ -64,24 +64,6 @@ const keySkills = [
   "Expertise pathologies et diagnostics structurels",
 ]
 
-const certifications = [
-  {
-    title: "Ingénieurs certifiés issus des plus grandes écoles françaises",
-    description: "Formation d'excellence en génie civil et structures",
-    icon: "/images/logo-cstb.jpg",
-  },
-  {
-    title: "Qualification OPQIBI",
-    description: "Organisme de qualification des ingénieurs-conseils",
-    icon: "/images/logo-hqe.jpg",
-  },
-  {
-    title: "Certification ISO 9001",
-    description: "Management de la qualité certifié",
-    icon: "/images/logo-iso9001.jpg",
-  },
-]
-
 const organization = [
   {
     title: "Pôle Calcul",
@@ -131,7 +113,7 @@ export default function ExpertisePage() {
               Notre Expertise
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed text-justify">
-              Fort d'une expertise technique reconnue et d'une approche méthodologique rigoureuse, B.E StructiBA
+              Fort d'une expertise technique reconnue et d'une approche méthodologique rigoureuse, B.E Structiba
               accompagne ses clients dans la réalisation de projets structurels d'exception. Notre équipe
               pluridisciplinaire maîtrise l'ensemble des enjeux techniques, réglementaires et économiques de
               l'ingénierie structure moderne.
@@ -187,21 +169,8 @@ export default function ExpertisePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Certifications & Qualifications</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
-              Ingénieurs certifiés issus des plus grandes écoles françaises, nous garantissons un niveau d'expertise
-              technique et une déontologie professionnelle exemplaires.
+              L'ensemble des intervenants sont des ingénieurs certifiés issus des plus grandes écoles françaises.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {certifications.map((cert, index) => (
-              <Card key={index} className="text-center p-8 hover:shadow-lg transition-shadow">
-                <div className="w-20 h-20 mx-auto mb-6 relative">
-                  <Image src={cert.icon || "/placeholder.svg"} alt={cert.title} fill className="object-contain" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{cert.title}</h3>
-                <p className="text-gray-600 text-justify">{cert.description}</p>
-              </Card>
-            ))}
           </div>
         </div>
       </section>

@@ -4,7 +4,6 @@ import { ArrowRight, Clock, Users, Award, TrendingUp, Shield, Wrench, Building }
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import SiteShell from "@/components/site-shell"
 
 const rehabilitationTypes = [
   {
@@ -101,7 +100,7 @@ const advancedTechniques = [
 
 export default function RehabilitationPage() {
   return (
-    <SiteShell>
+    <>
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -329,6 +328,6 @@ export default function RehabilitationPage() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   )
 }

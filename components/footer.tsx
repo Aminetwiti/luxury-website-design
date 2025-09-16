@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
                 <Building2 className="w-8 h-8 text-[#C9A568]" />
-                <span className="text-2xl font-bold">B.E StructiBA</span>
+                <span className="text-2xl font-bold">B.E Structiba</span>
               </div>
               <p className="text-gray-300 text-justify leading-relaxed">
                 Bureau d'études spécialisé en ingénierie structurelle depuis plus de 15 ans. Expertise reconnue en
@@ -54,13 +54,13 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/developpement-durable" className="text-gray-300 hover:text-white transition-colors">
-                    Développement Durable
+                  <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
+                    Ingénierie Parasismique
                   </Link>
                 </li>
                 <li>
                   <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                    Ingénierie Parasismique
+                    Ouvrages Extérieurs
                   </Link>
                 </li>
               </ul>
@@ -106,12 +106,14 @@ export default function Footer() {
                   <MapPin className="w-5 h-5 text-[#C9A568] mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300">263 Avenue de Grasse</p>
-                    <p className="text-gray-300">06400 Cannes, France</p>
+                    <p className="text-gray-300">06400 Cannes</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-[#C9A568]" />
-                  <p className="text-gray-300">+33 4 93 XX XX XX</p>
+                  <a href="tel:+33668842010" className="text-gray-300 hover:text-[#C9A568] transition-colors">
+                    +33 6 68 84 20 10
+                  </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-[#C9A568]" />
@@ -126,7 +128,7 @@ export default function Footer() {
         <div className="border-t border-gray-800">
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-gray-400 text-sm">© 2024 B.E StructiBA. Tous droits réservés.</p>
+              <p className="text-gray-400 text-sm">© 2024 B.E Structiba. Tous droits réservés.</p>
               <div className="flex space-x-6 text-sm">
                 <Link href="/mentions-legales" className="text-gray-400 hover:text-white transition-colors">
                   Mentions légales

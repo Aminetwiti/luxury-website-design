@@ -8,28 +8,28 @@ import Link from "next/link"
 
 const poles = [
   {
-    title: "Pôle Calcul",
+    title: "Calcul",
     icon: Calculator,
     description: "Ingénieurs spécialisés en calculs de structures et dimensionnement selon les Eurocodes",
     color: "text-blue-600",
     bgColor: "bg-blue-50",
   },
   {
-    title: "Pôle Dessin et Plan",
+    title: "Dessin et Plan",
     icon: PenTool,
     description: "Équipe dédiée à la production de plans d'exécution et modélisation 3D",
     color: "text-green-600",
     bgColor: "bg-green-50",
   },
   {
-    title: "Pôle Administratif et Gestion",
+    title: "Administratif et Gestion",
     icon: Settings,
     description: "Gestion de projets, suivi administratif et coordination avec les partenaires",
     color: "text-orange-600",
     bgColor: "bg-orange-50",
   },
   {
-    title: "Pôle Développement et Innovation",
+    title: "Développement et Innovation",
     icon: Lightbulb,
     description: "Recherche et développement de nouvelles solutions techniques et méthodologies",
     color: "text-purple-600",
@@ -45,7 +45,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 opacity-20">
           <Image
             src="/images/APropos_Bureau_ReunionEquipe.jpg"
-            alt="Bureau d'études StructiBA"
+            alt="Bureau d'études Structiba"
             fill
             className="object-cover"
           />
@@ -56,7 +56,7 @@ export default function AboutPage() {
               À <span className="text-[#C9A568]">Propos</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 text-justify">
-              Découvrez B.E StructiBA, votre partenaire de confiance en ingénierie structurelle depuis plus de 15 ans.
+              Découvrez B.E Structiba, votre partenaire de confiance en ingénierie structurelle depuis plus de 15 ans.
             </p>
           </div>
         </div>
@@ -73,26 +73,24 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-6 text-lg text-gray-600 text-justify">
                   <p>
-                    Fondé il y a plus de 15 ans, B.E StructiBA s'est imposé comme une référence dans le domaine de
-                    l'ingénierie structurelle. Notre bureau d'études spécialisé en structure et béton armé accompagne
-                    ses clients de la conception à l'exécution, en construction neuve comme en réhabilitation.
+                    B.E StructiBA est né d'une véritable passion pour l’ingénierie structurelle et le béton armé, avec la volonté de proposer un accompagnement complet et personnalisé à chaque projet. Notre mission est de transformer les idées et concepts architecturaux en ouvrages solides, sûrs et durables.
                   </p>
                   <p>
-                    Forte d'une équipe de 12 ingénieurs expérimentés, notre société transforme vos ambitions
-                    architecturales en réalités structurelles grâce à une expertise technique reconnue et une approche
-                    personnalisée de chaque projet.
+                    Nous intervenons à chaque étape, de la conception à l'exécution, en construction neuve comme en réhabilitation, en apportant des solutions techniques sur mesure qui répondent aux contraintes normatives, environnementales et budgétaires.
                   </p>
                   <p>
-                    Basés au 263 Avenue de Grasse à Cannes, nous intervenons sur l'ensemble de la Côte d'Azur et des
-                    Antilles françaises, au service d'une clientèle exigeante composée de particuliers, professionnels
-                    du bâtiment, architectes et promoteurs.
+                    Grâce à une approche rigoureuse et une expertise pointue en conception parasismique, notre bureau d'études s'engage à garantir la sécurité, la qualité et la pérennité des ouvrages, tout en restant à l’écoute des besoins et attentes de nos partenaires pour construire ensemble des projets qui traversent le temps.
                   </p>
+                  
+
+
+
                 </div>
               </div>
               <div className="relative h-96 rounded-lg overflow-hidden">
                 <Image
                   src="/images/APropos_Equipe_StudioArchitectural.jpg"
-                  alt="Équipe B.E StructiBA"
+                  alt="Équipe B.E Structiba"
                   fill
                   className="object-cover"
                 />
@@ -146,7 +144,7 @@ export default function AboutPage() {
               Nos <span className="text-[#C9A568]">Clients</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Nous accompagnons une clientèle diversifiée dans la réalisation de leurs projets les plus ambitieux.
+              Nos clients sont des particuliers, architectes, promoteurs et professionnels du bâtiment.
             </p>
           </div>
 
@@ -182,84 +180,6 @@ export default function AboutPage() {
               <h3 className="font-bold text-lg mb-2">Promoteurs</h3>
               <p className="text-gray-600 text-justify">Promoteurs immobiliers et investisseurs</p>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Équipe */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
-              Notre <span className="text-[#C9A568]">Équipe</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-justify">
-              Une équipe de 12 ingénieurs passionnés et expérimentés, formés dans les meilleures écoles françaises.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <div className="text-center">
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="/images/APropos_Equipe_PierreMartin.jpg"
-                  alt="Pierre Martin"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Pierre Martin</h3>
-              <p className="text-[#C9A568] font-medium mb-2">Directeur Technique</p>
-              <p className="text-gray-600 text-justify">
-                Ingénieur INSA Lyon, 20 ans d'expérience en calculs de structures complexes
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="/images/APropos_Equipe_ClaireLefevre.jpg"
-                  alt="Claire Lefèvre"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Claire Lefèvre</h3>
-              <p className="text-[#C9A568] font-medium mb-2">Responsable Projets</p>
-              <p className="text-gray-600 text-justify">
-                Ingénieur Centrale Paris, spécialisée en ingénierie parasismique
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="/images/APropos_Equipe_AntoineRobert.jpg"
-                  alt="Antoine Robert"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Antoine Robert</h3>
-              <p className="text-[#C9A568] font-medium mb-2">Ingénieur Senior</p>
-              <p className="text-gray-600 text-justify">Ingénieur Ponts ParisTech, expert en réhabilitation</p>
-            </div>
-
-            <div className="text-center">
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image
-                  src="/images/APropos_Equipe_RayanBenAoun.jpg"
-                  alt="Rayan Ben Aoun"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Rayan Ben Aoun</h3>
-              <p className="text-[#C9A568] font-medium mb-2">Alternant Ingénieur Structure</p>
-              <p className="text-gray-600 text-justify">
-                Étudiant ingénieur, spécialisé en calculs de structures et modélisation
-              </p>
-            </div>
           </div>
         </div>
       </section>
