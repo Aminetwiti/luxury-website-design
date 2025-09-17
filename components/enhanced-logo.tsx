@@ -1,21 +1,25 @@
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-export default function EnhancedLogo() {
+interface LogoProps {
+  variant?: "full" | "compact" | "icon"
+  className?: string
+  showSubtitle?: boolean
+  size?: "sm" | "md" | "lg"
+}
+
+export default function EnhancedLogo({ variant = "full", className, size = "md" }: LogoProps) {
+  const sizeClasses = {
+    sm: "w-8 h-8",
+    md: "w-12 h-12",
+    lg: "w-16 h-16",
+  }
+
   return (
-    <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-      <div className="relative w-12 h-12 md:w-14 md:h-14">
-        <Image
-          src="/images/logo-structiba-final.jpg"
-          alt="B.E Structiba - Ingénieur Béton & Structures"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-      <div className="hidden md:block">
-        <div className="text-xl font-bold text-gray-900">B.E Structiba</div>
-        <div className="text-sm text-gray-600">Ingénieur Béton & Structures</div>
+    <Link href="/" className={cn("block hover:opacity-80 transition-opacity duration-300", className)}>
+      <div className={cn("relative", sizeClasses[size])}>
+        <Image src="/images/logo-structiba-icon.png" alt="B.E Structiba" fill className="object-contain" priority />
       </div>
     </Link>
   )

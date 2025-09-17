@@ -5,16 +5,27 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown } from "lucide-react"
 import EnhancedLogo from "./enhanced-logo"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
 
-  const services = [
-    { name: "Construction Neuve", href: "/construction-neuve" },
-    { name: "Réhabilitation", href: "/rehabilitation" },
-    { name: "Ingénierie Parasismique", href: "/ingenierie-parasismique" },
-    { name: "Ouvrages Extérieurs", href: "/ouvrages-exterieurs" },
+  const navigation = [
+    { name: "Accueil", href: "/" },
+    { name: "Expertise", href: "/expertise" },
+    {
+      name: "Services",
+      href: "/services",
+      submenu: [
+        { name: "Construction Neuve", href: "/construction-neuve" },
+        { name: "Réhabilitation", href: "/rehabilitation" },
+        { name: "Ingénierie Parasismique", href: "/ingenierie-parasismique" },
+        { name: "Ouvrages Extérieurs", href: "/ouvrages-exterieurs" },
+      ],
+    },
+    { name: "Réalisations", href: "/realisations" },
+    { name: "À propos", href: "/a-propos" },
+    { name: "Contact", href: "/contact" },
   ]
 
   return (
@@ -22,60 +33,65 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <EnhancedLogo />
+          <div className="flex-shrink-0">
+            <EnhancedLogo size="md" />
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
-              Accueil
-            </Link>
-
-            {/* Services Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
-                Services
-                <ChevronDown className="ml-1 w-4 h-4" />
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="py-2">
-                  {services.map((service) => (
-                    <Link
-                      key={service.href}
-                      href={service.href}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#C9A568] transition-colors"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </div>
+            {navigation.map((item) => (
+              <div key={item.name} className="relative">
+                {item.submenu ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        className="flex items-center gap-1 text-gray-700 hover:text-[#C9A568] transition-colors font-medium px-3 py-2"
+                      >
+                        {item.name}
+                        <ChevronDown className="w-4 h-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-56 shadow-lg border border-gray-200">
+                      {item.submenu.map((subItem) => (
+                        <DropdownMenuItem key={subItem.name} asChild>
+                          <Link
+                            href={subItem.href}
+                            className="w-full px-3 py-2 text-sm text-gray-700 hover:text-[#C9A568] hover:bg-gray-50 transition-colors cursor-pointer"
+                          >
+                            {subItem.name}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium px-3 py-2 rounded-md hover:bg-gray-50"
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </div>
-            </div>
-
-            <Link href="/expertise" className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
-              Expertise
-            </Link>
-            <Link href="/realisations" className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
-              Réalisations
-            </Link>
-            <Link href="/a-propos" className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
-              À propos
-            </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
-              Contact
-            </Link>
+            ))}
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden lg:block">
-            <Button asChild className="bg-[#C9A568] hover:bg-[#B8941F] text-white">
+          <div className="hidden lg:block flex-shrink-0">
+            <Button
+              asChild
+              className="bg-[#C9A568] hover:bg-[#B8941F] text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-2"
+            >
               <Link href="/contact">Devis gratuit</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-[#C9A568] transition-colors"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-[#C9A568] hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -83,75 +99,41 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200">
-            <nav className="flex flex-col space-y-4">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Accueil
-              </Link>
-
-              {/* Mobile Services */}
-              <div>
-                <button
-                  onClick={() => setServicesOpen(!servicesOpen)}
-                  className="flex items-center justify-between w-full text-gray-700 hover:text-[#C9A568] transition-colors font-medium"
-                >
-                  Services
-                  <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-                </button>
-                {servicesOpen && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    {services.map((service) => (
-                      <Link
-                        key={service.href}
-                        href={service.href}
-                        className="block text-gray-600 hover:text-[#C9A568] transition-colors"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+          <div className="lg:hidden border-t border-gray-200 bg-white">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navigation.map((item) => (
+                <div key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#C9A568] hover:bg-gray-50 rounded-md transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                  {item.submenu && (
+                    <div className="ml-4 space-y-1">
+                      {item.submenu.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-3 py-2 text-sm text-gray-600 hover:text-[#C9A568] hover:bg-gray-50 rounded-md transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+              <div className="pt-4">
+                <Button asChild className="w-full bg-[#C9A568] hover:bg-[#B8941F] text-white">
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                    Devis gratuit
+                  </Link>
+                </Button>
               </div>
-
-              <Link
-                href="/expertise"
-                className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Expertise
-              </Link>
-              <Link
-                href="/realisations"
-                className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Réalisations
-              </Link>
-              <Link
-                href="/a-propos"
-                className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                À propos
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Contact
-              </Link>
-              <Button asChild className="bg-[#C9A568] hover:bg-[#B8941F] text-white w-full">
-                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                  Devis gratuit
-                </Link>
-              </Button>
-            </nav>
+            </div>
           </div>
         )}
       </div>

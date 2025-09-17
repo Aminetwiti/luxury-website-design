@@ -3,20 +3,19 @@ export interface Project {
   title: string
   category: string
   location: string
-  year: number
+  year: string
   description: string
   shortDescription: string
-  image: string
-  gallery: string[]
+  images: string[]
   features: string[]
-  surface?: string
+  challenges: string[]
+  solutions: string[]
+  results: string[]
+  area?: string
   budget?: string
   duration?: string
   client?: string
   architect?: string
-  challenges?: string[]
-  solutions?: string[]
-  results?: string[]
   tags: string[]
 }
 
@@ -26,12 +25,11 @@ export const projects: Project[] = [
     title: "Villa Contemporaine - Antibes",
     category: "Construction Neuve",
     location: "Antibes, Alpes-Maritimes",
-    year: 2023,
+    year: "2023",
     description:
-      "Conception et réalisation d'une villa contemporaine de 350m² avec piscine à débordement et système géothermique. Structure béton armé avec porte-à-faux de 8 mètres et baies vitrées panoramiques.",
-    shortDescription: "Villa contemporaine 350m² avec innovations structurelles et énergétiques",
-    image: "/images/Villa_Antibes_Facade_Contemporaine.png",
-    gallery: [
+      "Conception et réalisation d'une villa contemporaine de 350m² avec piscine à débordement et système géothermique intégré.",
+    shortDescription: "Villa contemporaine 350m² avec innovations énergétiques",
+    images: [
       "/images/Villa_Antibes_Facade_Contemporaine.png",
       "/images/Villa_Antibes_Interieur_Baies.png",
       "/images/Villa_Antibes_Piscine_Naturelle.png",
@@ -39,41 +37,47 @@ export const projects: Project[] = [
       "/images/Villa_Antibes_Render_Coucher.png",
     ],
     features: [
-      "Structure béton armé haute performance",
-      "Porte-à-faux de 8 mètres",
-      "Système géothermique intégré",
+      "Structure béton armé optimisée",
+      "Grandes portées sans poteaux intermédiaires",
+      "Intégration système géothermique",
       "Piscine à débordement structurelle",
-      "Baies vitrées panoramiques",
+      "Terrasses en porte-à-faux",
     ],
-    surface: "350 m²",
-    budget: "850 000 €",
-    duration: "18 mois",
-    client: "Particulier",
-    architect: "Atelier Méditerranée",
     challenges: [
-      "Porte-à-faux important sans appui intermédiaire",
-      "Intégration du système géothermique",
-      "Contraintes sismiques zone 2",
+      "Terrain en pente avec contraintes géotechniques",
+      "Grandes portées pour espaces ouverts",
+      "Intégration des équipements techniques",
+      "Respect des règles d'urbanisme locales",
     ],
     solutions: [
-      "Poutre précontrainte en béton haute performance",
-      "Fondations spéciales pour géothermie",
-      "Contreventement parasismique optimisé",
+      "Fondations adaptées au terrain",
+      "Poutres précontraintes pour grandes portées",
+      "Conception intégrée des réseaux",
+      "Optimisation des hauteurs",
     ],
-    results: ["Structure validée pour 100 ans", "Performance énergétique A+", "Délais respectés malgré la complexité"],
-    tags: ["Béton armé", "Géothermie", "Parasismique", "Contemporain"],
+    results: [
+      "Livraison dans les délais",
+      "Performance énergétique A+",
+      "Satisfaction client totale",
+      "Référence architecturale locale",
+    ],
+    area: "350m²",
+    budget: "1.2M€",
+    duration: "18 mois",
+    client: "Particulier",
+    architect: "Atelier Méditerranéen",
+    tags: ["villa", "contemporain", "géothermie", "piscine", "béton armé"],
   },
   {
     id: "penthouse-trocadero",
     title: "Penthouse Trocadéro - Paris",
     category: "Réhabilitation",
     location: "Paris 16ème, Trocadéro",
-    year: 2023,
+    year: "2023",
     description:
-      "Réhabilitation structurelle complète d'un penthouse de 280m² avec création d'une terrasse suspendue de 150m² face à la Tour Eiffel. Renforcement par fibres de carbone et création d'ouvertures structurelles.",
-    shortDescription: "Penthouse 280m² avec terrasse suspendue et vue Tour Eiffel",
-    image: "/images/Penthouse_Trocadero_Terrasse_TourEiffel.png",
-    gallery: [
+      "Réhabilitation structurelle complète d'un penthouse de 280m² avec création d'une terrasse suspendue face à la Tour Eiffel.",
+    shortDescription: "Penthouse 280m² avec terrasse suspendue vue Tour Eiffel",
+    images: [
       "/images/Penthouse_Trocadero_Terrasse_TourEiffel.png",
       "/images/Penthouse_Trocadero_Salon_Design.png",
       "/images/Penthouse_Trocadero_Structure_Carbone.png",
@@ -81,79 +85,78 @@ export const projects: Project[] = [
       "/images/Penthouse_Trocadero_Render_Nuit.png",
     ],
     features: [
-      "Terrasse suspendue 150m²",
-      "Renforcement fibres de carbone",
-      "Ouvertures structurelles sur mesure",
-      "Vue panoramique Tour Eiffel",
-      "Structure métallique apparente",
+      "Renforcement structure existante",
+      "Terrasse suspendue 40m²",
+      "Ouvertures panoramiques",
+      "Matériaux composites carbone",
+      "Isolation thermique renforcée",
     ],
-    surface: "280 m² + 150 m² terrasse",
-    budget: "1 200 000 €",
-    duration: "24 mois",
+    challenges: [
+      "Contraintes du bâtiment haussmannien",
+      "Charges limitées en toiture",
+      "Accès chantier restreint",
+      "Copropriété occupée",
+    ],
+    solutions: [
+      "Renforcement par matériaux composites",
+      "Structure légère pour terrasse",
+      "Logistique adaptée",
+      "Phasage des travaux",
+    ],
+    results: [
+      "Gain de 40m² habitables",
+      "Vue exceptionnelle préservée",
+      "Valorisation immobilière +30%",
+      "Innovation technique reconnue",
+    ],
+    area: "280m²",
+    budget: "800k€",
+    duration: "12 mois",
     client: "Particulier",
     architect: "Studio Parisien",
-    challenges: [
-      "Bâtiment haussmannien classé",
-      "Création terrasse sans appui",
-      "Contraintes architecturales strictes",
-    ],
-    solutions: [
-      "Renforcement invisible par fibres carbone",
-      "Console métallique haute résistance",
-      "Études patrimoniales approfondies",
-    ],
-    results: [
-      "Validation Architecte des Bâtiments de France",
-      "Terrasse certifiée 300kg/m²",
-      "Projet primé architecture 2023",
-    ],
-    tags: ["Réhabilitation", "Fibres carbone", "Patrimoine", "Terrasse"],
+    tags: ["penthouse", "réhabilitation", "terrasse", "carbone", "paris"],
   },
   {
-    id: "villa-mandelieu",
-    title: "Villa Provençale - Mandelieu",
+    id: "villa-cannet-rehabilitation",
+    title: "Réhabilitation structurelle d'une villa contemporaine au Cannet",
     category: "Réhabilitation",
-    location: "Mandelieu-la-Napoule, Alpes-Maritimes",
-    year: 2024,
+    location: "Le Cannet, Alpes-Maritimes",
+    year: "2024",
     description:
-      "Réhabilitation structurelle d'une villa provençale des années 1960 avec extension contemporaine. Reprise en sous-œuvre, création d'une piscine intérieure et renforcement parasismique.",
-    shortDescription: "Réhabilitation villa provençale avec extension moderne et piscine",
-    image: "/images/Villa_Mandelieu_Facade_Principale.jpg",
-    gallery: [
-      "/images/Villa_Mandelieu_Facade_Principale.jpg",
-      "/images/Villa_Mandelieu_Facade_Provencale_Rendu.jpg",
-      "/images/Villa_Mandelieu_Extension_Moderne.jpg",
-      "/images/Villa_Mandelieu_Piscine_Debordement.jpg",
-      "/images/Villa_Mandelieu_Plans_Structure.jpg",
-    ],
+      "Réhabilitation complète d'une villa contemporaine avec renforcement structurel, création d'ouvertures et modernisation des espaces de vie.",
+    shortDescription: "Villa contemporaine réhabilitée avec renforcement structurel",
+    images: ["/images/Villa_Cannet_Facade_Jour.jpg", "/images/Villa_Cannet_Facade_Nuit.jpg"],
     features: [
-      "Reprise en sous-œuvre complète",
-      "Extension contemporaine 120m²",
-      "Piscine intérieure structurelle",
-      "Renforcement parasismique",
-      "Conservation éléments patrimoniaux",
+      "Renforcement de la structure existante",
+      "Création de nouvelles ouvertures",
+      "Modernisation des espaces",
+      "Amélioration de l'isolation",
+      "Mise aux normes sismiques",
     ],
-    surface: "240 m² + 120 m² extension",
-    budget: "680 000 €",
-    duration: "20 mois",
-    client: "Particulier",
-    architect: "Atelier Provence",
     challenges: [
-      "Structure existante dégradée",
-      "Contraintes patrimoniales locales",
-      "Intégration piscine en sous-sol",
+      "Structure existante à préserver",
+      "Contraintes géotechniques du terrain",
+      "Intégration dans l'environnement",
+      "Respect du budget et des délais",
     ],
     solutions: [
-      "Micropieux et longrines béton armé",
-      "Extension en structure mixte bois-béton",
-      "Étanchéité structurelle piscine",
+      "Diagnostic structurel approfondi",
+      "Renforcement par matériaux modernes",
+      "Conception sur mesure",
+      "Suivi technique rigoureux",
     ],
     results: [
-      "Structure renforcée pour 50 ans",
-      "Intégration architecturale réussie",
+      "Structure renforcée et sécurisée",
+      "Espaces de vie modernisés",
       "Performance énergétique améliorée",
+      "Satisfaction client excellente",
     ],
-    tags: ["Réhabilitation", "Extension", "Piscine", "Patrimoine"],
+    area: "220m²",
+    budget: "450k€",
+    duration: "10 mois",
+    client: "Particulier",
+    architect: "Cabinet Local",
+    tags: ["villa", "réhabilitation", "renforcement", "cannet", "contemporain"],
   },
 ]
 
