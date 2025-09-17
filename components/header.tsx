@@ -12,7 +12,6 @@ export default function Header() {
 
   const navigation = [
     { name: "Accueil", href: "/" },
-    { name: "Expertise", href: "/expertise" },
     {
       name: "Services",
       href: "/services",
@@ -23,42 +22,40 @@ export default function Header() {
         { name: "Ouvrages Extérieurs", href: "/ouvrages-exterieurs" },
       ],
     },
+    { name: "Expertise", href: "/expertise" },
     { name: "Réalisations", href: "/realisations" },
     { name: "À propos", href: "/a-propos" },
     { name: "Contact", href: "/contact" },
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-24">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center h-full">
+        <div className="flex h-24 items-center justify-between">
+          {/* Logo - aligné à gauche et centré verticalement */}
+          <div className="flex items-center">
             <EnhancedLogo size="xxl" />
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <div key={item.name} className="relative">
+              <div key={item.name}>
                 {item.submenu ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
                         variant="ghost"
-                        className="flex items-center gap-1 text-gray-700 hover:text-[#C9A568] transition-colors font-medium px-3 py-2"
+                        className="flex items-center gap-1 text-gray-700 hover:text-[#C9A568] transition-colors"
                       >
                         {item.name}
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-56 shadow-lg border border-gray-200">
+                    <DropdownMenuContent align="start" className="w-56">
                       {item.submenu.map((subItem) => (
                         <DropdownMenuItem key={subItem.name} asChild>
-                          <Link
-                            href={subItem.href}
-                            className="w-full px-3 py-2 text-sm text-gray-700 hover:text-[#C9A568] hover:bg-gray-50 transition-colors cursor-pointer"
-                          >
+                          <Link href={subItem.href} className="w-full cursor-pointer hover:text-[#C9A568]">
                             {subItem.name}
                           </Link>
                         </DropdownMenuItem>
@@ -66,10 +63,7 @@ export default function Header() {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
-                  <Link
-                    href={item.href}
-                    className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium px-3 py-2 rounded-md hover:bg-gray-50"
-                  >
+                  <Link href={item.href} className="text-gray-700 hover:text-[#C9A568] transition-colors font-medium">
                     {item.name}
                   </Link>
                 )}
@@ -77,62 +71,45 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block flex-shrink-0">
-            <Button
-              asChild
-              className="bg-[#C9A568] hover:bg-[#B8941F] text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-2"
-            >
-              <Link href="/contact">Devis gratuit</Link>
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-[#C9A568] hover:bg-gray-100 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden border-t border-gray-200 bg-white">
+          <div className="md:hidden border-t bg-white">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
                 <div key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#C9A568] hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.submenu && (
-                    <div className="ml-4 space-y-1">
+                  {item.submenu ? (
+                    <div>
+                      <div className="text-gray-700 font-medium px-3 py-2 text-base">{item.name}</div>
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-3 py-2 text-sm text-gray-600 hover:text-[#C9A568] hover:bg-gray-50 rounded-md transition-colors"
+                          className="text-gray-600 hover:text-[#C9A568] block px-6 py-2 text-sm transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
                           {subItem.name}
                         </Link>
                       ))}
                     </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-gray-700 hover:text-[#C9A568] block px-3 py-2 text-base font-medium transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
                   )}
                 </div>
               ))}
-              <div className="pt-4">
-                <Button asChild className="w-full bg-[#C9A568] hover:bg-[#B8941F] text-white">
-                  <Link href="/contact" onClick={() => setIsOpen(false)}>
-                    Devis gratuit
-                  </Link>
-                </Button>
-              </div>
             </div>
           </div>
         )}
