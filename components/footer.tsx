@@ -11,8 +11,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo et description */}
           <div className="space-y-4">
-            <EnhancedLogo size="lg" />
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <div className="flex justify-center md:justify-start">
+              <EnhancedLogo size="xxl" />
+            </div>
+            <p className="text-gray-300 text-sm leading-relaxed text-center md:text-left">
               Bureau d'études spécialisé en structure et béton armé, intervenant en construction neuve et
               réhabilitation.
             </p>
