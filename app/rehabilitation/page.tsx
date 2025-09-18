@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Clock, Users, Award, TrendingUp, Shield, Wrench, Building } from "lucide-react"
+import { ArrowRight, Shield, Wrench, Building, Users } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,7 @@ const rehabilitationTypes = [
     description: "Consolidation des structures existantes avec des techniques modernes",
     image: "/images/Rehabilitation_Structural_Reinforcement.jpg",
     techniques: ["Fibres de carbone", "Résine époxy", "Profilés métalliques"],
-    duration: "2-4 semaines",
+    duration: "Variable",
     complexity: "Élevée",
   },
   {
@@ -19,7 +19,7 @@ const rehabilitationTypes = [
     description: "Création d'espaces ouverts tout en préservant la stabilité",
     image: "/images/Rehabilitation_Wall_Opening.jpg",
     techniques: ["Poutres IPN", "Linteaux béton", "Étaiement temporaire"],
-    duration: "1-2 semaines",
+    duration: "Variable",
     complexity: "Moyenne",
   },
   {
@@ -27,7 +27,7 @@ const rehabilitationTypes = [
     description: "Percements techniques pour escaliers et gaines",
     image: "/images/Rehabilitation_Opening_Creation.jpg",
     techniques: ["Découpe contrôlée", "Renforcement périphérique", "Étude vibratoire"],
-    duration: "3-5 jours",
+    duration: "Variable",
     complexity: "Moyenne",
   },
 ]
@@ -38,7 +38,7 @@ const processSteps = [
     title: "Diagnostic Structurel",
     description: "Analyse complète de l'existant et identification des pathologies",
     icon: Shield,
-    duration: "1-2 semaines",
+    duration: "1 à 5 jours",
     image: "/images/Rehabilitation_Structural_Diagnosis.jpg",
   },
   {
@@ -46,7 +46,7 @@ const processSteps = [
     title: "Étude de Faisabilité",
     description: "Conception des solutions techniques et validation réglementaire",
     icon: Wrench,
-    duration: "2-3 semaines",
+    duration: "1 à 3 jours",
     image: "/images/Rehabilitation_Technical_Study.jpg",
   },
   {
@@ -54,7 +54,7 @@ const processSteps = [
     title: "Plans d'Exécution",
     description: "Dessins techniques détaillés et notes de calcul",
     icon: Building,
-    duration: "1-2 semaines",
+    duration: "Variable",
     image: "/images/Rehabilitation_Execution_Plans.jpg",
   },
   {
@@ -65,13 +65,6 @@ const processSteps = [
     duration: "Variable",
     image: "/images/Rehabilitation_Site_Monitoring.jpg",
   },
-]
-
-const stats = [
-  { label: "Projets réhabilités", value: "150+", icon: Award },
-  { label: "Années d'expérience", value: "15", icon: Clock },
-  { label: "Taux de satisfaction", value: "98%", icon: TrendingUp },
-  { label: "Équipe d'experts", value: "12", icon: Users },
 ]
 
 const advancedTechniques = [
@@ -90,11 +83,11 @@ const advancedTechniques = [
     techniques: ["Fibres Carbone", "Résines Époxy", "Précontrainte"],
   },
   {
-    title: "Suivi Numérique",
+    title: "Reprise en Sous-Œuvre (RSO)",
     description:
-      "Monitoring en temps réel des déformations, contraintes et performances structurelles grâce à des capteurs IoT intégrés.",
+      "Renforcement ou remplacement des éléments structuraux pour stabiliser les ouvrages existants et répondre aux nouvelles charges ou aux contraintes du sol.",
     image: "/images/Rehabilitation_Digital_Monitoring.jpg",
-    techniques: ["Capteurs IoT", "BIM 4D", "Monitoring"],
+    techniques: ["Micropieux", "Chemisage", "Massifs"],
   },
 ]
 
@@ -146,23 +139,6 @@ export default function RehabilitationPage() {
                 </Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Statistiques */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#C9A568] text-white rounded-full mb-4">
-                  <stat.icon className="w-8 h-8" />
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -323,7 +299,7 @@ export default function RehabilitationPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:+33493123456">Appeler Maintenant</Link>
+              <Link href="tel:+33668842010">Appeler Maintenant</Link>
             </Button>
           </div>
         </div>

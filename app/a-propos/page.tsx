@@ -73,18 +73,21 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-6 text-lg text-gray-600 text-justify">
                   <p>
-                    B.E StructiBA est né d'une véritable passion pour l’ingénierie structurelle et le béton armé, avec la volonté de proposer un accompagnement complet et personnalisé à chaque projet. Notre mission est de transformer les idées et concepts architecturaux en ouvrages solides, sûrs et durables.
+                    B.E StructiBA est né d'une véritable passion pour l'ingénierie structurelle et le béton armé, avec
+                    la volonté de proposer un accompagnement complet et personnalisé à chaque projet. Notre mission est
+                    de transformer les idées et concepts architecturaux en ouvrages solides, sûrs et durables.
                   </p>
                   <p>
-                    Nous intervenons à chaque étape, de la conception à l'exécution, en construction neuve comme en réhabilitation, en apportant des solutions techniques sur mesure qui répondent aux contraintes normatives, environnementales et budgétaires.
+                    Nous intervenons à chaque étape, de la conception à l'exécution, en construction neuve comme en
+                    réhabilitation, en apportant des solutions techniques sur mesure qui répondent aux contraintes
+                    normatives, environnementales et budgétaires.
                   </p>
                   <p>
-                    Grâce à une approche rigoureuse et une expertise pointue en conception parasismique, notre bureau d'études s'engage à garantir la sécurité, la qualité et la pérennité des ouvrages, tout en restant à l’écoute des besoins et attentes de nos partenaires pour construire ensemble des projets qui traversent le temps.
+                    Grâce à une approche rigoureuse et une expertise pointue en conception parasismique, notre bureau
+                    d'études s'engage à garantir la sécurité, la qualité et la pérennité des ouvrages, tout en restant à
+                    l'écoute des besoins et attentes de nos partenaires pour construire ensemble des projets qui
+                    traversent le temps.
                   </p>
-                  
-
-
-
                 </div>
               </div>
               <div className="relative h-96 rounded-lg overflow-hidden">
@@ -154,7 +157,7 @@ export default function AboutPage() {
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-bold text-lg mb-2">Particuliers</h3>
-              <p className="text-gray-600 text-justify">Propriétaires de villas et résidences de prestige</p>
+              <p className="text-gray-600 text-justify">Propriétaires de maisons, villas ou appartements</p>
             </Card>
 
             <Card className="text-center p-6 border-0 bg-gray-50 hover:shadow-lg transition-shadow">

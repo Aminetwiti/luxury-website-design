@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Waves, Mountain, Home, Settings } from "lucide-react"
+import { ArrowRight, Waves, Mountain, Home } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -10,25 +10,19 @@ const specialties = [
     title: "Piscines et Bassins",
     description: "Conception et dimensionnement de piscines avec systèmes d'étanchéité et de filtration",
     icon: Waves,
-    techniques: ["Cuvelage étanche", "Débordement", "Filtration naturelle"],
+    techniques: ["Cuvelage étanche", "Débordement"],
   },
   {
     title: "Murs de Soutènement",
     description: "Calculs de poussée des terres et dimensionnement des ouvrages de soutènement",
     icon: Mountain,
-    techniques: ["Béton armé", "Gabions", "Murs végétalisés"],
+    techniques: ["Béton armé", "Gabions"],
   },
   {
     title: "Terrasses et Extensions",
     description: "Structures de terrasses, pergolas et extensions extérieures",
     icon: Home,
-    techniques: ["Porte-à-faux", "Fondations adaptées", "Intégration paysagère"],
-  },
-  {
-    title: "Aménagements Techniques",
-    description: "Réseaux techniques extérieurs et ouvrages d'assainissement",
-    icon: Settings,
-    techniques: ["Réseaux enterrés", "Assainissement", "Éclairage extérieur"],
+    techniques: ["Porte-à-faux", "Fondations adaptées"],
   },
 ]
 
@@ -37,25 +31,25 @@ const processSteps = [
     step: 1,
     title: "Analyse des besoins et faisabilité",
     description: "Étude du terrain et définition des contraintes techniques",
-    duration: "1 semaine",
+    duration: "Variable",
   },
   {
     step: 2,
     title: "Études Géotechniques",
     description: "Analyse du sol et dimensionnement des fondations",
-    duration: "2-3 semaines",
+    duration: "Variable",
   },
   {
     step: 3,
     title: "Conception Technique",
     description: "Calculs de structure et intégration des réseaux",
-    duration: "2-4 semaines",
+    duration: "Variable",
   },
   {
     step: 4,
     title: "Plans d'Exécution",
     description: "Production des plans techniques et coordination",
-    duration: "1-2 semaines",
+    duration: "Variable",
   },
 ]
 
@@ -91,7 +85,7 @@ export default function OuvragesExterieursPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {specialties.map((specialty, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
                 <CardContent className="p-6 text-center">

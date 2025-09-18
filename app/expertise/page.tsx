@@ -113,7 +113,7 @@ export default function ExpertisePage() {
               Notre Expertise
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed text-justify">
-              Fort d'une expertise technique reconnue et d'une approche méthodologique rigoureuse, B.E Structiba
+              Fort d'une expertise technique reconnue et d'une approche méthodologique rigoureuse, le B.E Structiba
               accompagne ses clients dans la réalisation de projets structurels d'exception. Notre équipe
               pluridisciplinaire maîtrise l'ensemble des enjeux techniques, réglementaires et économiques de
               l'ingénierie structure moderne.
@@ -169,7 +169,12 @@ export default function ExpertisePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Certifications & Qualifications</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify">
-              L'ensemble des intervenants sont des ingénieurs certifiés issus des plus grandes écoles françaises.
+              L'ensemble de nos intervenants sont des ingénieurs diplômés de grandes écoles d'ingénieurs françaises,
+              certifiés et formés aux normes en vigueur.
+            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify mt-4">
+              Leur expertise couvre toutes les phases d'un projet, de la conception à l'exécution, garantissant des
+              études fiables, conformes et sécurisées.
             </p>
           </div>
         </div>

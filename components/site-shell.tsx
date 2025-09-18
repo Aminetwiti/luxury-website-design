@@ -2,6 +2,7 @@ import type React from "react"
 import Header from "./header"
 import Footer from "./footer"
 import Breadcrumbs from "./breadcrumbs"
+import FloatingCallButton from "./floating-call-button"
 
 interface SiteShellProps {
   children: React.ReactNode
@@ -14,6 +15,7 @@ export default function SiteShell({ children }: SiteShellProps) {
       <Breadcrumbs />
       <main className="flex-1">{children}</main>
       <Footer />
+      <FloatingCallButton />
     </div>
   )
 }

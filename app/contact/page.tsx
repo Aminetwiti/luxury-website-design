@@ -23,16 +23,16 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Téléphone",
-    content: "+33 4 93 12 34 56",
+    content: "06 68 84 20 10",
     color: "text-green-600",
-    href: "tel:+33493123456",
+    href: "tel:+33668842010",
   },
   {
     icon: Mail,
     title: "Email",
-    content: "contact@structiba.fr",
+    content: "rb@structiba.fr",
     color: "text-orange-600",
-    href: "mailto:contact@structiba.fr",
+    href: "mailto:rb@structiba.fr",
   },
   {
     icon: Clock,
@@ -125,7 +125,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Contactez <span className="text-[#C9A568]">nos Experts</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 text-justify">
+            <p className="text-xl md:text-2xl text-gray-300 text-center">
               Partagez-nous votre projet et obtenez une étude personnalisée de nos ingénieurs spécialisés.
             </p>
           </div>
@@ -135,20 +135,20 @@ export default function ContactPage() {
       {/* Contact Form & Info */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <Card className="shadow-xl border-0">
-                <CardHeader className="bg-gradient-to-r from-[#C9A568] to-[#B8956A] text-white">
-                  <CardTitle className="text-2xl flex items-center gap-3">
-                    <MessageSquare className="w-6 h-6" />
+                <CardHeader className="bg-gradient-to-r from-[#C9A568] to-[#B8956A] text-white p-4 sm:p-6">
+                  <CardTitle className="text-xl sm:text-2xl flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                    <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
                     Demande d'étude personnalisée
                   </CardTitle>
-                  <p className="text-gray-100">
+                  <p className="text-gray-100 text-sm sm:text-base">
                     Remplissez ce formulaire pour recevoir une proposition technique adaptée à votre projet.
                   </p>
                 </CardHeader>
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Informations personnelles */}
                     <div>
@@ -156,7 +156,7 @@ export default function ContactPage() {
                         <User className="w-5 h-5 text-[#C9A568]" />
                         Vos informations
                       </h3>
-                      <div className="grid md:grid-cols-2 gap-4">
+                      <div className="grid sm:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="prenom">Prénom *</Label>
                           <Input
@@ -198,7 +198,7 @@ export default function ContactPage() {
                             className="mt-1"
                           />
                         </div>
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-2">
                           <Label htmlFor="societe">Société / Organisation</Label>
                           <Input
                             id="societe"
@@ -236,7 +236,7 @@ export default function ContactPage() {
                           </Select>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-4">
+                        <div className="grid sm:grid-cols-2 gap-4">
                           <div>
                             <Label htmlFor="localisation">Localisation</Label>
                             <Input
@@ -302,7 +302,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#C9A568] hover:bg-[#B8956A] text-white py-3 text-lg"
+                      className="w-full bg-[#C9A568] hover:bg-[#B8956A] text-white py-3 text-base sm:text-lg"
                     >
                       {isSubmitting ? (
                         "Envoi en cours..."
@@ -319,7 +319,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <Card className="shadow-lg border-0">
                 <CardHeader className="bg-gray-50">
                   <CardTitle className="text-xl">Informations de contact</CardTitle>
@@ -337,13 +337,13 @@ export default function ContactPage() {
                       )
 
                       return (
-                        <div key={index} className="flex items-start gap-3">
-                          <div className={`p-2 rounded-full bg-gray-100`}>
-                            <IconComponent className={`w-5 h-5 ${info.color}`} />
+                        <div key={index} className="flex items-start gap-2 sm:gap-3">
+                          <div className={`p-1.5 sm:p-2 rounded-full bg-gray-100`}>
+                            <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 ${info.color}`} />
                           </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-900">{info.title}</h4>
-                            <div className="whitespace-pre-line">{content}</div>
+                          <div className="min-w-0 flex-1">
+                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{info.title}</h4>
+                            <div className="whitespace-pre-line text-sm sm:text-base break-words">{content}</div>
                           </div>
                         </div>
                       )
@@ -361,7 +361,7 @@ export default function ContactPage() {
                     <div className="flex items-center gap-3">
                       <Badge className="bg-green-100 text-green-800 border-green-200">
                         <CheckCircle className="w-4 h-4 mr-1" />
-                        48h
+                        24h
                       </Badge>
                       <span className="text-sm text-gray-700">Première réponse</span>
                     </div>
@@ -386,9 +386,9 @@ export default function ContactPage() {
               <Card className="shadow-lg border-0 bg-gradient-to-br from-gray-50 to-gray-100">
                 <CardContent className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-3">Zones d'intervention</h4>
-                  <div className="space-y-2 text-sm text-gray-700">
+                  <div className="space-y-2 text-xs sm:text-sm text-gray-700">
                     <div>
-                      • <strong>PACA :</strong> Cannes, Nice, Antibes, Grasse
+                      • <strong>PACA :</strong> Cannes, Nice, Antibes, Grasse , Paris
                     </div>
                     <div>
                       • <strong>Antilles :</strong> Martinique, Guadeloupe

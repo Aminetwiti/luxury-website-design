@@ -16,7 +16,7 @@ const projects = [
     title: "Villa Provençale - Mandelieu",
     description:
       "Réhabilitation complète d'une villa provençale avec extension moderne. Reprise en sous-œuvre, création d'ouvertures et renforcement de la structure existante pour intégrer une piscine à débordement et des espaces de vie contemporains.",
-    image: "/images/Villa_Mandelieu_Facade_Principale.jpg",
+    image: "/images/Villa_Contemporaine_Rendu_3D.jpg",
     category: "Réhabilitation",
   },
   {
@@ -24,7 +24,7 @@ const projects = [
     title: "Villa Contemporaine - Côte d'Azur",
     description:
       "Construction d'une villa contemporaine avec piscine intérieure et extérieure. Structure en béton armé avec grandes portées et porte-à-faux spectaculaires, alliant performance structurelle et esthétique architecturale.",
-    image: "/images/Villa_Contemporaine_Rendu_3D.jpg",
+    image: "/images/Villa_Cannet_Facade_Jour.jpg",
     category: "Construction Neuve",
   },
   {
@@ -32,7 +32,7 @@ const projects = [
     title: "Réhabilitation Villa Cannet",
     description:
       "Études complètes de réhabilitation structurelle comprenant l'ensemble des calculs en phase EXE. Création de nouvelles ouvertures dans les murs porteurs, reprises en sous-œuvre et renforcement des éléments structurels existants.",
-    image: "/images/Villa_Cannet_Facade_Jour.jpg",
+    image: "/images/Villa_Cannet_Facade_Nuit.jpg",
     category: "Réhabilitation",
   },
 ]

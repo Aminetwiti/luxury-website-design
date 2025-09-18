@@ -1,7 +1,6 @@
-import { copy } from "@/lib/copy"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Clock, Users } from "lucide-react"
+import { ArrowRight, CheckCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -9,55 +8,49 @@ import { Button } from "@/components/ui/button"
 const constructionPhases = [
   {
     title: "AVP - Avant-Projet",
-    desc: "Avant‑Projet : plans, études, faisabilité.",
+    desc: "Conception Structurelle, études de faisabilité, validation du programme.",
     src: "/images/ConstructionNeuve_Phase_AVP_PlanElegant.png",
     details: "Conception architecturale, études de faisabilité, validation du programme",
-    duration: "4-6 semaines",
-    deliverables: ["Plans de masse", "Études préliminaires", "Estimation budgétaire"],
+    duration: "Variable",
+    deliverables: ["Plans Structurels synthétiques", "Ratios d'aciers et Volumes", "Estimation budgétaire"],
   },
   {
     title: "EXE - Exécution",
-    desc: "Exécution : chantier, détails techniques.",
+    desc: "Plans d'exécution détaillés, coordination technique, suivi de chantier",
     src: "/images/ConstructionNeuve_Phase_EXE_ChantierAction.png",
     details: "Plans d'exécution détaillés, coordination technique, suivi de chantier",
-    duration: "6-12 mois",
-    deliverables: ["Plans techniques", "Notes de calcul", "Suivi qualité"],
+    duration: "Variable",
+    deliverables: ["Plans techniques", "Notes de calcul", "Procédés constructifs"],
   },
   {
     title: "Livraison",
-    desc: "Rendu final : mise en service, finitions.",
+    desc: "Réception des travaux, mise en service, garanties",
     src: "/images/ConstructionNeuve_Phase_Final_Render3D.png",
     details: "Réception des travaux, mise en service, garanties",
-    duration: "2-4 semaines",
-    deliverables: ["Dossier des ouvrages exécutés", "Garanties", "Formation"],
+    duration: "Variable",
+    deliverables: ["Dossiers des ouvrages exécutés", "Garanties"],
   },
 ]
 
 const modernTechniques = [
   {
-    title: "Modélisation 3D & BIM",
+    title: "Modélisation 3D",
     description: "Conception assistée par ordinateur pour une précision maximale",
     image: "/images/Construction_Neuve_3D_Modeling.jpg",
-    benefits: ["Visualisation réaliste", "Détection des conflits", "Optimisation des coûts"],
-  },
-  {
-    title: "Chantiers Connectés",
-    description: "Technologies numériques pour le suivi en temps réel",
-    image: "/images/Construction_Neuve_Modern_Site.jpg",
-    benefits: ["Suivi temps réel", "Qualité contrôlée", "Sécurité renforcée"],
+    benefits: ["Visualisation réaliste", "Optimisation des coûts", "Intégration des normes en vigueur"],
   },
   {
     title: "Plans Techniques Avancés",
     description: "Documentation technique complète et détaillée",
     image: "/images/Construction_Neuve_Technical_Plans.jpg",
-    benefits: ["Précision millimétrique", "Coordination parfaite", "Traçabilité totale"],
+    benefits: ["Précision millimétrique", "Réduction des erreurs et aléas", "Détails constructifs optimisés"],
   },
-]
-
-const stats = [
-  { label: "Projets livrés", value: "200+", icon: CheckCircle },
-  { label: "Années d'expertise", value: "15", icon: Clock },
-  { label: "Équipe dédiée", value: "25", icon: Users },
+  {
+    title: "Suivi & Coordination",
+    description: "Technologies numériques pour le suivi en temps réel",
+    image: "/images/Construction_Neuve_Modern_Site.jpg",
+    benefits: ["Réduction des aléas", "Communication fluide entre intervenants", "Respect des délais et budgets"],
+  },
 ]
 
 export default function ConstructionNeuvePage() {
@@ -81,13 +74,24 @@ export default function ConstructionNeuvePage() {
                 className="text-4xl md:text-5xl font-bold mb-4"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
-                {copy.construction.title}
+                Ingénierie structurelle, performance et fiabilité
               </h1>
-              <p className="text-lg text-white/90 max-w-3xl">{copy.construction.subtitle}</p>
             </div>
           </div>
           <div className="p-8 md:p-12">
-            <p className="text-gray-600 text-lg max-w-3xl mb-8">{copy.construction.description}</p>
+            <p className="text-gray-600 text-lg max-w-3xl mb-8 text-justify">
+              De l'Avant-Projet (AVP) à la phase d'Exécution (EXE), nous assurons le dimensionnement complet des
+              structures, la préparation des documents techniques et la coordination avec les différents acteurs du
+              projet.
+            </p>
+            <p className="text-gray-600 text-lg max-w-3xl mb-8 text-justify">
+              Nos études incluent les calculs réglementaires, les plans d'exécution détaillés et l'optimisation des
+              solutions constructives pour garantir la sécurité, la durabilité et la conformité aux normes, notamment en
+              zone sismique.
+            </p>
+            <p className="text-gray-600 text-lg max-w-3xl mb-8 text-justify">
+              Chaque étape vise à réduire les aléas sur chantier et à assurer une réalisation fluide et maîtrisée.
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-[#C9A568] hover:bg-[#B8941F] text-white">
@@ -100,23 +104,6 @@ export default function ConstructionNeuvePage() {
                 <Link href="/realisations">Voir nos Réalisations</Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Statistiques */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#C9A568] text-white rounded-full mb-4">
-                  <stat.icon className="w-8 h-8" />
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -241,7 +228,7 @@ export default function ConstructionNeuvePage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:+33142123456">Appeler Maintenant</Link>
+              <Link href="tel:+33668842010">Appeler Maintenant</Link>
             </Button>
           </div>
         </div>
