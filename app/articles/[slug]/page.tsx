@@ -72,7 +72,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">{article.title}</h1>
 
-            <div className="flex items-center gap-6 text-gray-200 mb-8">
+            <div className="flex flex-wrap items-center gap-6 text-gray-200 mb-8">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 {new Date(article.date).toLocaleDateString("fr-FR")}
@@ -84,7 +84,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <span>{article.readTime}</span>
             </div>
 
-            <p className="text-xl text-gray-200 leading-relaxed">{article.excerpt}</p>
+            <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">{article.excerpt}</p>
           </div>
         </div>
       </section>
@@ -99,19 +99,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
 
             {/* Article Content */}
-            <div className="prose prose-lg max-w-none">
-              <div
-                className="text-gray-700 leading-relaxed"
-                dangerouslySetInnerHTML={{
-                  __html: article.content
-                    .replace(/\n/g, "<br />")
-                    .replace(/## (.*)/g, "<h2 class='text-2xl font-bold text-gray-900 mt-8 mb-4'>$1</h2>")
-                    .replace(/### (.*)/g, "<h3 class='text-xl font-semibold text-gray-800 mt-6 mb-3'>$1</h3>")
-                    .replace(/#### (.*)/g, "<h4 class='text-lg font-medium text-gray-700 mt-4 mb-2'>$1</h4>")
-                    .replace(/\*\*(.*?)\*\*/g, "<strong class='font-semibold text-gray-900'>$1</strong>")
-                    .replace(/- \*\*(.*?)\*\* :/g, "• <strong class='font-semibold text-gray-900'>$1</strong> :"),
-                }}
-              />
+            <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+              <div className="prose prose-lg max-w-none">
+                <div
+                  className="text-gray-700 leading-relaxed"
+                  dangerouslySetInnerHTML={{
+                    __html: article.content
+                      .replace(/\n/g, "<br />")
+                      .replace(/## (.*)/g, "<h2 class='text-2xl font-bold text-gray-900 mt-8 mb-4'>$1</h2>")
+                      .replace(/### (.*)/g, "<h3 class='text-xl font-semibold text-gray-800 mt-6 mb-3'>$1</h3>")
+                      .replace(/#### (.*)/g, "<h4 class='text-lg font-medium text-gray-700 mt-4 mb-2'>$1</h4>")
+                      .replace(/\*\*(.*?)\*\*/g, "<strong class='font-semibold text-gray-900'>$1</strong>")
+                      .replace(/- \*\*(.*?)\*\* :/g, "• <strong class='font-semibold text-gray-900'>$1</strong> :"),
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -122,7 +124,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Articles similaires</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-12 text-center">Articles similaires</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {relatedArticles.map((relatedArticle) => (

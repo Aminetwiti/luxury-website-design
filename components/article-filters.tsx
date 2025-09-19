@@ -21,7 +21,7 @@ export function ArticleFilters({
 }: ArticleFiltersProps) {
   return (
     <div className="space-y-6">
-      {/* Barre de recherche */}
+      {/* Search Bar */}
       <div className="relative max-w-md mx-auto">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
         <Input
@@ -33,7 +33,7 @@ export function ArticleFilters({
         />
       </div>
 
-      {/* Filtres par catégorie */}
+      {/* Category Filters */}
       <div className="flex flex-wrap justify-center gap-4">
         {categories.map((category) => (
           <Button

@@ -32,7 +32,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <span>{article.readTime}</span>
         </div>
 
-        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#C9A568] transition-colors">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#C9A568] transition-colors line-clamp-2">
           {article.title}
         </h3>
         <p className="text-gray-600 text-justify mb-4 line-clamp-3">{article.excerpt}</p>

@@ -31,12 +31,12 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <section className="relative py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Articles & Actualités</h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Articles & Actualités</h1>
+            <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">
               Découvrez nos analyses techniques, innovations et actualités dans le domaine de l'ingénierie structurelle
               et du béton armé. Restez informé des dernières évolutions du secteur.
             </p>
@@ -44,8 +44,8 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
         </div>
       </section>
 
-      {/* Filtres */}
-      <section className="py-8 bg-white border-b">
+      {/* Filters Section */}
+      <section className="py-12 bg-white border-b">
         <div className="container mx-auto px-4">
           <ArticleFilters
             categories={categories}
@@ -58,7 +58,7 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
       </section>
 
       {/* Articles Grid */}
-      <section className="py-20">
+      <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           {filteredArticles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -87,10 +87,10 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Restez informé</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Restez informé</h2>
             <p className="text-lg text-gray-600 mb-8">
               Recevez nos derniers articles et actualités techniques directement dans votre boîte mail.
             </p>
