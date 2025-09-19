@@ -17,12 +17,15 @@ const SHEET_ID = "1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M"
 export async function getArticlesFromSheet(): Promise<Article[]> {
   try {
     // Utilisation de l'endpoint public Google Sheets (pas besoin d'API key)
-    const response = await fetch(`https://docs.google.com/spreadsheets/d/1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M/gviz/tq?tqx=out:json`, {
-      next: { revalidate: 3600 }, // Cache pendant 1 heure
-      headers: {
-        Accept: "application/json",
+    const response = await fetch(
+      `https://docs.google.com/spreadsheets/d/1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M/gviz/tq?tqx=out:json`,
+      {
+        next: { revalidate: 3600 }, // Cache pendant 1 heure
+        headers: {
+          Accept: "application/json",
+        },
       },
-    })
+    )
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
@@ -103,8 +106,86 @@ L'évolution constante des technologies du béton armé ouvre de nouvelles possi
       author: "Équipe Structiba",
       readTime: "5 min",
       published: true,
-    }
-    
+    },
+    {
+      id: "2",
+      slug: "rehabilitation-parasismique-enjeux-solutions",
+      title: "Réhabilitation parasismique : enjeux et solutions techniques",
+      excerpt:
+        "Analyse des défis techniques de la réhabilitation parasismique et présentation des solutions modernes de renforcement structurel.",
+      content: `La réhabilitation parasismique représente un défi majeur dans l'ingénierie moderne, particulièrement dans les zones à risque sismique comme la région PACA.
+
+## Diagnostic et évaluation
+
+### Méthodes d'investigation
+
+Le Bureau d'études Structiba utilise des techniques de diagnostic non-destructif pour évaluer la vulnérabilité sismique des structures existantes :
+
+- **Auscultation dynamique** : Mesure des fréquences propres de la structure
+- **Carottage sélectif** : Évaluation de la résistance des matériaux en place
+- **Modélisation numérique** : Simulation du comportement sismique
+
+## Solutions de renforcement
+
+### Techniques modernes
+
+Les solutions de renforcement que nous mettons en œuvre s'appuient sur les dernières innovations technologiques :
+
+#### Renforcement par matériaux composites
+- **Fibres de carbone** : Collage de tissus haute résistance
+- **Fibres d'aramide** : Solutions pour environnements agressifs
+- **Fibres de verre** : Alternative économique pour certaines applications
+
+#### Renforcement par ajout d'éléments
+- **Voiles en béton armé** : Contreventement additionnel
+- **Portiques métalliques** : Structures de reprise des efforts
+- **Dispositifs parasismiques** : Amortisseurs et isolateurs
+
+## Réglementation et normes
+
+La mise en conformité avec les normes parasismiques actuelles (Eurocode 8) nécessite une approche méthodique et rigoureuse que notre bureau d'études maîtrise parfaitement.`,
+      image: "/images/Rehabilitation_Structural_Reinforcement.jpg",
+      category: "Technique",
+      date: "2024-03-10",
+      author: "Équipe Structiba",
+      readTime: "7 min",
+      published: true,
+    },
+    {
+      id: "3",
+      slug: "modelisation-3d-bim-revolution-ingenierie",
+      title: "Modélisation 3D et BIM : révolution dans l'ingénierie structure",
+      excerpt:
+        "Comment les outils de modélisation 3D et le BIM transforment les méthodes de conception et de coordination en ingénierie structurelle.",
+      content: `La modélisation 3D et le Building Information Modeling (BIM) révolutionnent les pratiques de l'ingénierie structurelle, offrant une précision et une efficacité inégalées.
+
+## Qu'est-ce que le BIM ?
+
+Le BIM (Building Information Modeling) est une méthode de travail collaborative qui s'appuie sur la création et l'exploitation d'un modèle numérique 3D contenant toutes les informations du projet.
+
+### Avantages du BIM en ingénierie structure
+
+- **Visualisation réaliste** : Compréhension immédiate des solutions techniques
+- **Détection des conflits** : Identification précoce des interférences
+- **Optimisation des coûts** : Quantification précise des matériaux
+- **Coordination améliorée** : Synchronisation entre tous les corps d'état
+
+## Outils et logiciels
+
+### Logiciels de calcul structure
+Le Bureau d'études Structiba utilise les logiciels les plus performants du marché :
+
+- **Robot Structural Analysis** : Calculs de structures complexes
+- **Tekla Structures** : Modélisation détaillée béton et métal
+- **Revit Structure** : Intégration BIM complète
+- **RFEM/RSTAB** : Analyses dynamiques avancées`,
+      image: "/images/Construction_Neuve_3D_Modeling.jpg",
+      category: "Technologie",
+      date: "2024-03-05",
+      author: "Équipe Structiba",
+      readTime: "6 min",
+      published: true,
+    },
   ]
 }
 
