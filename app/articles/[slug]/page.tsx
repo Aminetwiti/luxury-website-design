@@ -49,6 +49,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
+      {/* Hero Section */}
       <section className="relative py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -87,6 +88,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </section>
 
+      {/* Article Content */}
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -114,6 +116,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </section>
 
+      {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">

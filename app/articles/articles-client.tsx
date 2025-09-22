@@ -11,21 +11,21 @@ interface ArticlesClientProps {
 }
 
 export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
-  const [activeCategory, setActiveCategory] = useState("Tous")
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("Tous")
 
   const filteredArticles = useMemo(() => {
     return articles.filter((article) => {
-      const matchesCategory = activeCategory === "Tous" || article.category === activeCategory
       const matchesSearch =
-        searchTerm === "" ||
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.category.toLowerCase().includes(searchTerm.toLowerCase())
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.content.toLowerCase().includes(searchQuery.toLowerCase())
 
-      return matchesCategory && matchesSearch
+      const matchesCategory = selectedCategory === "Tous" || article.category === selectedCategory
+
+      return matchesSearch && matchesCategory
     })
-  }, [articles, activeCategory, searchTerm])
+  }, [articles, searchQuery, selectedCategory])
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
@@ -36,8 +36,7 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Articles & Actualités</h1>
             <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">
-              Découvrez nos dernières réflexions sur l'ingénierie structurelle, les innovations techniques et les
-              actualités du secteur de la construction.
+              Découvrez nos analyses techniques, innovations et actualités du secteur de l'ingénierie structurelle
             </p>
           </div>
         </div>
@@ -48,50 +47,33 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Filters */}
-            <div className="mb-12">
-              <ArticleFilters
-                categories={categories}
-                onCategoryChange={setActiveCategory}
-                onSearchChange={setSearchTerm}
-                activeCategory={activeCategory}
-              />
-            </div>
+            <ArticleFilters
+              categories={categories}
+              onSearch={setSearchQuery}
+              onCategoryChange={setSelectedCategory}
+              selectedCategory={selectedCategory}
+            />
 
-            {/* Results Count */}
-            <div className="mb-8">
-              <p className="text-gray-600">
-                {filteredArticles.length} article{filteredArticles.length > 1 ? "s" : ""} trouvé
-                {filteredArticles.length > 1 ? "s" : ""}
-                {searchTerm && ` pour "${searchTerm}"`}
-                {activeCategory !== "Tous" && ` dans "${activeCategory}"`}
-              </p>
-            </div>
-
-            {/* Articles Grid */}
-            {filteredArticles.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredArticles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
-                ))}
+            {/* Results */}
+            {filteredArticles.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-600 text-lg">Aucun article trouvé pour votre recherche.</p>
               </div>
             ) : (
-              <div className="text-center py-16">
-                <div className="max-w-md mx-auto">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Aucun article trouvé</h3>
-                  <p className="text-gray-600 mb-6">
-                    Essayez de modifier vos critères de recherche ou de sélectionner une autre catégorie.
+              <>
+                <div className="mb-8">
+                  <p className="text-gray-600">
+                    {filteredArticles.length} article{filteredArticles.length > 1 ? "s" : ""} trouvé
+                    {filteredArticles.length > 1 ? "s" : ""}
                   </p>
-                  <button
-                    onClick={() => {
-                      setActiveCategory("Tous")
-                      setSearchTerm("")
-                    }}
-                    className="text-[#C9A568] hover:text-[#B8956A] font-medium"
-                  >
-                    Réinitialiser les filtres
-                  </button>
                 </div>
-              </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {filteredArticles.map((article) => (
+                    <ArticleCard key={article.id} article={article} />
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </div>
