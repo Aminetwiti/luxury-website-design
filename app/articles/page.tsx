@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   keywords: "articles ingénierie, actualités construction, béton armé, structure, innovation technique",
 }
 
+export const revalidate = 60 // ISR - Revalidation toutes les 60 secondes
+
 export default async function ArticlesPage() {
   console.log("🚀 Chargement de la page Articles...")
 

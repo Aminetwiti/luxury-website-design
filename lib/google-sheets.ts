@@ -15,19 +15,20 @@ export interface Article {
 const SHEET_ID = "1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M"
 
 export async function getArticlesFromSheet(): Promise<Article[]> {
-  
+  console.log("🚀 Début de getArticlesFromSheet()")
 
   try {
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`
-   
+    console.log("📡 URL de la requête:", url)
 
     const response = await fetch(url, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
       headers: {
         Accept: "application/json",
       },
     })
 
+    console.log("📊 Statut de la réponse:", response.status)
 
     if (!response.ok) {
       console.error("❌ Erreur HTTP:", response.status)
@@ -35,11 +36,11 @@ export async function getArticlesFromSheet(): Promise<Article[]> {
     }
 
     const text = await response.text()
-    
+    console.log("📄 Longueur du texte reçu:", text.length)
 
     // Nettoyage du JSONP - Google Sheets retourne du JSONP, pas du JSON pur
     const jsonString = text.substring(47, text.length - 2)
-   
+    console.log("🧹 Texte nettoyé, longueur:", jsonString.length)
 
     const json = JSON.parse(jsonString)
     console.log("📋 Structure JSON parsée:", {
@@ -49,40 +50,41 @@ export async function getArticlesFromSheet(): Promise<Article[]> {
     })
 
     if (!json.table || !json.table.rows) {
-      
-      
+      console.log("⚠️ Aucune donnée trouvée dans Google Sheet")
+      console.log("🔄 Appel de getFallbackArticles()...")
       const fallbackArticles = getFallbackArticles()
-     
+      console.log("✅ Articles de fallback retournés:", fallbackArticles.length)
       return fallbackArticles
     }
 
-   
-    const articles = json.table.rows.map((row: any, index: number) => {
-  const cells = row.c || []
+    console.log("🔄 Traitement des lignes du Google Sheet...")
+    const articles = json.table.rows
+      .map((row: any, index: number) => {
+        const cells = row.c || []
 
-  const article = {
-    id: cells[0]?.v?.toString() || `article-${index + 1}`,
-    slug: cells[1]?.v?.toString() || `article-${index + 1}`,
-    title: cells[2]?.v?.toString() || "",
-    excerpt: cells[3]?.v?.toString() || "",
-    content: cells[4]?.v?.toString() || "",
-    image: cells[5]?.v?.toString() || "/images/placeholder-article.jpg",
-    category: cells[6]?.v?.toString() || "Général",
-    tags: cells[7]?.v?.toString()?.split(",") || [],
-    date: cells[8]?.f || new Date().toISOString().split("T")[0], // utilise la version formatée
-    published: String(cells[9]?.v).toLowerCase() === "true", // ✅ status booléen
-    author: cells[10]?.v?.toString() || "Équipe Structiba",
-    readTime: cells[11]?.v?.toString() || "5 min",
-    seoTitle: cells[12]?.v?.toString() || "",
-    seoDescription: cells[13]?.v?.toString() || "",
-    seoKeywords: cells[14]?.v?.toString() || "",
-  }
+        const article = {
+          id: cells[0]?.v?.toString() || `article-${index + 1}`,
+          slug: cells[1]?.v?.toString() || `article-${index + 1}`,
+          title: cells[2]?.v?.toString() || "",
+          excerpt: cells[3]?.v?.toString() || "",
+          content: cells[4]?.v?.toString() || "",
+          image: cells[5]?.v?.toString() || "/images/placeholder-article.jpg",
+          category: cells[6]?.v?.toString() || "Général",
+          date: cells[7]?.v?.toString() || new Date().toISOString().split("T")[0],
+          author: cells[8]?.v?.toString() || "Équipe Structiba",
+          readTime: cells[9]?.v?.toString() || "5 min",
+          published: cells[10]?.v === true || cells[10]?.v === "TRUE" || cells[10]?.v === "true",
+        }
 
- 
+        console.log(`📄 Article ${index + 1} traité:`, {
+          id: article.id,
+          slug: article.slug,
+          title: article.title.substring(0, 30) + "...",
+          published: article.published,
+        })
 
-  return article
-})
-
+        return article
+      })
       .filter((article: Article) => {
         const isValid = article.title && article.published
         if (!isValid) {
@@ -91,21 +93,23 @@ export async function getArticlesFromSheet(): Promise<Article[]> {
         return isValid
       })
 
-    
+    console.log("✅ Articles valides après filtrage:", articles.length)
 
     if (articles.length === 0) {
-      
+      console.log("⚠️ Aucun article valide trouvé")
+      console.log("🔄 Appel de getFallbackArticles()...")
       const fallbackArticles = getFallbackArticles()
-      
+      console.log("✅ Articles de fallback retournés:", fallbackArticles.length)
       return fallbackArticles
     }
 
-   
+    console.log("🎉 Articles récupérés avec succès depuis Google Sheets:", articles.length)
     return articles
   } catch (error) {
-    
+    console.error("❌ Erreur lors de la récupération des articles:", error)
+    console.log("🔄 Appel de getFallbackArticles()...")
     const fallbackArticles = getFallbackArticles()
-   
+    console.log("✅ Articles de fallback retournés:", fallbackArticles.length)
     return fallbackArticles
   }
 }

@@ -11,19 +11,23 @@ interface ArticlesClientProps {
 }
 
 export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
-  console.log("🎨 ArticlesClient - Props reçues:", {
+  const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles)
+
+  console.log("🎨 ArticlesClient rendu avec:", {
     articlesCount: articles.length,
     categoriesCount: categories.length,
+    filteredCount: filteredArticles.length,
   })
 
-  console.log("📋 Articles reçus dans le composant client:")
+  console.log("📚 Articles reçus en props:")
   articles.forEach((article, index) => {
     console.log(`  ${index + 1}. ${article.title} (${article.category})`)
   })
 
-  const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles)
-
-  console.log("📊 État actuel des articles filtrés:", filteredArticles.length)
+  const handleFilteredArticles = (filtered: Article[]) => {
+    console.log("🔄 Mise à jour des articles filtrés:", filtered.length)
+    setFilteredArticles(filtered)
+  }
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
@@ -46,7 +50,7 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Filtres */}
-            <ArticleFilters articles={articles} categories={categories} onFilter={setFilteredArticles} />
+            <ArticleFilters articles={articles} categories={categories} onFilteredArticles={handleFilteredArticles} />
 
             {/* Résultats */}
             <div className="mb-8">
@@ -60,28 +64,13 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
             {filteredArticles.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredArticles.map((article) => {
-                  console.log("🎨 Rendu de l'article:", article.title)
+                  console.log("🎨 Rendu de l'article:", article.slug)
                   return <ArticleCard key={article.id} article={article} />
                 })}
               </div>
             ) : (
               <div className="text-center py-16">
-                <div className="max-w-md mx-auto">
-                  <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
-                    <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Aucun article trouvé</h3>
-                  <p className="text-gray-600">
-                    Essayez de modifier vos critères de recherche ou de sélectionner une autre catégorie.
-                  </p>
-                </div>
+                <p className="text-gray-500 text-lg">Aucun article trouvé pour ces critères.</p>
               </div>
             )}
           </div>

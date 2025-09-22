@@ -1,78 +1,93 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Search, Filter } from "lucide-react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Search } from "lucide-react"
 import type { Article } from "@/lib/google-sheets"
 
 interface ArticleFiltersProps {
   articles: Article[]
   categories: string[]
-  onFilter: (filteredArticles: Article[]) => void
+  onFilteredArticles: (articles: Article[]) => void
 }
 
-export function ArticleFilters({ articles, categories, onFilter }: ArticleFiltersProps) {
-  const [searchQuery, setSearchQuery] = useState("")
+export function ArticleFilters({ articles, categories, onFilteredArticles }: ArticleFiltersProps) {
   const [selectedCategory, setSelectedCategory] = useState("Tous")
+  const [searchTerm, setSearchTerm] = useState("")
 
-  useEffect(() => {
-    console.log("🔍 Filtrage des articles - Recherche:", searchQuery, "Catégorie:", selectedCategory)
+  console.log("🎛️ ArticleFilters rendu avec:", {
+    articlesCount: articles.length,
+    categoriesCount: categories.length,
+    selectedCategory,
+    searchTerm,
+  })
+
+  const filterArticles = (category: string, search: string) => {
+    console.log("🔍 Filtrage des articles avec:", { category, search })
 
     let filtered = articles
 
-    // Filtrer par catégorie
-    if (selectedCategory !== "Tous") {
-      filtered = filtered.filter((article) => article.category === selectedCategory)
+    // Filtrage par catégorie
+    if (category !== "Tous") {
+      filtered = filtered.filter((article) => article.category === category)
       console.log("📂 Articles après filtrage par catégorie:", filtered.length)
     }
 
-    // Filtrer par recherche
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase()
+    // Filtrage par recherche
+    if (search.trim()) {
+      const searchLower = search.toLowerCase()
       filtered = filtered.filter(
         (article) =>
-          article.title.toLowerCase().includes(query) ||
-          article.excerpt.toLowerCase().includes(query) ||
-          article.content.toLowerCase().includes(query) ||
-          article.category.toLowerCase().includes(query) ||
-          article.author.toLowerCase().includes(query),
+          article.title.toLowerCase().includes(searchLower) ||
+          article.excerpt.toLowerCase().includes(searchLower) ||
+          article.content.toLowerCase().includes(searchLower) ||
+          article.category.toLowerCase().includes(searchLower) ||
+          article.author.toLowerCase().includes(searchLower),
       )
       console.log("🔎 Articles après filtrage par recherche:", filtered.length)
     }
 
     console.log("✅ Articles filtrés finaux:", filtered.length)
-    onFilter(filtered)
-  }, [searchQuery, selectedCategory, articles, onFilter])
+    onFilteredArticles(filtered)
+  }
+
+  const handleCategoryChange = (category: string) => {
+    console.log("📂 Changement de catégorie:", category)
+    setSelectedCategory(category)
+    filterArticles(category, searchTerm)
+  }
+
+  const handleSearchChange = (search: string) => {
+    console.log("🔎 Changement de recherche:", search)
+    setSearchTerm(search)
+    filterArticles(selectedCategory, search)
+  }
 
   return (
-    <div className="mb-12 space-y-6">
+    <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
       {/* Barre de recherche */}
-      <div className="relative max-w-md">
+      <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-        <input
+        <Input
           type="text"
-          placeholder="Rechercher un article..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C9A568] focus:border-transparent"
+          placeholder="Rechercher dans les articles..."
+          value={searchTerm}
+          onChange={(e) => handleSearchChange(e.target.value)}
+          className="pl-10 pr-4 py-3 border-gray-200 focus:border-[#C9A568] focus:ring-[#C9A568]"
         />
       </div>
 
       {/* Filtres par catégorie */}
-      <div className="flex flex-wrap gap-3">
-        <div className="flex items-center gap-2 text-gray-700 font-medium">
-          <Filter className="w-4 h-4" />
-          Catégories :
-        </div>
+      <div className="flex flex-wrap gap-2">
         {categories.map((category) => (
           <Button
             key={category}
             variant={selectedCategory === category ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => handleCategoryChange(category)}
             className={
               selectedCategory === category
-                ? "bg-[#C9A568] hover:bg-[#B8956A] text-white border-[#C9A568]"
+                ? "bg-[#C9A568] hover:bg-[#B8956A] text-white border-none"
                 : "border-[#C9A568] text-[#C9A568] hover:bg-[#C9A568] hover:text-white bg-transparent"
             }
           >
@@ -80,21 +95,6 @@ export function ArticleFilters({ articles, categories, onFilter }: ArticleFilter
           </Button>
         ))}
       </div>
-
-      {/* Bouton de réinitialisation */}
-      {(searchQuery || selectedCategory !== "Tous") && (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => {
-            setSearchQuery("")
-            setSelectedCategory("Tous")
-          }}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          Réinitialiser les filtres
-        </Button>
-      )}
     </div>
   )
 }

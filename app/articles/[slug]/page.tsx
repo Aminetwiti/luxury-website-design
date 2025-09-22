@@ -14,6 +14,8 @@ interface ArticlePageProps {
   }
 }
 
+export const revalidate = 60 // ISR - Revalidation toutes les 60 secondes
+
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   console.log("🏷️ Génération des métadonnées pour le slug:", params.slug)
 
