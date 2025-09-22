@@ -16,24 +16,18 @@ const SHEET_ID = "1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M"
 
 export async function getArticlesFromSheet(): Promise<Article[]> {
   try {
-    // Utilisation de l'endpoint public Google Sheets (pas besoin d'API key)
-    const response = await fetch(
-      `https://docs.google.com/spreadsheets/d/1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M/gviz/tq?tqx=out:json`,
-      {
-        next: { revalidate: 3600 }, // Cache pendant 1 heure
-        headers: {
-          Accept: "application/json",
-        },
+    const response = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`, {
+      next: { revalidate: 3600 },
+      headers: {
+        Accept: "application/json",
       },
-    )
+    })
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
     const text = await response.text()
-
-    // Nettoyage du JSONP - Google Sheets retourne du JSONP, pas du JSON pur
     const jsonString = text.substring(47, text.length - 2)
     const json = JSON.parse(jsonString)
 
@@ -42,7 +36,6 @@ export async function getArticlesFromSheet(): Promise<Article[]> {
       return getFallbackArticles()
     }
 
-    // Mapper les colonnes selon le Google Sheet
     const articles = json.table.rows
       .map((row: any, index: number) => {
         const cells = row.c || []
@@ -60,7 +53,7 @@ export async function getArticlesFromSheet(): Promise<Article[]> {
           published: cells[10]?.v === true || cells[10]?.v === "TRUE" || cells[10]?.v === "true",
         }
       })
-      .filter((article: Article) => article.title && article.published) // Filtrer les articles vides et non publiés
+      .filter((article: Article) => article.title && article.published)
 
     return articles.length > 0 ? articles : getFallbackArticles()
   } catch (error) {

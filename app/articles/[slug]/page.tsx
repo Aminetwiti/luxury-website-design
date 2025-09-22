@@ -44,13 +44,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound()
   }
 
-  // Récupérer les articles similaires
   const allArticles = await getArticlesFromSheet()
   const relatedArticles = allArticles.filter((a) => a.id !== article.id && a.category === article.category).slice(0, 3)
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
-      {/* Hero Section */}
       <section className="relative py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -89,16 +87,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </section>
 
-      {/* Article Content */}
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            {/* Featured Image */}
             <div className="relative h-64 sm:h-96 mb-12 rounded-lg overflow-hidden">
               <Image src={article.image || "/placeholder.svg"} alt={article.title} fill className="object-cover" />
             </div>
 
-            {/* Article Content */}
             <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
               <div className="prose prose-lg max-w-none">
                 <div
@@ -119,7 +114,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </section>
 
-      {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">

@@ -42,7 +42,7 @@ const projects = [
     title: "Villa Contemporaine - Côte d'Azur",
     description:
       "Construction d'une villa contemporaine avec piscine à débordement. Structure béton armé optimisée et intégration paysagère soignée.",
-    image: "/images/Villa_Mandelieu_Facade_Principale.jpg",
+    image: "/images/Contemporaine.jpg",
   },
   {
     id: 2,
@@ -56,7 +56,7 @@ const projects = [
     title: "Réhabilitation Villa Cannet",
     description:
       "Études complètes de réhabilitation structurelle comprenant l'ensemble des calculs en phase EXE. Création de nouvelles ouvertures et renforcement structurel.",
-    image: "/images/Villa_Cannet_Facade_Jour.jpg",
+    image: "/images/cannet.jpg",
   },
 ]
 

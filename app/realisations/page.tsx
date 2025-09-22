@@ -24,7 +24,7 @@ const projects = [
     title: "Villa Contemporaine - Côte d'Azur",
     description:
       "Construction d'une villa contemporaine avec piscine intérieure et extérieure. Structure en béton armé avec grandes portées et porte-à-faux spectaculaires, alliant performance structurelle et esthétique architecturale.",
-    image: "/images/Villa_Cannet_Facade_Jour.jpg",
+    image: "/images/Contemporaine.jpg",
     category: "Construction Neuve",
   },
   {
@@ -32,7 +32,7 @@ const projects = [
     title: "Réhabilitation Villa Cannet",
     description:
       "Études complètes de réhabilitation structurelle comprenant l'ensemble des calculs en phase EXE. Création de nouvelles ouvertures dans les murs porteurs, reprises en sous-œuvre et renforcement des éléments structurels existants.",
-    image: "/images/Villa_Cannet_Facade_Nuit.jpg",
+    image: "/images/cannet.jpg",
     category: "Réhabilitation",
   },
 ]

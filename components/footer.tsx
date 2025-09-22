@@ -111,7 +111,8 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-[#C9A568] mt-0.5 flex-shrink-0" />
                 <div className="text-gray-300 text-sm sm:text-base">
                   <p>Siège social :</p>
-                  <p>Nice, Côte d'Azur</p>
+                  <p>63 Avenue de Grasse </p>
+                 <p> 06400 cannes</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">

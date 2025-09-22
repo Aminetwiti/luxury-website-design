@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card"
 export default function ArticlesLoading() {
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
-      {/* Hero Section Skeleton */}
       <section className="relative py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -14,7 +13,6 @@ export default function ArticlesLoading() {
         </div>
       </section>
 
-      {/* Filters Section Skeleton */}
       <section className="py-12 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="space-y-6">
@@ -28,7 +26,6 @@ export default function ArticlesLoading() {
         </div>
       </section>
 
-      {/* Articles Grid Skeleton */}
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
