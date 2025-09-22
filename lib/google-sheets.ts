@@ -15,31 +15,53 @@ export interface Article {
 const SHEET_ID = "1D81NCaQmQ5bHNLZZiep-BeoWnJgcOCb3ziaXfk8Ud0M"
 
 export async function getArticlesFromSheet(): Promise<Article[]> {
+  console.log("🔄 Début de la récupération des articles depuis Google Sheets...")
+
   try {
-    const response = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`, {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`
+    console.log("📡 URL de la requête:", url)
+
+    const response = await fetch(url, {
       next: { revalidate: 3600 },
       headers: {
         Accept: "application/json",
       },
     })
 
+    console.log("📊 Statut de la réponse:", response.status, response.statusText)
+
     if (!response.ok) {
+      console.error("❌ Erreur HTTP:", response.status)
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
     const text = await response.text()
+    console.log("📝 Données brutes reçues (premiers 200 caractères):", text.substring(0, 200))
+
+    // Nettoyage du JSONP - Google Sheets retourne du JSONP, pas du JSON pur
     const jsonString = text.substring(47, text.length - 2)
+    console.log("🧹 Données nettoyées (premiers 200 caractères):", jsonString.substring(0, 200))
+
     const json = JSON.parse(jsonString)
+    console.log("📋 Structure JSON parsée:", {
+      hasTable: !!json.table,
+      hasRows: !!(json.table && json.table.rows),
+      rowsCount: json.table?.rows?.length || 0,
+    })
 
     if (!json.table || !json.table.rows) {
-      console.warn("No data found in Google Sheet")
-      return getFallbackArticles()
+      console.warn("⚠️ Aucune donnée trouvée dans Google Sheet, utilisation des articles de fallback")
+      console.log("🔄 Appel de getFallbackArticles...")
+      const fallbackArticles = getFallbackArticles()
+      console.log("✅ Articles de fallback récupérés:", fallbackArticles.length, "articles")
+      return fallbackArticles
     }
 
+    console.log("🔄 Traitement des lignes de données...")
     const articles = json.table.rows
       .map((row: any, index: number) => {
         const cells = row.c || []
-        return {
+        const article = {
           id: cells[0]?.v?.toString() || `article-${index + 1}`,
           slug: cells[1]?.v?.toString() || `article-${index + 1}`,
           title: cells[2]?.v?.toString() || "",
@@ -52,18 +74,49 @@ export async function getArticlesFromSheet(): Promise<Article[]> {
           readTime: cells[9]?.v?.toString() || "5 min",
           published: cells[10]?.v === true || cells[10]?.v === "TRUE" || cells[10]?.v === "true",
         }
-      })
-      .filter((article: Article) => article.title && article.published)
 
-    return articles.length > 0 ? articles : getFallbackArticles()
+        console.log(`📄 Article ${index + 1}:`, {
+          id: article.id,
+          slug: article.slug,
+          title: article.title.substring(0, 50) + "...",
+          published: article.published,
+        })
+
+        return article
+      })
+      .filter((article: Article) => {
+        const isValid = article.title && article.published
+        if (!isValid) {
+          console.log("❌ Article filtré (titre vide ou non publié):", article.id)
+        }
+        return isValid
+      })
+
+    console.log("✅ Articles traités et filtrés:", articles.length, "articles valides")
+
+    if (articles.length === 0) {
+      console.warn("⚠️ Aucun article valide trouvé, utilisation des articles de fallback")
+      console.log("🔄 Appel de getFallbackArticles...")
+      const fallbackArticles = getFallbackArticles()
+      console.log("✅ Articles de fallback récupérés:", fallbackArticles.length, "articles")
+      return fallbackArticles
+    }
+
+    console.log("🎉 Récupération réussie depuis Google Sheets:", articles.length, "articles")
+    return articles
   } catch (error) {
-    console.error("Error fetching articles from Google Sheets:", error)
-    return getFallbackArticles()
+    console.error("💥 Erreur lors de la récupération depuis Google Sheets:", error)
+    console.log("🔄 Appel de getFallbackArticles en cas d'erreur...")
+    const fallbackArticles = getFallbackArticles()
+    console.log("✅ Articles de fallback récupérés après erreur:", fallbackArticles.length, "articles")
+    return fallbackArticles
   }
 }
 
 function getFallbackArticles(): Article[] {
-  return [
+  console.log("🔄 Génération des articles de fallback...")
+
+  const articles = [
     {
       id: "1",
       slug: "innovations-beton-arme-construction-durable",
@@ -180,14 +233,47 @@ Le Bureau d'études Structiba utilise les logiciels les plus performants du marc
       published: true,
     },
   ]
+
+  console.log("✅ Articles de fallback générés:", articles.length, "articles")
+  articles.forEach((article, index) => {
+    console.log(`📄 Article fallback ${index + 1}:`, {
+      id: article.id,
+      slug: article.slug,
+      title: article.title.substring(0, 50) + "...",
+      category: article.category,
+    })
+  })
+
+  return articles
 }
 
 export function getUniqueCategories(articles: Article[]): string[] {
+  console.log("🏷️ Extraction des catégories uniques depuis", articles.length, "articles")
+
   const categories = articles.map((article) => article.category)
-  return ["Tous", ...Array.from(new Set(categories))]
+  const uniqueCategories = ["Tous", ...Array.from(new Set(categories))]
+
+  console.log("✅ Catégories uniques trouvées:", uniqueCategories)
+  return uniqueCategories
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  console.log("🔍 Recherche de l'article avec le slug:", slug)
+
   const articles = await getArticlesFromSheet()
-  return articles.find((article) => article.slug === slug) || null
+  console.log("📚 Articles disponibles pour la recherche:", articles.length)
+
+  const article = articles.find((article) => article.slug === slug)
+
+  if (article) {
+    console.log("✅ Article trouvé:", {
+      id: article.id,
+      slug: article.slug,
+      title: article.title.substring(0, 50) + "...",
+    })
+  } else {
+    console.log("❌ Aucun article trouvé avec le slug:", slug)
+  }
+
+  return article || null
 }

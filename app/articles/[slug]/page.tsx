@@ -15,14 +15,18 @@ interface ArticlePageProps {
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  console.log("🏷️ Génération des métadonnées pour le slug:", params.slug)
+
   const article = await getArticleBySlug(params.slug)
 
   if (!article) {
+    console.log("❌ Article non trouvé pour les métadonnées")
     return {
       title: "Article non trouvé | B.E Structiba",
     }
   }
 
+  console.log("✅ Métadonnées générées pour:", article.title)
   return {
     title: `${article.title} | B.E Structiba`,
     description: article.excerpt,
@@ -31,21 +35,42 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 export async function generateStaticParams() {
+  console.log("🔧 Génération des paramètres statiques pour les articles...")
+
   const articles = await getArticlesFromSheet()
-  return articles.map((article) => ({
-    slug: article.slug,
-  }))
+  console.log("📊 Articles disponibles pour generateStaticParams:", articles.length)
+
+  const params = articles.map((article) => {
+    console.log("📄 Génération du paramètre pour:", article.slug)
+    return {
+      slug: article.slug,
+    }
+  })
+
+  console.log("✅ Paramètres statiques générés:", params.length)
+  return params
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
+  console.log("🚀 Chargement de la page article pour le slug:", params.slug)
+
   const article = await getArticleBySlug(params.slug)
 
   if (!article) {
+    console.log("❌ Article non trouvé, redirection vers 404")
     notFound()
   }
 
+  console.log("✅ Article trouvé:", article.title)
+  console.log("🔍 Recherche d'articles similaires...")
+
   const allArticles = await getArticlesFromSheet()
   const relatedArticles = allArticles.filter((a) => a.id !== article.id && a.category === article.category).slice(0, 3)
+
+  console.log("📚 Articles similaires trouvés:", relatedArticles.length)
+  relatedArticles.forEach((related, index) => {
+    console.log(`  ${index + 1}. ${related.title}`)
+  })
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">

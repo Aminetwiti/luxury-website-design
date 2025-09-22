@@ -10,8 +10,20 @@ export const metadata: Metadata = {
 }
 
 export default async function ArticlesPage() {
+  console.log("🚀 Chargement de la page Articles...")
+
+  console.log("📊 Récupération des articles...")
   const articles = await getArticlesFromSheet()
+  console.log("✅ Articles récupérés pour la page:", articles.length)
+
+  console.log("🏷️ Extraction des catégories...")
   const categories = getUniqueCategories(articles)
+  console.log("✅ Catégories extraites:", categories)
+
+  console.log("🎨 Rendu du composant ArticlesClient avec:", {
+    articlesCount: articles.length,
+    categoriesCount: categories.length,
+  })
 
   return <ArticlesClient articles={articles} categories={categories} />
 }

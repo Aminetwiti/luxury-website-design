@@ -11,7 +11,19 @@ interface ArticlesClientProps {
 }
 
 export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
+  console.log("🎨 ArticlesClient - Props reçues:", {
+    articlesCount: articles.length,
+    categoriesCount: categories.length,
+  })
+
+  console.log("📋 Articles reçus dans le composant client:")
+  articles.forEach((article, index) => {
+    console.log(`  ${index + 1}. ${article.title} (${article.category})`)
+  })
+
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles)
+
+  console.log("📊 État actuel des articles filtrés:", filteredArticles.length)
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
@@ -47,9 +59,10 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
             {/* Grille d'articles */}
             {filteredArticles.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredArticles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
-                ))}
+                {filteredArticles.map((article) => {
+                  console.log("🎨 Rendu de l'article:", article.title)
+                  return <ArticleCard key={article.id} article={article} />
+                })}
               </div>
             ) : (
               <div className="text-center py-16">
