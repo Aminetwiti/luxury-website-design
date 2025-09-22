@@ -10,45 +10,52 @@ import { Search } from "lucide-react"
 interface ArticleFiltersProps {
   categories: string[]
   onSearch: (query: string) => void
-  onCategoryChange: (category: string) => void
+  onCategoryFilter: (category: string) => void
   selectedCategory: string
+  searchQuery: string
 }
 
-export function ArticleFilters({ categories, onSearch, onCategoryChange, selectedCategory }: ArticleFiltersProps) {
-  const [searchQuery, setSearchQuery] = useState("")
+export function ArticleFilters({
+  categories,
+  onSearch,
+  onCategoryFilter,
+  selectedCategory,
+  searchQuery,
+}: ArticleFiltersProps) {
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery)
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSearch(searchQuery)
+    onSearch(localSearchQuery)
   }
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Search */}
-        <form onSubmit={handleSearch} className="flex-1">
+        {/* Search Bar */}
+        <form onSubmit={handleSearchSubmit} className="flex-1">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <Input
               type="text"
-              placeholder="Rechercher un article..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 border-gray-200 focus:border-[#C9A568] focus:ring-[#C9A568]"
+              placeholder="Rechercher dans les articles..."
+              value={localSearchQuery}
+              onChange={(e) => setLocalSearchQuery(e.target.value)}
+              className="pl-10 pr-4 py-3 border-gray-200 focus:border-[#C9A568] focus:ring-[#C9A568]"
             />
           </div>
         </form>
 
-        {/* Categories */}
+        {/* Category Filters */}
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => onCategoryChange(category)}
+              onClick={() => onCategoryFilter(category)}
               className={
                 selectedCategory === category
-                  ? "bg-[#C9A568] hover:bg-[#B8956A] text-white border-none"
+                  ? "bg-[#C9A568] text-white hover:bg-[#B8956A] border-[#C9A568]"
                   : "border-[#C9A568] text-[#C9A568] hover:bg-[#C9A568] hover:text-white bg-transparent"
               }
             >

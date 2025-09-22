@@ -15,17 +15,28 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
   const [selectedCategory, setSelectedCategory] = useState("Tous")
 
   const filteredArticles = useMemo(() => {
-    return articles.filter((article) => {
-      const matchesSearch =
-        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        article.content.toLowerCase().includes(searchQuery.toLowerCase())
+    let filtered = articles
 
-      const matchesCategory = selectedCategory === "Tous" || article.category === selectedCategory
+    // Filter by category
+    if (selectedCategory !== "Tous") {
+      filtered = filtered.filter((article) => article.category === selectedCategory)
+    }
 
-      return matchesSearch && matchesCategory
-    })
-  }, [articles, searchQuery, selectedCategory])
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase()
+      filtered = filtered.filter(
+        (article) =>
+          article.title.toLowerCase().includes(query) ||
+          article.excerpt.toLowerCase().includes(query) ||
+          article.content.toLowerCase().includes(query) ||
+          article.category.toLowerCase().includes(query) ||
+          article.author.toLowerCase().includes(query),
+      )
+    }
+
+    return filtered
+  }, [articles, selectedCategory, searchQuery])
 
   return (
     <div className="min-h-screen bg-[#F8F8F5]">
@@ -36,7 +47,8 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Articles & Actualités</h1>
             <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">
-              Découvrez nos analyses techniques, innovations et actualités du secteur de l'ingénierie structurelle
+              Découvrez nos articles techniques sur l'ingénierie structurelle, les innovations en béton armé et les
+              actualités du secteur de la construction.
             </p>
           </div>
         </div>
@@ -50,30 +62,46 @@ export function ArticlesClient({ articles, categories }: ArticlesClientProps) {
             <ArticleFilters
               categories={categories}
               onSearch={setSearchQuery}
-              onCategoryChange={setSelectedCategory}
+              onCategoryFilter={setSelectedCategory}
               selectedCategory={selectedCategory}
+              searchQuery={searchQuery}
             />
 
-            {/* Results */}
-            {filteredArticles.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-600 text-lg">Aucun article trouvé pour votre recherche.</p>
+            {/* Results Count */}
+            <div className="mb-8">
+              <p className="text-gray-600">
+                {filteredArticles.length} article{filteredArticles.length > 1 ? "s" : ""} trouvé
+                {filteredArticles.length > 1 ? "s" : ""}
+                {selectedCategory !== "Tous" && ` dans la catégorie "${selectedCategory}"`}
+                {searchQuery && ` pour "${searchQuery}"`}
+              </p>
+            </div>
+
+            {/* Articles Grid */}
+            {filteredArticles.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredArticles.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))}
               </div>
             ) : (
-              <>
-                <div className="mb-8">
-                  <p className="text-gray-600">
-                    {filteredArticles.length} article{filteredArticles.length > 1 ? "s" : ""} trouvé
-                    {filteredArticles.length > 1 ? "s" : ""}
+              <div className="text-center py-16">
+                <div className="max-w-md mx-auto">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Aucun article trouvé</h3>
+                  <p className="text-gray-600 mb-6">
+                    Essayez de modifier vos critères de recherche ou de sélectionner une autre catégorie.
                   </p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery("")
+                      setSelectedCategory("Tous")
+                    }}
+                    className="text-[#C9A568] hover:text-[#B8956A] font-medium"
+                  >
+                    Réinitialiser les filtres
+                  </button>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredArticles.map((article) => (
-                    <ArticleCard key={article.id} article={article} />
-                  ))}
-                </div>
-              </>
+              </div>
             )}
           </div>
         </div>
