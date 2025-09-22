@@ -17,7 +17,7 @@ export default function ArticlesLoading() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Filters Skeleton */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
               <div className="flex flex-col lg:flex-row gap-6">
                 <div className="flex-1">
                   <div className="h-12 bg-gray-200 rounded-lg animate-pulse"></div>
